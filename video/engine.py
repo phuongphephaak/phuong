@@ -143,11 +143,17 @@ ARMS = {
     "cane": (((-112, -310), (-110, -215)), ((140, -300), (150, -230))),
     "chin": (((-112, -310), (-110, -215)), ((150, -360), (55, -450))),
     "present": (((-112, -310), (-110, -215)), ((175, -340), (240, -330))),
+    "phone": (((-112, -310), (-110, -215)), ((135, -320), (60, -380))),
+    "mic": (((-112, -310), (-110, -215)), ((140, -360), (45, -470))),
+    "paper": (((-140, -330), (-85, -440)), ((140, -330), (85, -440))),
+    "cross": (((-125, -330), (40, -330)), ((125, -330), (-40, -345))),
+    "knock": (((-112, -310), (-110, -215)), ((175, -390), (235, -470))),
+    "hug": (((-150, -400), (-60, -420)), ((150, -400), (60, -420))),
 }
 
 
 def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
-              talking=False, flip=False, walk=None, stride=1.0, lean=0.0):
+              talking=False, flip=False, walk=None, stride=1.0, lean=0.0, prop=None):
     """walk = gait phase in radians (None = standing). Character faces +x unless flip."""
     ctx.save()
     ctx.translate(x, y)
@@ -189,7 +195,8 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
     if "suit" in c.extra:
         fill_rrect(ctx, -100, -440, 200, 255, 48, c.top)
         poly(ctx, [(-34, -440), (34, -440), (0, -360)], "#f4f1ea")
-        poly(ctx, [(-10, -430), (10, -430), (14, -330), (0, -305), (-14, -330)], "#b8433b")
+        poly(ctx, [(-10, -430), (10, -430), (14, -330), (0, -305), (-14, -330)],
+             "#f08a1c" if "tie_orange" in c.extra else "#b8433b")
         line(ctx, [(-34, -440), (-6, -330)], 6, shade(c.top, 0.75))
         line(ctx, [(34, -440), (6, -330)], 6, shade(c.top, 0.75))
     else:
@@ -213,6 +220,8 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
     if pose == "cane":
         line(ctx, [(150, -232), (156, 10 - bob)], 9, "#5b3f2b")
         line(ctx, [(150, -232), (128, -248)], 9, "#5b3f2b")
+    if prop:
+        draw_prop(ctx, prop, t)
 
     # head
     hy = -560
@@ -255,9 +264,18 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
         line(ctx, [(70, hy - 110), (90, hy - 80), (75, hy - 60), (95, hy - 40)], 9, shade(hc, 1.6))
     elif c.hair == "spiky":
         ellipse(ctx, 0, hy - 95, 135, 55, hc)
-    elif c.hair == "bald":
+    elif c.hair in ("bald", "cap"):
         pass
     ctx.restore()
+    if c.hair == "cap":
+        ctx.save()
+        ctx.arc(0, hy - 30, 122, math.pi, 2 * math.pi)
+        ctx.close_path()
+        setc(ctx, c.hair_c)
+        ctx.fill()
+        ctx.restore()
+        fill_rrect(ctx, -10, hy - 50, 175, 26, 12, shade(c.hair_c, 0.8))
+        circle(ctx, 0, hy - 150, 12, shade(c.hair_c, 0.8))
     if c.hair == "spiky":
         for i in range(6):
             bx = -95 + i * 38
@@ -309,6 +327,13 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
             setc(ctx, "#4a3b33")
             ctx.stroke()
         line(ctx, [(-10, ey - 4), (10, ey - 4)], 6, "#4a3b33")
+    if "choc" in c.extra:
+        for (cx_, cy_, rr) in ((-30, hy + 80, 16), (26, hy + 88, 13), (50, hy + 60, 9), (-55, hy + 55, 8)):
+            circle(ctx, cx_, cy_, rr, "#6b3d22", a=0.85)
+    if "wrinkles" in c.extra:
+        for sx in (-1, 1):
+            line(ctx, [(sx * 70, ey + 10), (sx * 82, ey + 22)], 4, shade(c.skin, 0.75))
+            line(ctx, [(sx * 70, ey + 22), (sx * 80, ey + 32)], 4, shade(c.skin, 0.75))
     if expr not in ("shock",):
         for sx in (-1, 1):
             ellipse(ctx, sx * 76, hy + 52, 20, 12, "#e98b7c", a=0.35)
@@ -500,3 +525,61 @@ def tag(ctx, text, x, y, age, size=34):
     ctx.move_to(x + 22, y + size + 6)
     setc(ctx, "#ffffff", a)
     ctx.show_text(text)
+
+
+def draw_prop(ctx, prop, t=0.0):
+    kind = prop[0]
+    if kind == "phone":
+        fill_rrect(ctx, 40, -430, 44, 80, 8, "#22252b")
+        fill_rrect(ctx, 45, -424, 34, 66, 5, "#7fb3d5")
+    elif kind == "mic":
+        line(ctx, [(45, -470), (20, -530)], 16, "#2a2d33")
+        circle(ctx, 14, -545, 22, "#9aa0a8")
+    elif kind == "paper":
+        txt = prop[1] if len(prop) > 1 else ""
+        fill_rrect(ctx, -150, -560, 300, 210, 8, "#f6f2e8")
+        if txt == "NEWS":
+            for i in range(7):
+                line(ctx, [(-125, -530 + i * 26), (125 - (i % 3) * 30, -530 + i * 26)], 8, "#9a958c")
+            ctx.save()
+            ctx.translate(0, -455)
+            ctx.rotate(math.pi)
+            font(ctx, 40)
+            ctx.move_to(-text_w(ctx, "NEWS") / 2, 0)
+            setc(ctx, "#2a2522")
+            ctx.show_text("NEWS")
+            ctx.restore()
+        else:
+            font(ctx, 110)
+            ctx.move_to(-text_w(ctx, txt) / 2, -410)
+            setc(ctx, "#c0392b")
+            ctx.show_text(txt)
+    elif kind == "plate":
+        ellipse(ctx, 0, -310, 110, 26, "#f4f1ea")
+        ellipse(ctx, 0, -322, 60, 22, "#d9894a")
+    elif kind == "pot":
+        fill_rrect(ctx, -110, -340, 220, 90, 20, "#3b3f45")
+        line(ctx, [(-110, -320), (-140, -320)], 10, "#3b3f45")
+        line(ctx, [(110, -320), (140, -320)], 10, "#3b3f45")
+        for i in range(3):
+            k = (t * 0.6 + i / 3) % 1
+            circle(ctx, -40 + i * 40 + 20 * math.sin(t * 3 + i), -360 - k * 220, 26 + 30 * k,
+                   (0.3, 0.3, 0.33, 0.55 * (1 - k)))
+    elif kind == "bowl":
+        ctx.move_to(-90, -330)
+        ctx.curve_to(-80, -250, 80, -250, 90, -330)
+        ctx.close_path()
+        setc(ctx, "#e9e1d3")
+        ctx.fill()
+        ellipse(ctx, 0, -330, 90, 18, "#7fae3a")
+        for i in range(3):
+            k = (t * 0.5 + i / 3) % 1
+            line(ctx, [(-30 + i * 30, -350 - k * 80), (-20 + i * 30, -380 - k * 80)], 5, (1, 1, 1, 0.5 * (1 - k)))
+    elif kind == "coffee":
+        fill_rrect(ctx, 85, -270, 44, 60, 6, "#f4f1ea")
+        rect(ctx, 85, -255, 44, 18, "#a0704a")
+    elif kind == "book":
+        fill_rrect(ctx, -90, -330, 180, 120, 6, "#f6f2e8")
+        for i in range(4):
+            for j in range(5):
+                rect(ctx, -70 + j * 28, -315 + i * 26, 22, 22, "#2a2522" if (i + j) % 3 == 0 else "#ffffff")

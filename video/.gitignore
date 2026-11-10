@@ -1,1 +1,6 @@
 __pycache__/
+out/_chunks/
+out/*.wav
+out/full_silent.mp4
+out/render.log
+voice/cache/*.wav
