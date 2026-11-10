@@ -301,7 +301,7 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
         if blink > 0.5:
             circle(ctx, cx + look * 8, ey + 3, pr, "#2a2522")
             circle(ctx, cx + look * 8 + 4, ey - 2, pr * 0.35, "#ffffff")
-        if expr == "suspicious":
+        if expr in ("suspicious", "sly"):
             rect(ctx, cx - 30, ey - 40, 60, 38, c.skin)
             line(ctx, [(cx - 22, ey - 2), (cx + 22, ey - 2)], 6, "#2a2522")
         if expr == "sad":
@@ -313,6 +313,9 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
             pts = [(sx * 26, ey - 62), (sx * 62, ey - 66)]
         elif expr == "sad":
             pts = [(sx * 22, ey - 50), (sx * 60, ey - 36)]
+        elif expr == "sly":
+            up = 22 if sx > 0 else -4
+            pts = [(sx * 22, ey - 34 - up * 0.3), (sx * 62, ey - 44 - up)]
         elif expr == "suspicious":
             pts = [(sx * 22, ey - 36), (sx * 62, ey - 46)]
         elif expr == "think":
@@ -355,6 +358,12 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
         ctx.move_to(-24, my + 10)
         ctx.curve_to(-10, my - 8, 10, my - 8, 24, my + 10)
         ctx.set_line_width(8)
+        setc(ctx, "#4a2320")
+        ctx.stroke()
+    elif expr == "sly":
+        ctx.move_to(-30, my - 2)
+        ctx.curve_to(-8, my + 20, 18, my + 14, 34, my - 16)
+        ctx.set_line_width(9)
         setc(ctx, "#4a2320")
         ctx.stroke()
     elif expr == "suspicious":
