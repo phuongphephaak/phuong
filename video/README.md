@@ -1,7 +1,7 @@
 # HMS Coventry 1982 – video nháp (không lời đọc)
 
-- `hms-coventry-ban-nhap.mp4`: bản nháp 1 (~47 giây, 1080p)
-- Ảnh: Wikimedia Commons (public domain, xem `credits.json`)
+- `hms-coventry-ban-nhap-2.mp4`: bản nháp 2 (60 giây, 1080p)
+- Ảnh: Wikimedia Commons (public domain và CC/OGL, xem `credits.json`)
 - Bản đồ: tự vẽ từ dữ liệu Natural Earth (`scripts/make_maps.py`)
 - Hiệu ứng âm thanh và nhạc: ElevenLabs (`scripts/gen_audio.py`)
 - Dựng phim: FFmpeg (`scripts/compose.py`)

@@ -16,5 +16,41 @@
   "license": "Public domain",
   "artist": "Royal Navy official photographer",
   "page": "https://commons.wikimedia.org/wiki/File:HMS_Broadsword,_1982_(IWM).jpg"
+ },
+ "antelope": {
+  "title": "File:HMS Antelope 1982.jpg",
+  "license": "Public domain",
+  "artist": "Dmgerrard Later version was touched up by Hohum at en.wikipedia.",
+  "page": "https://commons.wikimedia.org/wiki/File:HMS_Antelope_1982.jpg"
+ },
+ "a4museum": {
+  "title": "File:Avión Douglas A4 Skyhawk de la Fuerza Aérea Argentina que participó en la Guerra de Malvinas en 1982 como parte de un museo que entonces funcionaba en un sector del Aeroparque Metropolitano \"Jorge Newbery\" (1997).jpg",
+  "license": "CC BY 4.0",
+  "artist": "Tubby3",
+  "page": "https://commons.wikimedia.org/wiki/File:Avi%C3%B3n_Douglas_A4_Skyhawk_de_la_Fuerza_A%C3%A9rea_Argentina_que_particip%C3%B3_en_la_Guerra_de_Malvinas_en_1982_como_parte_de_un_museo_que_entonces_funcionaba_en_un_sector_del_Aeroparque_Metropolitano_%22Jorge_Newbery%22_(1997).jpg"
+ },
+ "a4faa": {
+  "title": "File:C-240 Douglas A-4 Skyhawk Fuerza Aerea Argentina (8164188365).jpg",
+  "license": "CC BY-SA 3.0",
+  "artist": "Aeroprints.com",
+  "page": "https://commons.wikimedia.org/wiki/File:C-240_Douglas_A-4_Skyhawk_Fuerza_Aerea_Argentina_(8164188365).jpg"
+ },
+ "a4flight": {
+  "title": "File:Douglas TA-4J Skyhawk - 51168561465.jpg",
+  "license": "CC BY 2.0",
+  "artist": "Eric Friedebach",
+  "page": "https://commons.wikimedia.org/wiki/File:Douglas_TA-4J_Skyhawk_-_51168561465.jpg"
+ },
+ "action": {
+  "title": "File:Action stations Falklands 1982.JPG",
+  "license": "Public domain",
+  "artist": "Ken Griffiths",
+  "page": "https://commons.wikimedia.org/wiki/File:Action_stations_Falklands_1982.JPG"
+ },
+ "hermes": {
+  "title": "File:HMS Broadsword and Hermes, 1982 (IWM).jpg",
+  "license": "OGL v1.0",
+  "artist": "Royal Navy official photographer",
+  "page": "https://commons.wikimedia.org/wiki/File:HMS_Broadsword_and_Hermes,_1982_(IWM).jpg"
  }
 }

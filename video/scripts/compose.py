@@ -138,7 +138,7 @@ SHAKE = [f"crop=w=1840:h=1034:x='40+if(between(t,{BOOM_T},{BOOM_T + 1.4}),28*sin
          f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.85:t=fill:enable='between(t,{BOOM_T},{BOOM_T + 0.12})'",
          f"drawbox=x=0:y=0:w=iw:h=ih:color=0xff5a1e@0.22:t=fill:enable='between(t,{BOOM_T + 0.12},{BOOM_T + 1.8})'"]
 
-USED_PHOTOS = ["ship1", "broadsword", "kh9", "antelope", "a4museum", "a4flight", "action", "ship2"]
+USED_PHOTOS = ["ship1", "broadsword", "kh9", "antelope", "a4faa", "action", "ship2"]
 SEQ = [
     ("title", lambda: card_clip("title", 4.5, ["25 THÁNG 5, 1982", "Chiến tranh Falklands · Nam Đại Tây Dương"])),
     ("map_a", lambda: video_clip("map_a", P("clips", "map_a.mp4"), 8.0)),
@@ -149,15 +149,12 @@ SEQ = [
     ("kh9", lambda: photo_clip("kh9", "kh9", 5.0, ["Eo San Carlos, tháng 5/1982",
                                                     "Ảnh vệ tinh: tàu Anh liên tục bị không kích"], zoom=(1.0, 1.18))),
     ("antelope", lambda: photo_clip("antelope", "antelope", 5.0, ["23/5 · HMS Antelope",
-                                                                   "Trúng bom A-4 — quả bom phát nổ khi đang tháo ngòi"],
+                                                                   "Bốc khói sau khi trúng bom của A-4 ở eo San Carlos"],
                                     zoom=(1.05, 1.2))),
-    ("a4museum", lambda: photo_clip("a4museum", "a4museum", 5.0, ["Đối thủ: A-4 Skyhawk",
-                                                                   "Chiếc này từng tham chiến năm 1982 (ảnh chụp 1997)"],
+    ("a4faa", lambda: photo_clip("a4faa", "a4faa", 5.0, ["Đối thủ: A-4 Skyhawk",
+                                                                   "Cường kích của Không quân Argentina (ảnh trưng bày)"],
                                     pan="rl")),
     ("map_b", lambda: video_clip("map_b", P("clips", "map_b.mp4"), 8.5)),
-    ("a4flight", lambda: photo_clip("a4flight", "a4flight", 4.0, ["Sát mặt sóng",
-                                                                   "Radar trên tàu gần như không kịp phát hiện"],
-                                    zoom=(1.0, 1.2), pan="lr")),
     ("action", lambda: photo_clip("action", "action", 5.0, ["BÁO ĐỘNG CHIẾN ĐẤU",
                                                              "Thủy thủ Anh vào vị trí chiến đấu, Falklands 1982"])),
     ("ship2", lambda: photo_clip("ship2", "ship2", 5.5, ["Ba quả bom xuyên vào thân tàu"], zoom=(1.08, 1.2),
@@ -199,7 +196,7 @@ print("timeline", json.dumps({k: round(v, 2) for k, v in starts.items()}), "tota
 A = lambda n: P("audio", n + ".mp3")
 events = [  # (file, start_sec, volume)
     ("jet_approach", starts.get("map_b", 0) + 2.0, 0.9),
-    ("jet_flyby", starts.get("a4flight", 0) + 0.3, 1.0),
+    ("jet_flyby", starts.get("map_b", 0) + 6.3, 1.0),
     ("alarm", starts.get("action", 0) + 0.2, 0.55),
     ("explosion", starts.get("ship2", 0) + BOOM_T - 0.05, 1.0),
     ("creak", starts.get("end", 0) + 0.3, 0.7),
