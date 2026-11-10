@@ -113,6 +113,7 @@ def credits_clip(name, dur):
     used = [k for k in USED_PHOTOS if k in credits]
     lines = ["Nguồn tư liệu"] + [
         f"{credits[k]['title'][5:][:62]} — {credits[k]['artist'][:34]} ({credits[k]['license']})" for k in used] + [
+        "Cảnh chiến đấu: mô phỏng đồ họa trên ảnh tư liệu (không phải cảnh quay thật)",
         "Ảnh: Wikimedia Commons · Bản đồ: Natural Earth · Âm thanh & nhạc: ElevenLabs"]
     vf = []
     y = (H - (48 + 40 + (len(lines) - 1) * 40)) // 2
@@ -138,7 +139,7 @@ SHAKE = [f"crop=w=1840:h=1034:x='40+if(between(t,{BOOM_T},{BOOM_T + 1.4}),28*sin
          f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.85:t=fill:enable='between(t,{BOOM_T},{BOOM_T + 0.12})'",
          f"drawbox=x=0:y=0:w=iw:h=ih:color=0xff5a1e@0.22:t=fill:enable='between(t,{BOOM_T + 0.12},{BOOM_T + 1.8})'"]
 
-USED_PHOTOS = ["ship1", "broadsword", "kh9", "antelope", "a4faa", "action", "ship2"]
+USED_PHOTOS = ["ship1", "broadsword", "kh9", "antelope", "a4faa", "action"]
 SEQ = [
     ("title", lambda: card_clip("title", 4.5, ["25 THÁNG 5, 1982", "Chiến tranh Falklands · Nam Đại Tây Dương"])),
     ("map_a", lambda: video_clip("map_a", P("clips", "map_a.mp4"), 8.0)),
@@ -157,8 +158,12 @@ SEQ = [
     ("map_b", lambda: video_clip("map_b", P("clips", "map_b.mp4"), 8.5)),
     ("action", lambda: photo_clip("action", "action", 5.0, ["BÁO ĐỘNG CHIẾN ĐẤU",
                                                              "Thủy thủ Anh vào vị trí chiến đấu, Falklands 1982"])),
-    ("ship2", lambda: photo_clip("ship2", "ship2", 5.5, ["Ba quả bom xuyên vào thân tàu"], zoom=(1.08, 1.2),
-                                 extra=SHAKE)),
+    ("approach", lambda: video_clip("approach", P("vfxclips", "approach.mp4"), 4.5,
+                                    ["Từng cặp A-4 lao tới, sát mặt biển"])),
+    ("attack", lambda: video_clip("attack", P("vfxclips", "attack.mp4"), 5.0,
+                                  ["Coventry bắn trả — A-4 vẫn lao qua và thả bom"])),
+    ("impact", lambda: video_clip("impact", P("vfxclips", "impact.mp4"), 6.5,
+                                  ["Ba quả bom xuyên vào thân tàu"])),
     ("end", lambda: photo_clip("end", "ship1", 7.5, ["Chưa đầy 20 phút sau, Coventry lật nghiêng và chìm.",
                                                       "19 thủy thủ thiệt mạng."], zoom=(1.15, 1.0), dark=True)),
     ("credits", lambda: credits_clip("credits", 6.0)),
@@ -196,9 +201,15 @@ print("timeline", json.dumps({k: round(v, 2) for k, v in starts.items()}), "tota
 A = lambda n: P("audio", n + ".mp3")
 events = [  # (file, start_sec, volume)
     ("jet_approach", starts.get("map_b", 0) + 2.0, 0.9),
+    ("jet_approach", starts.get("approach", 0), 1.0),
+    ("aa_fire", starts.get("attack", 0) + 0.4, 0.8),
+    ("jet_flyby", starts.get("attack", 0) + 0.9, 1.0),
+    ("jet_flyby", starts.get("attack", 0) + 1.7, 0.9),
+    ("explosion", starts.get("impact", 0) + 0.55, 1.0),
+    ("explosion", starts.get("impact", 0) + 1.1, 0.9),
+    ("explosion", starts.get("impact", 0) + 1.7, 1.0),
     ("jet_flyby", starts.get("map_b", 0) + 6.3, 1.0),
     ("alarm", starts.get("action", 0) + 0.2, 0.55),
-    ("explosion", starts.get("ship2", 0) + BOOM_T - 0.05, 1.0),
     ("creak", starts.get("end", 0) + 0.3, 0.7),
 ]
 ain = ["-stream_loop", "-1", "-i", A("wind"), "-i", A("music")]

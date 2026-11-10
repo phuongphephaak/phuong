@@ -8,6 +8,7 @@ SFX = {
     "jet_flyby": ("Low-altitude military attack jet screaming past overhead from left to right, loud roar", 5),
     "alarm": ("1980s Royal Navy warship action stations alarm klaxon repeating, metallic, echo in steel corridor", 6),
     "explosion": ("Massive bomb explosion inside a steel warship hull, deep boom, metal tearing, debris falling into water", 6),
+    "aa_fire": ("Warship anti-aircraft cannon and machine guns firing rapid bursts at jets, 1980s naval combat, outdoor", 5),
     "creak": ("Large steel ship hull groaning and creaking as it capsizes, water rushing in, low rumble", 8),
 }
 MUSIC = ("Somber cinematic orchestral underscore for a war documentary: low sustained strings, slow distant "
