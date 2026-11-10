@@ -246,7 +246,7 @@ def render_video(beats_module, out, workers=4):
             cur, acc = [], 0.0
     if cur:
         chunks.append(cur)
-    tmp = os.path.join(os.path.dirname(out), "_chunks")
+    tmp = os.path.abspath(os.path.join(os.path.dirname(out), "_chunks"))
     os.makedirs(tmp, exist_ok=True)
     jobs = [(c, os.path.join(tmp, f"c{k:02d}.mp4"), beats_module) for k, c in enumerate(chunks)]
     with Pool(len(jobs)) as p:
