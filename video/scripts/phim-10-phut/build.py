@@ -156,6 +156,10 @@ def render_raw(sc, D):
         credits(sc["id"], p, D, out)
     elif kind == "map":
         run([sys.executable, os.path.join(HERE, "maps2.py"), p["kind"], str(D), out])
+    elif kind == "clip":
+        src = os.path.join(CLIPS, p["src"] + ".mp4")
+        run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(p.get("start", 0)), "-i", src, "-t", str(D),
+             "-c:v", "libx264", "-crf", "18", "-an", out])
     elif kind == "vfx":
         params = {k: v for k, v in p.items() if k != "kind"}
         run([sys.executable, os.path.join(HERE, "vfx2.py"), p["kind"], str(D), out, json.dumps(params)])
@@ -214,7 +218,10 @@ def render(ids=None):
         normalize(sc, tl[sc["id"]], raw)
         print("done", sc["id"], flush=True)
     with ThreadPoolExecutor(4) as ex:
-        list(ex.map(job, todo))
+        list(ex.map(job, [sc for sc in todo if sc["vis"][0] != "clip"]))
+    for sc in todo:                                   # clips reuse other scenes' renders: do them last
+        if sc["vis"][0] == "clip":
+            job(sc)
 
 
 # ------------------------------------------------------------------ audio

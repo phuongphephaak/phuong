@@ -1,6 +1,6 @@
 # HMS Coventry – Ngày cuối cùng (25/5/1982)
 
-- `hms-coventry-ngay-cuoi-cung-720p.mp4`: phim hoàn chỉnh ~9 phút 37 giây (bản 720p để lưu trên GitHub)
+- `hms-coventry-ngay-cuoi-cung-720p.mp4`: phim hoàn chỉnh ~9 phút 49 giây (bản 720p để lưu trên GitHub)
 - `kich-ban.md`: kịch bản đầy đủ, mốc thời gian từng cảnh, lời dẫn và thoại bộ đàm
 - `credits.json`: nguồn và giấy phép ảnh (Wikimedia Commons)
 - `scripts/phim-10-phut/`: toàn bộ mã dựng phim

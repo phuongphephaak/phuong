@@ -5,7 +5,7 @@ from script_data import SCENES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 tl = {s["id"]: s for s in json.load(open(os.path.join(HERE, "timeline.json")))["scenes"]}
-VIS = {"photo": "Ảnh tư liệu", "map": "Bản đồ động", "vfx": "Mô phỏng", "card": "Màn hình chữ", "credits": "Nguồn"}
+VIS = {"photo": "Ảnh tư liệu", "map": "Bản đồ động", "vfx": "Mô phỏng", "card": "Màn hình chữ", "credits": "Nguồn", "clip": "Mô phỏng (mở đầu)"}
 VFX = {"pov": "góc nhìn buồng lái A-4", "radar": "phòng tác chiến / màn radar", "fleet": "tàu trên biển",
        "seadart": "Coventry phóng Sea Dart", "raid": "không kích ở San Carlos", "bounce": "bom nảy trúng Broadsword",
        "aftermath": "Coventry bốc cháy", "sink": "Coventry nghiêng, lật và chìm", "rescue": "cứu hộ, bè cứu sinh, trực thăng",
@@ -24,7 +24,8 @@ out = ["# HMS Coventry – Ngày cuối cùng (25/5/1982)", "",
 for i, sc in enumerate(SCENES, 1):
     kind, p = sc["vis"]
     vis = VIS[kind] + (f": {VFX.get(p.get('kind'), p.get('kind'))}" if kind in ("vfx", "map") else
-                       f": {p.get('key', '')}" if kind == "photo" else "")
+                       f": {p.get('key', '')}" if kind == "photo" else
+                       f": cắt từ cảnh {p['src']}" if kind == "clip" else "")
     if sc.get("cap"):
         vis += f"<br>*Chữ: {' – '.join(sc['cap'])}*"
     text = []

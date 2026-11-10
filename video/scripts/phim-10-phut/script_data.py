@@ -22,6 +22,8 @@ VOICES = {
 
 SCENES = [
     # ------------------------------------------------------------------ cold open
+    dict(id="open_raid", vis=("clip", {"src": "raid2", "start": 0.9}), cap=None, nar=None, radio=[], min=5,
+         sfx=[("jet_flyby", 0.0, 1.0), ("aa_fire", 0.0, 0.7), ("explosion", 1.45, 1.0)]),
     dict(id="open_pov", vis=("vfx", {"kind": "pov", "seed": 1}), cap=None, nar=None, min=7,
          radio=[("pilot1", "Aquí Líder. Rumbo cero ocho cero. Muy bajo sobre el agua.",
                  "Trưởng biên đội đây. Hướng 080. Bay rất thấp trên mặt nước."),
@@ -31,6 +33,10 @@ SCENES = [
          radio=[("ops", "Air raid warning red! Two fast movers, very low, closing from the west!",
                  "Báo động đỏ! Hai máy bay tốc độ cao, bay rất thấp, đang áp sát từ phía tây!")],
          sfx=[("alarm", 0.3, 0.28), ("ops_room", 0, 0.5)]),
+    dict(id="open_attack", vis=("clip", {"src": "attack", "start": 0.5}), cap=None, nar=None, radio=[], min=4.5,
+         sfx=[("aa_fire", 0.0, 0.8), ("jet_flyby", 0.4, 1.0), ("jet_flyby", 1.2, 0.9)]),
+    dict(id="open_impact", vis=("clip", {"src": "impact", "start": 0.0}), cap=None, nar=None, radio=[], min=4.2,
+         sfx=[("explosion", 0.55, 1.0), ("explosion", 1.1, 0.9), ("explosion", 1.7, 1.0)]),
     dict(id="title", vis=("card", {"lines": ["HMS COVENTRY", "Ngày cuối cùng · 25 tháng 5, 1982"]}), cap=None,
          nar=None, radio=[], min=6, sfx=[("boom_far", 0.4, 0.8)]),
 

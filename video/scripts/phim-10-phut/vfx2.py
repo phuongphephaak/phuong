@@ -68,21 +68,40 @@ SHIPS = {
 }
 
 
-def draw_ship(draw, kind, x0, yw, length, color=(78, 84, 88), alpha=255):
+def draw_ship(draw, kind, x0, yw, length, color=None, alpha=255, haze=0.0):
+    """Royal Navy light-grey ship with dark boot-topping, shading, windows, reflection and bow wave.
+    haze 0 = close, 1 = lost in mist."""
     s = SHIPS[kind]
     tr = lambda px, py: (x0 + px * length, yw - py * length)
-    c = color + (alpha,)
-    c2 = tuple(min(255, int(v * 1.12)) for v in color) + (alpha,)
-    draw.polygon([tr(*p) for p in s["hull"]], fill=c)
-    for (a, b, cc, d) in s["blocks"]:
-        draw.rectangle([tr(a, d), tr(cc, b)], fill=c2)
+    hz = lambda c: haze_color(c, haze * 0.85)
+    hull_c, hull_dark, sup_c, sup_hi = hz((150, 156, 160)), hz((108, 114, 118)), hz((182, 186, 188)), hz((214, 216, 216))
+    boot, dark = hz((26, 26, 28)), hz((40, 42, 46))
+    A = (alpha,)
+    # reflection / shadow on the water
+    draw.polygon([tr(0.0, 0.0), tr(1.0, 0.0), tr(0.97, -0.03), tr(0.03, -0.03)], fill=hz((24, 30, 34)) + (int(alpha * 0.55),))
+    hull = [tr(*p) for p in s["hull"]]
+    draw.polygon(hull, fill=hull_c + A)
+    deck_y = s["hull"][-1][1]
+    draw.polygon([tr(0, deck_y * 0.45), tr(1.0, deck_y * 0.45), tr(1.0, 0), tr(0, 0)], fill=hull_dark + A)   # lower hull shade
+    draw.polygon([tr(0, 0.0), tr(1.0, 0.0), tr(1.0, 0.008), tr(0, 0.008)], fill=boot + A)                    # boot-topping
+    draw.line([tr(0.0, deck_y), tr(0.98, s["hull"][2][1] * 0.95)], fill=sup_hi + A, width=max(1, int(length * 0.003)))
+    for (a_, b_, c_, d_) in s["blocks"]:
+        draw.rectangle([tr(a_, d_), tr(c_, b_)], fill=sup_c + A)
+        draw.rectangle([tr(a_, d_), tr(c_, d_ - 0.006)], fill=sup_hi + A)                                   # lit top edge
+        if (c_ - a_) > 0.08 and (d_ - b_) > 0.03:                                                          # windows / ports
+            wy = b_ + (d_ - b_) * 0.6
+            for wx in np.arange(a_ + 0.02, c_ - 0.01, 0.025):
+                draw.rectangle([tr(wx, wy + 0.004), tr(wx + 0.01, wy)], fill=dark + A)
     for (mx, base, top) in s["masts"]:
-        w = max(1, length * 0.006)
-        draw.polygon([tr(mx - 0.006, base), tr(mx + 0.006, base), tr(mx + 0.002, top), tr(mx - 0.002, top)], fill=c2)
-        draw.line([tr(mx - 0.025, top - 0.02), tr(mx + 0.025, top - 0.02)], fill=c2, width=int(w))
+        w = max(1, length * 0.004)
+        draw.polygon([tr(mx - 0.005, base), tr(mx + 0.005, base), tr(mx + 0.002, top), tr(mx - 0.002, top)], fill=dark + A)
+        draw.line([tr(mx - 0.02, top - 0.02), tr(mx + 0.02, top - 0.02)], fill=dark + A, width=int(w))
     for (dx, base, r) in s["domes"]:
         cx, cy = tr(dx, base + r * 0.6)
-        draw.ellipse([cx - r * length, cy - r * length, cx + r * length, cy + r * length], fill=(150, 154, 156, alpha))
+        draw.ellipse([cx - r * length, cy - r * length, cx + r * length, cy + r * length], fill=hz((228, 230, 230)) + A)
+    bx, by = tr(1.0, 0.0)                                                                                   # bow wave
+    draw.ellipse([bx - length * 0.06, by - length * 0.006, bx + length * 0.015, by + length * 0.008],
+                 fill=hz((225, 228, 228)) + (int(alpha * 0.8),))
     return tr
 
 
@@ -242,7 +261,7 @@ def pov(path, dur, seed=0, ships=False):
             for kind, xo, base in (("t42", -180, 150), ("t22", 220, 170)):
                 L = base * (1 + 3.2 * k)
                 x0 = W / 2 + xo * (1 + 2.2 * k) - L / 2
-                draw_ship(d, kind, x0, hz + 4 + 40 * k, L, color=haze_color((70, 76, 80), 0.55 - 0.4 * k))
+                draw_ship(d, kind, x0, hz + 4 + 40 * k, L, haze=0.55 - 0.4 * k)
             if t > dur * 0.4:                                # flak bursts
                 for _ in range(2):
                     bx = W / 2 + rng.normal(0, 260); by = hz - rng.uniform(20, 160)
@@ -301,13 +320,10 @@ def fleet(path, dur, seed=0, burning=False, pair=False, big=False):
             yw = hz + 8 + (1 - dist) * 70 + math.sin(t * 0.9 + j) * 2
             xs = x + 14 * t * (1 - dist) - L / 2
             col = haze_color((66, 72, 76), dist * 0.8)
-            tr = draw_ship(d, kind, xs, yw, L, color=col)
+            tr = draw_ship(d, kind, xs, yw, L, haze=dist * 0.8)
             if burning and j == 0:
                 burn_pt = tr(0.45, 0.06)
                 d.polygon([tr(0.3, 0.0), tr(0.6, 0.0), tr(0.6, 0.012), tr(0.3, 0.012)], fill=(30, 30, 30, 255))
-            # bow wave
-            bx, by = tr(1.0, 0.0)
-            d.ellipse([bx - L * 0.05, by - 3, bx + L * 0.02, by + 4], fill=(205, 210, 210, 150))
         img = composite(img, lay, blur=1.0)
         glow = np.zeros_like(img)
         if burn_pt:
@@ -406,7 +422,7 @@ def raid(path, dur, seed=0, hit=False, shootdown=False):
         lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
         tgt_pt = None
         for kind, x, yw, L in ships:
-            tr = draw_ship(d, kind, x, yw + math.sin(t + x) * 1.5, L, color=(70, 76, 80))
+            tr = draw_ship(d, kind, x, yw + math.sin(t + x) * 1.5, L, haze=0.12)
             if target and kind == target[0]:
                 tgt_pt = tr(0.5, 0.07)
         down = None
@@ -489,7 +505,7 @@ def bounce(path, dur):
     def frame(i, t):
         img = V.sea_frame(t * 0.8)
         lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
-        draw_ship(d, "t22", x0 + 8 * t, yw + math.sin(t) * 2, L, color=(74, 80, 84))
+        draw_ship(d, "t22", x0 + 8 * t, yw + math.sin(t) * 2, L, haze=0.0)
         for j in jets:
             if t >= j["t0"]:
                 k = (t - j["t0"]) / 2.2
@@ -699,7 +715,7 @@ def rescue(path, dur, seed=1):
         if seed == 1:      # capsized keel on the horizon
             d.ellipse([1150, hz - 6, 1450, hz + 8], fill=(80, 70, 66, 220))
         else:              # Broadsword standing by
-            draw_ship(d, "t22", 1100, hz + 12, 520, color=haze_color((70, 76, 80), 0.45))
+            draw_ship(d, "t22", 1100, hz + 12, 520, haze=0.45)
         for j, (rx, ry, s) in enumerate(sorted(rafts, key=lambda r: r[1])):
             bob = math.sin(t * 1.3 + j) * 5 * s
             w = 70 * s; h2 = 34 * s
