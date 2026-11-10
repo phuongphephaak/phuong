@@ -1,11 +1,13 @@
-# HMS Coventry 1982 – video nháp (không lời đọc)
+# HMS Coventry – Ngày cuối cùng (25/5/1982)
 
-- `hms-coventry-ban-nhap-3.mp4`: bản nháp 3 (69 giây, 1080p, có cảnh chiến đấu mô phỏng)
-- Ảnh: Wikimedia Commons (public domain và CC/OGL, xem `credits.json`)
-- Bản đồ: tự vẽ từ dữ liệu Natural Earth (`scripts/make_maps.py`)
-- Hiệu ứng âm thanh và nhạc: ElevenLabs (`scripts/gen_audio.py`)
-- Cảnh chiến đấu: hiệu ứng đồ họa tự viết trên ảnh tư liệu (`scripts/vfx.py`)
-- Dựng phim: FFmpeg (`scripts/compose.py`)
+- `hms-coventry-ngay-cuoi-cung-720p.mp4`: phim hoàn chỉnh ~9 phút 37 giây (bản 720p để lưu trên GitHub)
+- `kich-ban.md`: kịch bản đầy đủ, mốc thời gian từng cảnh, lời dẫn và thoại bộ đàm
+- `credits.json`: nguồn và giấy phép ảnh (Wikimedia Commons)
+- `scripts/phim-10-phut/`: toàn bộ mã dựng phim
+  - `script_data.py` kịch bản dạng dữ liệu · `audio.py` giọng đọc, bộ đàm, hiệu ứng, nhạc (ElevenLabs)
+  - `vfx.py`, `vfx2.py` cảnh mô phỏng · `maps2.py` bản đồ động · `build.py` dựng và trộn âm
+- `scripts/` (gốc): công cụ của các bản nháp trước
 
-Cách chạy lại: tải ảnh (`commons_fetch.py photos`), tạo âm thanh (`gen_audio.py audio`),
-vẽ bản đồ (`make_maps.py ne_10m_land.geojson clips`), rồi `compose.py <thư mục làm việc> out.mp4`.
+Chạy lại: `python audio.py voices && python audio.py sfx && python build.py timeline &&
+python audio.py music timeline.json && python build.py render && python build.py assemble out.mp4`
+(cần ảnh trong `photos/`, `bg_ship1.jpg`, `bg_ship2.jpg`, `land10.geojson` và biến môi trường `ELEVENLABS_API_KEY`).
