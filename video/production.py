@@ -16,7 +16,7 @@ from scenes import GROUND, haze
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HERE, "voice", "cache")
-VOICE_ID = "pVnrL6sighQX7hVz89cp"  # Henry - Deep, Professional, and Soothing
+VOICE_ID = "rU18Fk3uSDhmg5Xh41o4"  # Ryan Kurk - Pleasant and Smooth
 FPS = 30
 SR = 44100
 
