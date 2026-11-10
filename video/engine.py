@@ -147,19 +147,35 @@ ARMS = {
 
 
 def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
-              talking=False, flip=False):
+              talking=False, flip=False, walk=None, stride=1.0, lean=0.0):
+    """walk = gait phase in radians (None = standing). Character faces +x unless flip."""
     ctx.save()
     ctx.translate(x, y)
     ctx.scale(-s if flip else s, s)
     bob = 3 * math.sin(t * 2.4 + c.blink_phase)
 
     # legs + shoes
-    for sx in (-1, 1):
-        line(ctx, [(sx * 34, -205), (sx * 36, -22)], 46, c.pants)
-        ellipse(ctx, sx * 44, -14, 40, 18, c.shoes)
-        ellipse(ctx, sx * 44, -4, 40, 6, shade(c.shoes, 0.8))
-
+    if walk is None:
+        for sx in (-1, 1):
+            line(ctx, [(sx * 34, -205), (sx * 36, -22)], 46, c.pants)
+            ellipse(ctx, sx * 44, -14, 40, 18, c.shoes)
+            ellipse(ctx, sx * 44, -4, 40, 6, shade(c.shoes, 0.8))
+    else:
+        bob = -9 * abs(math.cos(walk)) * stride
+        for k, sx in enumerate((-1, 1)):
+            ph = walk + k * math.pi
+            fx = 62 * stride * math.sin(ph)
+            lift = 34 * stride * max(0.0, math.cos(ph))
+            knee = (sx * 12 + fx * 0.55 + 10 * stride, -115 - lift * 0.4)
+            foot = (sx * 12 + fx, -22 - lift)
+            col = c.pants if k else shade(c.pants, 0.85)
+            line(ctx, [(sx * 20, -205), knee, foot], 46, col)
+            ellipse(ctx, foot[0] + 14, foot[1] + 8, 40, 18, c.shoes if k else shade(c.shoes, 0.9))
     ctx.translate(0, bob)
+    if lean:
+        ctx.translate(0, -300)
+        ctx.rotate(lean)
+        ctx.translate(0, 300)
     # arms (behind torso for the far side)
     arms = ARMS.get(pose, ARMS["down"])
     wave_off = 16 * math.sin(t * 11) if pose == "wave" else 0
@@ -188,6 +204,10 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
             line(ctx, [(-24, -425), (-26, -372)], 5, "#f3efe6")
             line(ctx, [(24, -425), (26, -372)], 5, "#f3efe6")
     (el1, hd1), (el2, hd2) = arms
+    if walk is not None and pose == "down":
+        sw = 46 * stride * math.sin(walk)
+        el1, hd1 = (-108 - sw * 0.4, -310), (-104 - sw, -220)
+        el2, hd2 = (108 + sw * 0.4, -310), (104 + sw, -220)
     arm((-88, -410), el1, hd1)
     arm((88, -410), (el2[0] + wave_off * 0.3, el2[1]), (hd2[0] + wave_off, hd2[1]))
     if pose == "cane":
