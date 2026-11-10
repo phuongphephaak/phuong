@@ -5,7 +5,7 @@ from script_data import SCENES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 tl = {s["id"]: s for s in json.load(open(os.path.join(HERE, "timeline.json")))["scenes"]}
-VIS = {"photo": "Ảnh tư liệu", "map": "Bản đồ động", "vfx": "Mô phỏng", "card": "Màn hình chữ", "credits": "Nguồn", "clip": "Mô phỏng (mở đầu)"}
+VIS = {"photo": "Ảnh tư liệu", "map": "Bản đồ động", "vfx": "Mô phỏng", "card": "Màn hình chữ", "credits": "Nguồn", "clip": "Mô phỏng (mở đầu)", "archive": "Phim tư liệu thật (public domain, A-4 của Mỹ)"}
 VFX = {"pov": "góc nhìn buồng lái A-4", "radar": "phòng tác chiến / màn radar", "fleet": "tàu trên biển",
        "seadart": "Coventry phóng Sea Dart", "raid": "không kích ở San Carlos", "bounce": "bom nảy trúng Broadsword",
        "aftermath": "Coventry bốc cháy", "sink": "Coventry nghiêng, lật và chìm", "rescue": "cứu hộ, bè cứu sinh, trực thăng",

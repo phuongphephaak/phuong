@@ -131,7 +131,9 @@ def credits(sid, p, D, out):
                                  for k in used if k in cr] + [
         "Ảnh: Wikimedia Commons · Bản đồ: Natural Earth · Giọng đọc, âm thanh, nhạc: ElevenLabs",
         "Cảnh chiến đấu, phòng tác chiến và tàu chìm: mô phỏng đồ họa, không phải cảnh quay thật",
-        "Lời thoại bộ đàm được tái hiện để minh họa, không phải ghi âm gốc"]
+        "Lời thoại bộ đàm được tái hiện để minh họa, không phải ghi âm gốc",
+        "Phim tư liệu A-4 (public domain): \"1960s Aircraft Carrier Operations: A-4 Skyhawks\" (USMC) và",
+        "\"A Day in West PAC\" (U.S. Navy) — qua Internet Archive"]
     vf, y = [], (H - (48 + 40 + (len(lines) - 1) * 40)) // 2
     for i, line in enumerate(lines):
         tf = os.path.join(TMP, f"cred_{i}.txt"); open(tf, "w", encoding="utf-8").write(line)
@@ -141,6 +143,27 @@ def credits(sid, p, D, out):
         y += size + (40 if i == 0 else 16)
     run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", f"color=c=0x07090b:s={W}x{H}:r={FPS}:d={D}",
          "-vf", ",".join(vf) + ",format=yuv420p", "-c:v", "libx264", "-crf", "18", out])
+
+
+def archive(sid, p, D, out):
+    """Real public-domain film: 4:3 frame centred over a blurred fill, graded, grain; segments concatenated."""
+    parts = []
+    for j, (src, st, d, mode) in enumerate(p["segs"]):
+        part = os.path.join(TMP, f"{sid}_arc{j}.mp4")
+        look = ("hue=s=0,eq=contrast=1.15:brightness=-0.02,colorchannelmixer=.95:.05:0:0:.05:.9:.05:0:0:.1:.8:0"
+                if mode == "bw" else "eq=saturation=0.8:contrast=1.06:gamma=0.95")
+        fc = (f"[0:v]{look},split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
+              f"boxblur=28:4,eq=brightness=-0.18[bg];[b]scale=-2:{H}:flags=lanczos,unsharp=5:5:0.6[fg];"
+              f"[bg][fg]overlay=(W-w)/2:0,vignette=PI/4.5,noise=alls=9:allf=t+u,fps={FPS},format=yuv420p")
+        run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(st), "-t", str(d), "-i",
+             os.path.join(HERE, "footage", src), "-filter_complex", fc, "-an", "-c:v", "libx264", "-crf", "18", part])
+        parts.append(part)
+    lst = os.path.join(TMP, f"{sid}_arc.txt")
+    open(lst, "w").write("".join(f"file '{x}'\n" for x in parts))
+    joined = os.path.join(TMP, f"{sid}_arc_joined.mp4")
+    run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", joined])
+    run(["ffmpeg", "-y", "-loglevel", "error", "-i", joined, "-vf", f"tpad=stop_mode=clone:stop_duration={D},trim=0:{D}",
+         "-c:v", "libx264", "-crf", "18", out])
 
 
 def render_raw(sc, D):
@@ -156,6 +179,8 @@ def render_raw(sc, D):
         credits(sc["id"], p, D, out)
     elif kind == "map":
         run([sys.executable, os.path.join(HERE, "maps2.py"), p["kind"], str(D), out])
+    elif kind == "archive":
+        archive(sc["id"], p, D, out)
     elif kind == "clip":
         src = os.path.join(CLIPS, p["src"] + ".mp4")
         run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(p.get("start", 0)), "-i", src, "-t", str(D),

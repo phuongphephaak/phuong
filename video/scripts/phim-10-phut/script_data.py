@@ -102,7 +102,9 @@ SCENES = [
          nar="Một quả bom găm vào Antelope nhưng không nổ. Khi đội chuyên gia đang tìm cách tháo ngòi, nó phát nổ. "
              "Con tàu cháy suốt đêm và chìm vào ngày hôm sau.",
          radio=[], min=7, sfx=[]),
-    dict(id="a4", vis=("photo", {"key": "a4faa", "pan": "rl"}), cap=["Douglas A-4 Skyhawk", "Không quân Argentina"],
+    dict(id="a4", vis=("archive", {"segs": [["a4_lexington.mp4", 86.2, 5.2, "color"], ["a4_lexington.mp4", 92.0, 6.4, "color"],
+                                           ["a4_lexington.mp4", 102.0, 4.0, "color"], ["a4_lexington.mp4", 110.5, 5.5, "color"]]}),
+         cap=["Douglas A-4 Skyhawk", "Tư liệu: Thủy quân lục chiến Mỹ, thập niên 1960 (cùng loại máy bay)"],
          nar="Vũ khí chủ lực trong những đợt tấn công này là A-4 Skyhawk, một cường kích nhỏ và đã cũ. Không có tên lửa "
              "chống hạm, phi công phải bay thẳng qua đầu mục tiêu để thả bom thông thường. Nhiều quả bom được thả "
              "ở độ cao quá thấp, không kịp kích hoạt ngòi nổ.",
@@ -128,7 +130,9 @@ SCENES = [
          radio=[], min=7, sfx=[("ship_sea", 0, 0.5)]),
 
     # ------------------------------------------------------------------ act 4: the attack
-    dict(id="takeoff_pov", vis=("vfx", {"kind": "pov", "seed": 4}), cap=["Căn cứ Río Gallegos", "Hai cặp A-4 cất cánh"],
+    dict(id="takeoff_pov", vis=("archive", {"segs": [["oriskany_westpac.mp4", 404.0, 6.8, "bw"], ["oriskany_westpac.mp4", 430.0, 4.8, "bw"],
+                                                    ["a4_lexington.mp4", 86.2, 4.8, "color"]]}),
+         cap=["Hai cặp A-4 cất cánh", "Tư liệu minh họa: A-4 của Hải quân Mỹ"],
          nar="Buổi chiều, từ đất liền, hai cặp A-4 Skyhawk của Không quân Argentina cất cánh, hướng về phía hai con tàu.",
          radio=[("pilot1", "Formación, mantengan altura mínima. Silencio de radio.",
                  "Cả biên đội, giữ độ cao tối thiểu. Im lặng vô tuyến.")],
@@ -137,7 +141,9 @@ SCENES = [
          nar="Họ bay sát mặt biển, vòng qua phía bắc quần đảo. Ở độ cao đó, radar trên tàu gần như không thể "
              "nhìn thấy họ cho đến phút chót.",
          radio=[], min=8, sfx=[("jet_approach", 4.0, 0.8)]),
-    dict(id="lowlevel", vis=("vfx", {"kind": "pov", "seed": 12}), cap=None, nar=None, min=7,
+    dict(id="lowlevel", vis=("archive", {"segs": [["a4_lexington.mp4", 92.5, 3.6, "color"], ["a4_lexington.mp4", 99.0, 2.2, "color"],
+                                                 ["a4_lexington.mp4", 106.5, 2.2, "color"]]}),
+         cap=["Tư liệu minh họa", "A-4 Skyhawk, Thủy quân lục chiến Mỹ"], nar=None, min=7,
          radio=[("pilot1", "Cinco minutos al blanco. Mantengan la formación.", "Năm phút nữa tới mục tiêu. Giữ đội hình.")],
          sfx=[("jet_cockpit", 0, 0.7)]),
     dict(id="radar_contact", vis=("vfx", {"kind": "radar", "mode": "alarm"}), cap=None, nar=None, min=6,
