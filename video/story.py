@@ -17,7 +17,7 @@ FRIEND = Char("#8d5a3b", "#4f9a6b", pants="#2f3a4a", hair="spiky", hair_c="#1e17
 
 
 def head_top(x, s):
-    return x, GROUND - 700 * s
+    return x, GROUND - 725 * s
 
 
 class Counter:
@@ -84,7 +84,7 @@ C_ME1 = Counter(4812, [2.5])
 
 
 def s1_screen(ctx, t, cam):
-    ax, ay = to_screen(cam, 1180 - 90 * S, GROUND - 620 * S)
+    ax, ay = to_screen(cam, 1180 - 90 * S, GROUND - 655 * S)
     bubble(ctx, ax, ay, "Love the new haircut!", t - 0.3, side=-1)
 
 
@@ -149,7 +149,7 @@ def s5_world(ctx, t):
     living(ctx, t)
     draw_char(ctx, GRANDMA, 900, GROUND - 40, S, t, expr="happy", pose="cane", look=0)
     couch(ctx, 500, GROUND + 20)
-    show_counter(ctx, 900, GROUND - 40 - 700 * S, C_GMA, t, appear=0.4)
+    show_counter(ctx, 900, GROUND - 40 - 725 * S, C_GMA, t, appear=0.4)
 
 
 def s5_screen(ctx, t, cam):
@@ -183,7 +183,7 @@ def s7_world(ctx, t):
 
 
 def s7_screen(ctx, t, cam):
-    ax, ay = to_screen(cam, 960 + 90 * S, GROUND - 620 * S)
+    ax, ay = to_screen(cam, 960 + 90 * S, GROUND - 655 * S)
     bubble(ctx, ax, ay, "Trust me, it runs like new!", t - 0.4, side=1)
     caption(ctx, "The car salesman: no surprise there.", t - 1.9)
 
@@ -202,9 +202,9 @@ def s8_world(ctx, t):
 
 def s8_screen(ctx, t, cam):
     if t < 1.5:
-        ax, ay = to_screen(cam, 720 + 90 * S, GROUND - 620 * S)
+        ax, ay = to_screen(cam, 720 + 90 * S, GROUND - 655 * S)
         bubble(ctx, ax, ay, "Do you like my new shoes?", t - 0.2, side=1)
-    ax, ay = to_screen(cam, 1220 - 90 * S, GROUND - 620 * S)
+    ax, ay = to_screen(cam, 1220 - 90 * S, GROUND - 655 * S)
     bubble(ctx, ax, ay, "Yeah... they're great!", t - 1.6, side=-1)
     caption(ctx, "Every lie. +1. In real time.", t - 3.3)
 
@@ -234,9 +234,9 @@ def s10_world(ctx, t):
 def s10_screen(ctx, t, cam):
     tag(ctx, "THAT EVENING", 60, 50, t)
     if t < 1.4:
-        ax, ay = to_screen(cam, 620 + 90 * S, GROUND - 620 * S)
+        ax, ay = to_screen(cam, 620 + 90 * S, GROUND - 655 * S)
         bubble(ctx, ax, ay, "Hey... you okay?", t - 0.2, side=1)
-    ax, ay = to_screen(cam, 1300 - 90 * S, GROUND - 620 * S)
+    ax, ay = to_screen(cam, 1300 - 90 * S, GROUND - 655 * S)
     bubble(ctx, ax, ay, "I'm fine.", t - 1.4, side=-1)
 
 
@@ -248,7 +248,7 @@ def s11_world(ctx, t):
 
 
 def s11_screen(ctx, t, cam):
-    ax, ay = to_screen(cam, 1300 - 90 * S, GROUND - 620 * S)
+    ax, ay = to_screen(cam, 1300 - 90 * S, GROUND - 655 * S)
     bubble(ctx, ax, ay, "I lost my job. I didn't want Mom to worry.", t - 0.3, side=-1, maxw=560)
 
 
@@ -261,7 +261,7 @@ def s12_world(ctx, t):
 
 
 def s12_screen(ctx, t, cam):
-    ax, ay = to_screen(cam, 900 + 90 * S, GROUND - 40 - 620 * S)
+    ax, ay = to_screen(cam, 900 + 90 * S, GROUND - 40 - 655 * S)
     if t < 2.6:
         bubble(ctx, ax, ay, "For 60 years, Grandpa asked if he looked handsome.", t - 0.2, side=1, maxw=600)
     else:
@@ -298,9 +298,9 @@ def s14_world(ctx, t):
 
 def s14_screen(ctx, t, cam):
     if t < 2.0:
-        ax, ay = to_screen(cam, 1300 - 90 * S, GROUND - 620 * S)
+        ax, ay = to_screen(cam, 1300 - 90 * S, GROUND - 655 * S)
         bubble(ctx, ax, ay, "How's my cooking?", t - 0.2, side=-1)
-    ax, ay = to_screen(cam, 620 + 90 * S, GROUND - 620 * S)
+    ax, ay = to_screen(cam, 620 + 90 * S, GROUND - 655 * S)
     bubble(ctx, ax, ay, "...Perfect.", t - 2.0, side=1)
 
 

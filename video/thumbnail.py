@@ -167,7 +167,7 @@ def thumb_grandma(path):
 
     mx, my, ms = 245, 1110, 1.45
     me = px_layer(lambda c: (draw_char(c, ME, mx, my, ms, 0.1, expr="shock", pose="shrug", look=1),
-                             sweat_and_shock(c, mx, my - 560 * ms, 118 * ms)))
+                             sweat_and_shock(c, mx, my - 610 * ms, 118 * ms)))
     img = Image.alpha_composite(img, vignette(0.75))
     img = Image.alpha_composite(img, outline(me, 6))
     img = Image.alpha_composite(img, neon("96,440", 168, "#ff2e63", 905, 205, rot=-0.06))
@@ -188,7 +188,7 @@ def thumb_zero(path):
 
     mx, my, ms = 245, 1110, 1.45
     me = px_layer(lambda c: (draw_char(c, ME, mx, my, ms, 0.1, expr="shock", pose="shrug", look=1),
-                             sweat_and_shock(c, mx, my - 560 * ms, 118 * ms)))
+                             sweat_and_shock(c, mx, my - 610 * ms, 118 * ms)))
     img = Image.alpha_composite(img, vignette(0.8))
     img = Image.alpha_composite(img, outline(me, 6))
     img = Image.alpha_composite(img, neon("0", 250, "#ff2e63", 905, 250, rot=-0.05))

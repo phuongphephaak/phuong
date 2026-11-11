@@ -95,7 +95,7 @@ def banner(path):
     ground = 935
     for k, (c, v, x) in enumerate(cast):
         draw_char(ctx, c, x, ground, s, k * 0.7, expr="happy", look=0.6 if x < 1280 else -0.6, flip=x > 1280)
-        counter_label(ctx, x, ground - 700 * s, v, s=0.72)
+        counter_label(ctx, x, ground - 725 * s, v, s=0.72)
     # wordmark + tagline inside the safe area
     wordmark(ctx, 1280, 700, 140)
     font(ctx, 42, weight="normal")

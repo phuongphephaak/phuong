@@ -85,7 +85,7 @@ def crowd(ctx, b, t, labels):
                   stride=0.9, look=0.6)
         if labels:
             from engine import counter_label
-            counter_label(ctx, x, y - 700 * s, int(rng.integers(300, 40000)), s=0.62)
+            counter_label(ctx, x, y - 725 * s, int(rng.integers(300, 40000)), s=0.62)
     haze(ctx, a=0.12)
 
 
@@ -100,14 +100,14 @@ def focus_of(b, spec, t):
         a = next(a for a in b.actors if a.name == spec[1])
         x, *_ = b.actor_x(a, t)
         z = spec[2]
-        fy = a.y - 470 * a.s if kind == "on" else 560
+        fy = a.y - 520 * a.s if kind == "on" else 560
         return x, fy, z
     if kind == "two":
         a1 = next(a for a in b.actors if a.name == spec[1])
         a2 = next(a for a in b.actors if a.name == spec[2])
         x1, *_ = b.actor_x(a1, t)
         x2, *_ = b.actor_x(a2, t)
-        return (x1 + x2) / 2, a1.y - 420 * a1.s, spec[3]
+        return (x1 + x2) / 2, a1.y - 470 * a1.s, spec[3]
     raise ValueError(spec)
 
 

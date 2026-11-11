@@ -7,6 +7,11 @@ FONT = "Inter"
 
 
 # ---------------------------------------------------------------- helpers
+LEG = 60        # extra leg length (taller figure)
+BODY_W = 0.84   # torso/arm width factor (slimmer figure)
+HEAD_S = 0.78   # head scale
+
+
 def hexc(h, a=1.0):
     if not isinstance(h, str):
         return tuple(h) if len(h) == 4 else (*h, a)
@@ -152,9 +157,11 @@ ARMS = {
 }
 
 
-def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
+def _draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
               talking=False, flip=False, walk=None, stride=1.0, lean=0.0, prop=None):
     """walk = gait phase in radians (None = standing). Character faces +x unless flip."""
+    blk = getattr(c, "black", False)
+    INK = "#f4efe4" if blk else "#4a2320"
     ctx.save()
     ctx.translate(x, y)
     ctx.scale(-s if flip else s, s)
@@ -163,7 +170,7 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
     # legs + shoes
     if walk is None:
         for sx in (-1, 1):
-            line(ctx, [(sx * 34, -205), (sx * 36, -22)], 46, c.pants)
+            line(ctx, [(sx * 29, -205 - LEG), (sx * 31, -22)], 42, c.pants)
             ellipse(ctx, sx * 44, -14, 40, 18, c.shoes)
             ellipse(ctx, sx * 44, -4, 40, 6, shade(c.shoes, 0.8))
     else:
@@ -172,16 +179,18 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
             ph = walk + k * math.pi
             fx = 62 * stride * math.sin(ph)
             lift = 34 * stride * max(0.0, math.cos(ph))
-            knee = (sx * 12 + fx * 0.55 + 10 * stride, -115 - lift * 0.4)
+            knee = (sx * 12 + fx * 0.55 + 10 * stride, -115 - LEG * 0.5 - lift * 0.4)
             foot = (sx * 12 + fx, -22 - lift)
             col = c.pants if k else shade(c.pants, 0.85)
-            line(ctx, [(sx * 20, -205), knee, foot], 46, col)
+            line(ctx, [(sx * 18, -205 - LEG), knee, foot], 42, col)
             ellipse(ctx, foot[0] + 14, foot[1] + 8, 40, 18, c.shoes if k else shade(c.shoes, 0.9))
-    ctx.translate(0, bob)
+    ctx.translate(0, bob - LEG)
     if lean:
         ctx.translate(0, -300)
         ctx.rotate(lean)
         ctx.translate(0, 300)
+    ctx.save()
+    ctx.scale(BODY_W, 1)
     # arms (behind torso for the far side)
     arms = ARMS.get(pose, ARMS["down"])
     wave_off = 16 * math.sin(t * 11) if pose == "wave" else 0
@@ -222,8 +231,12 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
         line(ctx, [(150, -232), (128, -248)], 9, "#5b3f2b")
     if prop:
         draw_prop(ctx, prop, t)
+    ctx.restore()
 
-    # head
+    # head (slightly smaller for a taller, slimmer figure)
+    ctx.translate(0, -560 + (110 - 118 * HEAD_S))
+    ctx.scale(HEAD_S, HEAD_S)
+    ctx.translate(0, 560)
     hy = -560
     hc = c.hair_c
     if c.hair == "ponytail":
@@ -293,7 +306,7 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
     for sx in (-1, 1):
         cx = sx * ex
         if expr in ("happy", "laugh"):
-            line(ctx, [(cx - 18, ey + 6), (cx, ey - 12), (cx + 18, ey + 6)], 9, "#2a2522")
+            line(ctx, [(cx - 18, ey + 6), (cx, ey - 12), (cx + 18, ey + 6)], 9, "#ffffff" if blk else "#2a2522")
             continue
         rx, ry = (27, 34) if big else (21, 26)
         ellipse(ctx, cx, ey, rx, ry * blink, "#ffffff")
@@ -307,7 +320,7 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
         if expr == "sad":
             pass
     # brows
-    bcol = shade(c.hair_c, 0.8) if c.hair != "bald" else "#7a6a5a"
+    bcol = "#f4efe4" if blk else (shade(c.hair_c, 0.8) if c.hair != "bald" else "#7a6a5a")
     for sx in (-1, 1):
         if expr == "shock":
             pts = [(sx * 26, ey - 62), (sx * 62, ey - 66)]
@@ -327,55 +340,107 @@ def draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0,
         for sx in (-1, 1):
             ctx.arc(sx * ex, ey, 34, 0, 2 * math.pi)
             ctx.set_line_width(6)
-            setc(ctx, "#4a3b33")
+            setc(ctx, "#f4efe4" if blk else "#4a3b33")
             ctx.stroke()
-        line(ctx, [(-10, ey - 4), (10, ey - 4)], 6, "#4a3b33")
+        line(ctx, [(-10, ey - 4), (10, ey - 4)], 6, "#f4efe4" if blk else "#4a3b33")
     if "choc" in c.extra:
         for (cx_, cy_, rr) in ((-30, hy + 80, 16), (26, hy + 88, 13), (50, hy + 60, 9), (-55, hy + 55, 8)):
             circle(ctx, cx_, cy_, rr, "#6b3d22", a=0.85)
     if "wrinkles" in c.extra:
         for sx in (-1, 1):
-            line(ctx, [(sx * 70, ey + 10), (sx * 82, ey + 22)], 4, shade(c.skin, 0.75))
-            line(ctx, [(sx * 70, ey + 22), (sx * 80, ey + 32)], 4, shade(c.skin, 0.75))
+            line(ctx, [(sx * 70, ey + 10), (sx * 82, ey + 22)], 4, ("#8a8a92" if blk else shade(c.skin, 0.75)))
+            line(ctx, [(sx * 70, ey + 22), (sx * 80, ey + 32)], 4, ("#8a8a92" if blk else shade(c.skin, 0.75)))
     if expr not in ("shock",):
         for sx in (-1, 1):
-            ellipse(ctx, sx * 76, hy + 52, 20, 12, "#e98b7c", a=0.35)
+            if blk:
+                ctx.save()
+                ctx.translate(sx * 76, hy + 52)
+                ctx.scale(22, 13)
+                ctx.arc(0, 0, 1, 0, 2 * math.pi)
+                ctx.restore()
+                ctx.set_line_width(3.5)
+                setc(ctx, "#f4efe4")
+                ctx.stroke()
+            else:
+                ellipse(ctx, sx * 76, hy + 52, 20, 12, "#e98b7c", a=0.35)
     # mouth
     my = hy + 66
     if talking:
         o = abs(math.sin(t * 13)) * 14 + 3
-        ellipse(ctx, 0, my, 18, o, "#4a2320")
+        ellipse(ctx, 0, my, 18, o, INK)
     elif expr == "shock":
-        ellipse(ctx, 0, my + 6, 15, 22, "#4a2320")
+        ellipse(ctx, 0, my + 6, 15, 22, INK)
     elif expr in ("happy", "laugh"):
         ctx.move_to(-34, my - 8)
         ctx.curve_to(-30, my + 34, 30, my + 34, 34, my - 8)
         ctx.close_path()
-        setc(ctx, "#4a2320")
+        setc(ctx, INK)
         ctx.fill()
         ellipse(ctx, 0, my + 14, 14, 7, "#e0766a")
     elif expr == "sad":
         ctx.move_to(-24, my + 10)
         ctx.curve_to(-10, my - 8, 10, my - 8, 24, my + 10)
         ctx.set_line_width(8)
-        setc(ctx, "#4a2320")
+        setc(ctx, INK)
         ctx.stroke()
     elif expr == "sly":
         ctx.move_to(-30, my - 2)
         ctx.curve_to(-8, my + 20, 18, my + 14, 34, my - 16)
         ctx.set_line_width(9)
-        setc(ctx, "#4a2320")
+        setc(ctx, INK)
         ctx.stroke()
     elif expr == "suspicious":
-        line(ctx, [(-20, my + 2), (22, my - 4)], 8, "#4a2320")
+        line(ctx, [(-20, my + 2), (22, my - 4)], 8, INK)
     elif expr == "think":
-        line(ctx, [(-14, my), (16, my)], 8, "#4a2320")
+        line(ctx, [(-14, my), (16, my)], 8, INK)
     else:
         ctx.move_to(-22, my - 4)
         ctx.curve_to(-10, my + 10, 10, my + 10, 22, my - 4)
         ctx.set_line_width(8)
-        setc(ctx, "#4a2320")
+        setc(ctx, INK)
         ctx.stroke()
+    ctx.restore()
+
+
+
+STYLE = "black"          # "black" = dark silhouette faces with cream rim; "color" = skin tones
+_BK = "#0e0e12"
+
+
+def _lum(h):
+    r, g, b, _ = hexc(h)
+    return 0.3 * r + 0.59 * g + 0.11 * b
+
+
+def black_variant(c):
+    if getattr(c, "_blk", None) is None:
+        v = Char(_BK, c.top, c.pants, c.shoes, c.hair, c.hair_c if _lum(c.hair_c) > 0.6 else "#2a2a33",
+                 tuple(e for e in c.extra if e != "choc"), c.blink_phase)
+        v.black = True
+        c._blk = v
+    return c._blk
+
+
+def draw_char(ctx, c, x, y, s=1.0, t=0.0, **kw):
+    if STYLE != "black":
+        return _draw_char(ctx, c, x, y, s, t, **kw)
+    cb = black_variant(c)
+    ctx.save()
+    ctx.rectangle(x - 340 * s, y - 800 * s, 680 * s, 840 * s)
+    ctx.clip()
+    ctx.push_group()
+    _draw_char(ctx, cb, x, y, s, t, **kw)
+    pat = ctx.pop_group()
+    rim = 7.0 * s
+    m0 = pat.get_matrix()
+    ctx.set_source_rgb(0.96, 0.93, 0.87)
+    for k in range(12):
+        a = 2 * math.pi * k / 12
+        pat.set_matrix(cairo.Matrix(x0=-rim * math.cos(a), y0=-rim * math.sin(a)).multiply(m0))
+        ctx.mask(pat)
+    pat.set_matrix(m0)
+    ctx.set_source(pat)
+    ctx.paint()
     ctx.restore()
 
 

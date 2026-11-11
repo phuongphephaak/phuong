@@ -152,8 +152,8 @@ class Beat:
             draw_char(ctx, a.c, x, a.y, a.s, t, expr=expr, pose=pose, look=look, talking=talking,
                       flip=facing < 0, walk=walk, stride=STRIDE[a.style],
                       lean=LEAN.get(a.style, 0.0) if moving else 0.0, prop=prop)
-            hx, hy = x, a.y - 700 * a.s
-            anchors[a.name] = (x, a.y - 600 * a.s, a.s, facing)
+            hx, hy = x, a.y - 725 * a.s
+            anchors[a.name] = (x, a.y - 635 * a.s, a.s, facing)
             if a.label is not None and t >= a.label_at:
                 show_label(ctx, hx, hy, a.label, t, a.label_at, a.s)
 
