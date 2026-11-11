@@ -27,7 +27,7 @@ class Line:
 class Actor:
     def __init__(self, name, c, x, s=0.82, y=None, to=None, at=0, style="walk", expr="neutral", pose="down",
                  face=None, look=None, label=None, label_at=0, prop=None, cat=False, hide_before=None,
-                 hide_after=None, path=None):
+                 hide_after=None, path=None, drawfn=None, head=300, thought=None, kw=None):
         self.name, self.c, self.x0, self.s = name, c, x, s
         self.y = GROUND if y is None else y
         # path: list of (time_ref, x) waypoints; or simple to/at
@@ -35,6 +35,7 @@ class Actor:
         self.style, self.expr, self.pose, self.face, self.look = style, expr, pose, face, look
         self.label, self.label_at, self.prop, self.cat = label, label_at, prop, cat
         self.hide_before, self.hide_after = hide_before, hide_after
+        self.drawfn, self.head, self.thought, self.kw = drawfn, head, thought, kw or {}
 
 
 class Counter:
@@ -76,6 +77,9 @@ class Beat:
                 v = getattr(a, k)
                 if isinstance(v, list):
                     setattr(a, k, [(self.ref(tt), val) for tt, val in v])
+            for k, v in list(a.kw.items()):
+                if isinstance(v, list) and v and isinstance(v[0], tuple):
+                    a.kw[k] = [(self.ref(tt), val) for tt, val in v]
             for k in ("hide_before", "hide_after", "label_at"):
                 v = getattr(a, k)
                 if isinstance(v, str):
@@ -139,6 +143,12 @@ class Beat:
                 facing = getattr(a, "_lastdir", 1) if a.path else (a.face or (1 if x < W / 2 else -1))
             if direction is not None:
                 a._lastdir = direction
+            if a.drawfn is not None:
+                walk = dist * PHASE[a.style] * 1.4 if moving else None
+                kw = {k: pick(v, t) for k, v in a.kw.items()}
+                a.drawfn(ctx, x, a.y, a.s, t, walk=walk, facing=facing, **kw)
+                anchors[a.name] = (x, a.y - a.head * a.s, a.s, facing)
+                continue
             if a.cat:
                 draw_cat(ctx, x, a.y, a.s, t)
                 anchors[a.name] = (x, a.y - 330 * a.s, a.s, facing)

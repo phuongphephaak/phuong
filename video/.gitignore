@@ -5,3 +5,8 @@ out/full_silent.mp4
 out/render.log
 voice/cache/*.wav
 out/lie-count-full.mp4
+out/ep2/*.wav
+out/ep2/silent.mp4
+out/ep2/_chunks/
+out/ep2/render.log
+out/ep2/pets-full.mp4

@@ -100,7 +100,7 @@ def focus_of(b, spec, t):
         a = next(a for a in b.actors if a.name == spec[1])
         x, *_ = b.actor_x(a, t)
         z = spec[2]
-        fy = a.y - 520 * a.s if kind == "on" else 560
+        fy = (a.y - (a.head * 0.75 if a.drawfn else 520) * a.s) if kind == "on" else 560
         return x, fy, z
     if kind == "two":
         a1 = next(a for a in b.actors if a.name == spec[1])
@@ -190,6 +190,11 @@ def render_frame(surf, b, t, vig):
                 ax, ay, s, facing = anchors[ln.who]
                 sx, sy = (ax - fx) * z + W / 2, (ay - fy) * z + H / 2
                 side = facing if facing else 1
+                act = next((a for a in b.actors if a.name == ln.who), None)
+                if act is not None and act.thought:
+                    from animals import thought
+                    thought(ctx, sx, sy, ln.text, t - ln.start + 0.05, color=act.thought, side=side)
+                    continue
                 sx += side * 70 * s * z
                 bubble(ctx, sx, sy, ln.text.replace("’", "'"), t - ln.start + 0.05, side=side,
                        size=40, maxw=620)
@@ -330,7 +335,8 @@ def _ts(t):
 
 
 rng = np.random.default_rng(11)
-EXTRA = {"knock", "slam", "crickets", "static", "sizzle", "offkey", "clock", "flutter", "scrape"}
+EXTRA = {"knock", "slam", "crickets", "static", "sizzle", "offkey", "clock", "flutter", "scrape", "bark", "ding",
+         "can"}
 
 
 def sfx2(kind):
@@ -385,6 +391,26 @@ def sfx2(kind):
         tt = np.arange(n) / SR
         x = rng.standard_normal(n) * (0.5 + 0.5 * np.sign(np.sin(2 * np.pi * 18 * tt)))
         return 0.2 * np.convolve(x, np.ones(20) / 20, "same") * np.exp(-tt * 2)
+    if kind == "bark":
+        out = np.zeros(int(1.2 * SR))
+        for i in range(3):
+            n = int(0.16 * SR)
+            tt = np.arange(n) / SR
+            f = 420 * np.exp(-tt * 6) + 180
+            x = np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR)) * 0.5 + 0.5 * rng.standard_normal(n)
+            x = np.convolve(x, np.ones(12) / 12, "same") * np.exp(-tt * 14)
+            A.add(out, 0.6 * x, i * 0.32)
+        return out
+    if kind == "ding":
+        return sum(0.25 * A.tone(f, 1.4, "sine", 0.002, 0.6) for f in (1318.5, 1975.5))
+    if kind == "can":
+        out = np.zeros(int(1.5 * SR))
+        for i in range(5):
+            n = int(0.1 * SR)
+            tt = np.arange(n) / SR
+            x = sum(np.sin(2 * np.pi * f * tt) for f in (2100, 3300, 4700)) * np.exp(-tt * 40)
+            A.add(out, 0.12 * x / (1 + i * 0.5), i * 0.22 * (1 - i * 0.12))
+        return out
     if kind == "scrape":
         n = int(0.5 * SR)
         tt = np.arange(n) / SR

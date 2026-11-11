@@ -308,6 +308,13 @@ def _draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0
         if expr in ("happy", "laugh"):
             line(ctx, [(cx - 18, ey + 6), (cx, ey - 12), (cx + 18, ey + 6)], 9, "#ffffff" if blk else "#2a2522")
             continue
+        if expr in ("sleep", "sleep_smile"):
+            ctx.move_to(cx - 20, ey)
+            ctx.curve_to(cx - 8, ey + 12, cx + 8, ey + 12, cx + 20, ey)
+            ctx.set_line_width(8)
+            setc(ctx, "#ffffff" if blk else "#2a2522")
+            ctx.stroke()
+            continue
         rx, ry = (27, 34) if big else (21, 26)
         ellipse(ctx, cx, ey, rx, ry * blink, "#ffffff")
         pr = 8 if big else 12
