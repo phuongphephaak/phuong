@@ -247,15 +247,6 @@ def _draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0
         circle(ctx, 0, hy - 125, 46, hc)
     for sx in (-1, 1):
         circle(ctx, sx * 112, hy + 8, 22, c.skin)
-        if blk:
-            ctx.new_sub_path()
-            if sx > 0:
-                ctx.arc(sx * 116, hy + 8, 11, -1.4, 1.4)
-            else:
-                ctx.arc(sx * 116, hy + 8, 11, math.pi - 1.4, math.pi + 1.4)
-            ctx.set_line_width(5)
-            setc(ctx, "#f4efe4")
-            ctx.stroke()
     circle(ctx, 0, hy, 118, c.skin)
     ctx.save()
     ctx.arc(0, hy, 118, 0, 2 * math.pi)
@@ -267,16 +258,11 @@ def _draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0
     ctx.save()
     ctx.arc(0, hy, 121, 0, 2 * math.pi)
     ctx.clip()
-    if blk:
-        ctx.push_group()
-    if c.hair == "short":
-        ellipse(ctx, 0, hy - 122, 150, 62, hc)
-        for i in range(5):
-            circle(ctx, -104 + i * 52, hy - 82, 29, hc)
-    if c.hair in ("ponytail", "bob", "bun", "slick"):
+    if c.hair in ("short", "ponytail", "bob", "bun", "slick"):
         ellipse(ctx, 0, hy - 88, 140, 66, hc)
         if c.hair == "short":
-            pass
+            for i in range(5):
+                circle(ctx, -70 + i * 35, hy - 40, 22, hc)
         if c.hair == "slick":
             ellipse(ctx, -40, hy - 50, 90, 30, hc, rot=0.25)
             ellipse(ctx, 20, hy - 100, 60, 10, (1, 1, 1, 0.25), rot=0.1)
@@ -293,17 +279,6 @@ def _draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0
         ellipse(ctx, 0, hy - 95, 135, 55, hc)
     elif c.hair in ("bald", "cap"):
         pass
-    if blk:
-        hp = ctx.pop_group()
-        m0 = hp.get_matrix()
-        ctx.set_source_rgb(0.96, 0.93, 0.87)
-        for k in range(10):
-            a = 2 * math.pi * k / 10
-            hp.set_matrix(cairo.Matrix(x0=-5 * math.cos(a), y0=-5 * math.sin(a)).multiply(m0))
-            ctx.mask(hp)
-        hp.set_matrix(m0)
-        ctx.set_source(hp)
-        ctx.paint()
     ctx.restore()
     if c.hair == "cap":
         ctx.save()
@@ -333,21 +308,6 @@ def _draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0
         if expr in ("happy", "laugh"):
             line(ctx, [(cx - 18, ey + 6), (cx, ey - 12), (cx + 18, ey + 6)], 9, "#ffffff" if blk else "#2a2522")
             continue
-        if blk:
-            rx, ry = (27, 32) if big else (29, 21)
-            ellipse(ctx, cx, ey + 2, rx, ry * blink, "#ffffff")
-            if blink > 0.5:
-                circle(ctx, cx + look * 13, ey + 6, 7 if big else 11, "#141418")
-            if not big and blink > 0.5:
-                lid = {"sad": 0.25, "neutral": 0.38, "think": 0.42, "sly": 0.55, "suspicious": 0.55}.get(expr, 0.38)
-                ctx.save()
-                ctx.translate(cx, ey + 2)
-                if expr == "sad":
-                    ctx.rotate(-0.25 * sx)
-                rect(ctx, -rx - 4, -ry - 1, 2 * rx + 8, ry * 2 * lid + 1, c.skin)
-                line(ctx, [(-rx + 2, -ry + ry * 2 * lid), (rx - 2, -ry + ry * 2 * lid)], 4, "#f4efe4")
-                ctx.restore()
-            continue
         rx, ry = (27, 34) if big else (21, 26)
         ellipse(ctx, cx, ey, rx, ry * blink, "#ffffff")
         pr = 8 if big else 12
@@ -375,7 +335,7 @@ def _draw_char(ctx, c, x, y, s=1.0, t=0.0, expr="neutral", pose="down", look=0.0
             pts = [(sx * 22, ey - 42 - (8 if sx > 0 else 0)), (sx * 62, ey - 46 - (8 if sx > 0 else 0))]
         else:
             pts = [(sx * 24, ey - 44), (sx * 60, ey - 46)]
-        line(ctx, pts, 14 if blk else 10, bcol)
+        line(ctx, pts, 10, bcol)
     if "glasses" in c.extra:
         for sx in (-1, 1):
             ctx.arc(sx * ex, ey, 34, 0, 2 * math.pi)
@@ -454,7 +414,7 @@ def _lum(h):
 
 def black_variant(c):
     if getattr(c, "_blk", None) is None:
-        v = Char(_BK, c.top, c.pants, c.shoes, c.hair, c.hair_c if _lum(c.hair_c) > 0.6 else _BK,
+        v = Char(_BK, c.top, c.pants, c.shoes, c.hair, c.hair_c if _lum(c.hair_c) > 0.6 else "#2a2a33",
                  tuple(e for e in c.extra if e != "choc"), c.blink_phase)
         v.black = True
         c._blk = v
