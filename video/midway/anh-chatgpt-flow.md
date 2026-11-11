@@ -21,7 +21,7 @@ Photorealistic photograph, 1942 World War II, shot on 35mm film, natural light, 
 - **Không** tạo ảnh/video giả người thật (Nimitz, Nagumo, McClusky…). Nhân vật thật dùng ảnh thật.
 
 ## Lỗi lịch sử hay gặp – kiểm tra trước khi dùng
-- Máy bay Mỹ 1942: **ngôi sao trắng trong vòng tròn xanh, có chấm đỏ ở giữa sao**; không có sọc ngang hai bên sao (kiểu đó có từ 1943).
+- Máy bay Mỹ 1942: **ngôi sao trắng trong vòng tròn xanh, KHÔNG có chấm đỏ ở giữa** (chấm đỏ bị xóa từ giữa tháng 5/1942), không có sọc ngang hai bên sao (kiểu đó có từ 1943).
 - Máy bay Nhật: vòng tròn đỏ (hinomaru), Zero màu xám nhạt.
 - Tàu sân bay Nhật: boong gỗ màu vàng nâu, **hình tròn đỏ trên boong phía mũi**; đài chỉ huy nhỏ (Akagi, Hiryu ở **bên trái**; Kaga, Soryu ở bên phải).
 - Không có máy bay phản lực, tàu hiện đại, radar hình đĩa, chữ viết lạ.
@@ -61,7 +61,7 @@ Propellers start spinning, deck crew walk between the planes, flags flutter in s
 
 **Lời nhắc ảnh (ChatGPT):**
 ```
-Formation of US Navy SBD Dauntless dive bombers in 1942 blue-grey paint with white star and red center roundel, flying high above scattered clouds, the leading plane rolling over into a steep dive, ocean far below.
+Formation of US Navy SBD Dauntless dive bombers in 1942 blue-grey paint with plain white star in a blue circle insignia (no red center), flying high above scattered clouds, the leading plane rolling over into a steep dive, ocean far below.
 ```
 **Lời nhắc chuyển động (Flow):**
 ```
@@ -171,7 +171,7 @@ An officer lowers binoculars and turns to the others, the paper trembles in the 
 
 **Lời nhắc ảnh (ChatGPT):**
 ```
-Deck of the US aircraft carrier in 1942, dark blue SBD Dauntless dive bombers with white star and red center roundel lined up, the first one taking off, flight deck officer waving a checkered flag, sailors in blue dungarees watching.
+Deck of the US aircraft carrier in 1942, dark blue SBD Dauntless dive bombers with plain white star in a blue circle insignia (no red center) lined up, the first one taking off, flight deck officer waving a checkered flag, sailors in blue dungarees watching.
 ```
 **Lời nhắc chuyển động (Flow):**
 ```
