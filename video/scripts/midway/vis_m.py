@@ -277,3 +277,4 @@ VIS.update({
     "best": M(["p", "S03", 9.2, None], ["a", "d84312", 456, 3, PE]),
     "see": M(["f", "F17", 2, None], ["a", "d84312", 428, 2.5, PE]),
 })
+VIS["h_impact"] = M(["a", "ford", 520, 3.6, FO])
