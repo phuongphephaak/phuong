@@ -385,8 +385,9 @@ def assemble(out):
     wav = os.path.join(TMP, "mix.wav")
     mix(wav)
     run(["ffmpeg", "-y", "-loglevel", "error", *inputs, "-i", wav, "-filter_complex", ";".join(fc), "-map", f"[{prev}]",
-         "-map", f"{len(subt) + 2}:a", "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p",
-         "-c:a", "aac", "-b:a", "192k", "-t", str(tlj["total"]), "-movflags", "+faststart", out])
+         "-map", f"{len(subt) + 2}:a", *(["-c:v", "libx264", "-preset", "medium", "-b:v", os.environ["FINAL_BR"], "-maxrate", "3600k", "-bufsize", "7200k"]
+           if os.environ.get("FINAL_BR") else ["-c:v", "libx264", "-preset", "medium", "-crf", "19"]), "-pix_fmt", "yuv420p",
+         "-c:a", "aac", "-b:a", "160k" if os.environ.get("FINAL_BR") else "192k", "-t", str(tlj["total"]), "-movflags", "+faststart", out])
     print("done", out, dur(out), "subscribe at", subt)
 
 
