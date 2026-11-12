@@ -32,7 +32,7 @@ def pts(names, t0=0.4, dt=0.35, color="red"):
 VIS = {
     # ---- 1 hook
     "h_clock": FL("D01", A(["wv", 289, 5.6, T])),
-    "h_valley": A(["wv", 268, 4.6, T], ["wv", 290, 4.6, T]),
+    "h_valley": A(["wv", 289.5, 4.8, T], ["in88", 26, 4.4, T]),
     "h_belief": A(["wv", 380, 4, T], ["in2", 523, 3.6, T], ["wv", 296, 3.4, T]),
     "h_fire": FL("D02", A(["in2", 453, 7.6, T])),
     "h_impact": A(["in2", 458, 2.2, T], ["in2", 601, 2, T]),
@@ -62,14 +62,14 @@ VIS = {
     "march": FL("D05", A(["wv", 330, 4, T], ["wv", 528, 6.4, T])),
     "fast": X("phrase", photo="artillery", text="ĐÁNH NHANH, GIẢI QUYẾT NHANH", sub="TẤN CÔNG TRONG KHOẢNG BA ĐÊM HAI NGÀY"),
     "guns": P("how105b"),
-    "estimate": A(["wv", 268, 5, T], ["in2", 468, 3.4, T], ["wv", 380, 4.8, T]),
+    "estimate": A(["wv", 276, 2.6, T], ["in2", 468, 3.4, T], ["wv", 380, 4, T], ["wv", 289.5, 3.4, T]),
     "pull": FL("D03", P("artillery")),
     "slow": FL("D04", A(["wv", 528, 5.2, T], ["wv", 538, 5.2, T])),
     "todien": X("portrait", photo="todien", name="Tô Vĩnh Diện", sub="ANH HÙNG LỰC LƯỢNG VŨ TRANG NHÂN DÂN"),
     "ready": FL("D08", P("how105a", dark=0.2)),
     # ---- 4 decision
     "doubt": FL("D06", P("map1315", dark=0.3)),
-    "risk": A(["in2", 553, 3.2, T], ["wv", 268, 4, T], ["in2", 523, 3.7, T]),
+    "risk": A(["in2", 553, 3.2, T], ["in2", 543, 4, T], ["in2", 523, 3.7, T]),
     "decision": X("stat", photo="giap1951", lines=[["26/01/1954", 150, YEL], ["HOÃN TẤN CÔNG · KÉO PHÁO RA", 54, WHT]]),
     "quote": X("quote", photo="giap_mr", lines=["“Đây là quyết định khó khăn nhất", "trong cuộc đời chỉ huy của tôi.”"],
                by="— Đại tướng Võ Nguyên Giáp"),
@@ -113,7 +113,7 @@ VIS = {
                     sub="TRUNG TÁ PIROTH TỰ SÁT TRONG HẦM"),
     "airfield": A(["wv", 290, 4, T], ["in2", 456, 5, T], ["wv", 300, 4.6, T]),
     # ---- 7 tightening
-    "trenches": FL("D12", A(["wv", 268, 5.2, T], ["wv", 272, 5.2, T])),
+    "trenches": FL("D12", A(["wv", 271, 5.2, T], ["wv", 272, 5.2, T])),
     "parachute": FL("D11", A(["wv", 284, 5, T], ["wv", 280, 3, T], ["wv", 294, 3.9, T])),
     "paras": A(["wv", 280, 4, T], ["wv", 304, 6.8, T]),
     "vulture": X("stat", photo="indo003", lines=[["PARIS CẦU CỨU WASHINGTON", 84, WHT], ["MỸ CÂN NHẮC DÙNG MÁY BAY NÉM BOM HẠNG NẶNG", 44, CY],
