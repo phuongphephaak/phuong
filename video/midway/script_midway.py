@@ -31,11 +31,11 @@ SCENES = [
          nar="Trên boong và trong khoang chứa, hàng chục máy bay đang được nạp đầy xăng, bom và ngư lôi, "
              "chuẩn bị cho một đòn tấn công quyết định."),
     dict(id="h_belief", part=1, vis=("vfx", "Chiến đấu cơ Zero bay tuần tra sát mặt biển, tàu sân bay phía sau"),
-         nar="Suốt sáu tháng qua, hạm đội này chưa từng nếm mùi thất bại. Họ tin rằng người Mỹ hoàn toàn không biết "
+         nar="Suốt sáu tháng qua, hạm đội này chưa từng nếm mùi thất bại. Quân Nhật tin rằng người Mỹ hoàn toàn không biết "
              "mình đang đến."),
     dict(id="h_dive", part=1, vis=("vfx", "Đội hình máy bay ném bom bổ nhào Dauntless lần lượt nghiêng cánh, lao xuống"),
          sfx="tiếng rít bổ nhào tăng dần",
-         nar="Họ không biết rằng, ở độ cao gần năm nghìn mét ngay trên đầu họ, hàng chục máy bay ném bom bổ nhào "
+         nar="Nhưng quân Nhật không hề hay biết, ở độ cao gần năm nghìn mét ngay trên đầu, hàng chục máy bay ném bom bổ nhào "
              "của Mỹ vừa nghiêng cánh. Và lao xuống."),
     dict(id="h_impact", part=1, vis=("vfx", "Bom xuyên boong tàu, cầu lửa bùng lên, khói đen"), hold=3,
          sfx="ba tiếng nổ lớn, nhạc dừng"),
@@ -55,7 +55,7 @@ SCENES = [
              "Thái Bình Dương bị đánh chìm hoặc hư hại. Hơn hai nghìn bốn trăm người Mỹ thiệt mạng."),
     dict(id="expand", part=2, vis=("map", "Bản đồ châu Á – Thái Bình Dương, vùng Nhật chiếm lan rộng từ 12/1941 đến 5/1942"),
          nar="Trong sáu tháng tiếp theo, quân Nhật tràn qua Thái Bình Dương như một cơn bão. Philippines, Mã Lai, "
-             "Singapore, Đông Ấn Hà Lan. Đi đến đâu, họ thắng đến đó."),
+             "Singapore, Đông Ấn Hà Lan. Đi đến đâu, quân Nhật thắng đến đó."),
     dict(id="yamamoto", part=2, vis=("photo", "Thẻ chân dung Đô đốc Yamamoto Isoroku trên nền lưới"),
          cap=["ĐÔ ĐỐC YAMAMOTO ISOROKU"],
          nar="Người đứng sau những chiến thắng ấy là Đô đốc Yamamoto Isoroku, Tổng tư lệnh Hạm đội Liên hợp. "
@@ -94,27 +94,27 @@ SCENES = [
          nar="Phía Mỹ chỉ còn ba tàu sân bay có thể ra trận. Trong đó, Yorktown vừa trúng bom ở trận biển San Hô "
              "tháng trước, thân tàu vẫn còn rò dầu."),
     dict(id="believe", part=2, vis=("veo", "V03 – hạm đội Nhật tiến trong sương sớm, cờ mặt trời mọc"),
-         nar="Trên giấy tờ, người Nhật nắm chắc phần thắng. Họ tin rằng hạm đội Mỹ sẽ bị bất ngờ thêm một lần nữa. "
-             "Nhưng họ đã nhầm."),
+         nar="Trên giấy tờ, người Nhật nắm chắc phần thắng. Bộ chỉ huy Nhật tin rằng hạm đội Mỹ sẽ bị bất ngờ thêm một lần nữa. "
+             "Nhưng đó là một sai lầm chết người."),
 
     # ---------------- 3. MẬT MÃ ----------------
     dict(id="dungeon", part=3, vis=("veo", "V04 – tầng hầm không cửa sổ, bàn đầy giấy, máy đánh chữ, khói thuốc"),
          cap=["TRÂN CHÂU CẢNG – TRẠM GIẢI MÃ HYPO"],
          nar="Tại Trân Châu Cảng, dưới tầng hầm không có cửa sổ của một tòa nhà, một nhóm nhỏ chuyên gia mật mã "
-             "làm việc ngày đêm. Họ gọi nơi đó là Hầm Ngục."),
+             "làm việc ngày đêm. Người trong nhóm gọi nơi đó là Hầm Ngục."),
     dict(id="rochefort", part=3, vis=("photo", "Thẻ chân dung Trung tá Joseph Rochefort"),
          cap=["TRUNG TÁ JOSEPH ROCHEFORT"],
          nar="Người chỉ huy là Trung tá Joseph Rochefort. Ông mặc áo choàng, đi dép lê trong hầm, "
              "có những ngày làm việc liền hơn hai mươi tiếng."),
     dict(id="jn25", part=3, vis=("vfx", "Đồ họa: dãy mã số chạy, một số nhóm sáng lên thành chữ, cuối cùng hiện 'AF'"),
-         nar="Nhiệm vụ của họ là bẻ khóa hệ thống mật mã của Hải quân Nhật, có tên JN hai lăm. Họ chỉ đọc được "
+         nar="Nhiệm vụ của nhóm là bẻ khóa hệ thống mật mã của Hải quân Nhật, có tên JN hai lăm. Các chuyên gia Mỹ chỉ đọc được "
              "một phần nhỏ. Nhưng đủ để biết người Nhật đang chuẩn bị một chiến dịch lớn, nhằm vào một mục tiêu "
              "có mật danh: AF."),
     dict(id="doubt", part=3, vis=("map", "Bản đồ: dấu hỏi trên Midway, Hawaii, bờ Tây nước Mỹ"),
          nar="Rochefort tin rằng AF chính là Midway. Nhưng ở Washington, nhiều người lại nghĩ đó là Hawaii, "
              "thậm chí là bờ Tây nước Mỹ. Nếu đoán sai, hạm đội Mỹ sẽ có mặt ở sai chỗ. Và mọi thứ sẽ kết thúc."),
     dict(id="trick", part=3, vis=("card", "Đồ họa bức điện đánh máy: 'MIDWAY – MÁY LỌC NƯỚC NGỌT BỊ HỎNG'"),
-         nar="Để chứng minh, nhóm của ông nghĩ ra một mẹo. Họ bí mật yêu cầu Midway gửi đi một bức điện không mã "
+         nar="Để chứng minh, nhóm của ông nghĩ ra một mẹo: bí mật yêu cầu Midway gửi đi một bức điện không mã "
              "hóa, báo rằng máy lọc nước ngọt trên đảo đã bị hỏng."),
     dict(id="bite", part=3, vis=("card", "Đồ họa: bức điện Nhật bị chặn, dòng chữ 'AF ĐANG THIẾU NƯỚC' tô vàng"),
          sfx="tiếng máy điện báo",
@@ -125,13 +125,13 @@ SCENES = [
          nar="Thông tin được trình lên Đô đốc Chester Nimitz, Tổng tư lệnh Hạm đội Thái Bình Dương. Các chuyên gia "
              "còn đoán được thời điểm tấn công: đầu tháng sáu. Nimitz quyết định đặt cược tất cả vào đó."),
     dict(id="trap", part=3, vis=("veo", "V05 – phòng chỉ huy hải quân thập niên 1940, sĩ quan đẩy mô hình tàu trên bàn bản đồ"),
-         nar="Lần này, người Mỹ sẽ không bị đánh úp. Lần này, chính họ sẽ giăng bẫy."),
+         nar="Lần này, người Mỹ sẽ không bị đánh úp. Lần này, chính quân Mỹ sẽ giăng bẫy."),
 
     # ---------------- 4. GIĂNG BẪY ----------------
     dict(id="yorktown_dock", part=4, vis=("archive", "Ảnh Yorktown trong ụ khô Trân Châu Cảng, cuối tháng 5/1942"),
          cap=["NGÀY 27 THÁNG 5 NĂM 1942"],
          nar="Ngày hai mươi bảy tháng năm, tàu Yorktown khập khiễng về đến Trân Châu Cảng. Các kỹ sư ước tính "
-             "cần nhiều tuần, thậm chí vài tháng để sửa chữa. Nimitz chỉ cho họ ba ngày."),
+             "cần nhiều tuần, thậm chí vài tháng để sửa chữa. Nimitz chỉ cho các kỹ sư ba ngày."),
     dict(id="welders", part=4, vis=("veo", "V06 – công nhân hàn trong ụ tàu ban đêm, tia lửa bắn"),
          sfx="tiếng hàn, búa gõ kim loại",
          nar="Hơn một nghìn công nhân làm việc không nghỉ, cả ngày lẫn đêm. Ngày ba mươi tháng năm, Yorktown rời "
@@ -261,7 +261,7 @@ SCENES = [
     dict(id="mcclusky", part=6, vis=("photo", "Thẻ chân dung Thiếu tá Wade McClusky"),
          cap=["THIẾU TÁ WADE McCLUSKY"],
          nar="Ở độ cao hơn năm nghìn mét, Thiếu tá Wade McClusky dẫn hơn ba mươi máy bay ném bom bổ nhào của "
-             "Enterprise. Họ đã đến điểm dự kiến, nhưng mặt biển trống trơn. Xăng đang cạn dần."),
+             "Enterprise. Cả đội bay đã đến điểm dự kiến, nhưng mặt biển trống trơn. Xăng đang cạn dần."),
     dict(id="search", part=6, vis=("vfx", "Đội hình Dauntless trên mây, mặt biển trống bên dưới"),
          nar="Theo tính toán, lẽ ra ông phải quay về. McClusky quyết định tìm thêm."),
     dict(id="wake", part=6, vis=("vfx", "Nhìn từ trên cao: một tàu khu trục để lại vệt sóng trắng dài như mũi tên"),
@@ -269,7 +269,7 @@ SCENES = [
              "ngầm Mỹ, đang hối hả chạy về hạm đội. McClusky bám theo vệt sóng ấy."),
     dict(id="leslie", part=6, vis=("map", "Hai mũi tên: Enterprise (McClusky) và Yorktown (Leslie) hội tụ trên hạm đội Nhật"),
          nar="Cùng lúc, từ một hướng khác, mười bảy máy bay ném bom của Yorktown do Thiếu tá Maxwell Leslie dẫn đầu "
-             "cũng tiến đến. Hai nhóm không hề hẹn trước. Nhưng họ đến cùng một thời điểm."),
+             "cũng tiến đến. Hai nhóm không hề hẹn trước. Nhưng cả hai lại đến cùng một thời điểm."),
     dict(id="see", part=6, vis=("vfx", "Góc nhìn từ buồng lái Dauntless: tàu sân bay Nhật hiện ra qua lớp mây"),
          cap=["10:20"],
          nar="Mười giờ hai mươi. Bên dưới, McClusky nhìn thấy các tàu sân bay Nhật. Boong tàu chật kín máy bay "
@@ -322,7 +322,7 @@ SCENES = [
              "bám theo máy bay Mỹ đang quay về."),
     dict(id="yorktown_hit", part=8, vis=("archive", "Ảnh Hải quân Mỹ: Yorktown trúng bom, khói đen, pháo phòng không"),
          cap=["KHOẢNG 12:00"], sfx="pháo phòng không, nổ",
-         nar="Khoảng giữa trưa, họ tìm thấy Yorktown. Phần lớn bị bắn hạ, nhưng ba quả bom vẫn trúng đích. "
+         nar="Khoảng giữa trưa, máy bay Nhật tìm thấy Yorktown. Phần lớn bị bắn hạ, nhưng ba quả bom vẫn trúng đích. "
              "Yorktown chết máy, đứng yên giữa biển."),
     dict(id="repair", part=8, vis=("veo", "V14 – thủy thủ Mỹ dập lửa trên boong tàu sân bay đầy khói"),
          nar="Thủy thủ Mỹ dập lửa, sửa nồi hơi. Chỉ hơn một giờ sau, Yorktown lại chạy được."),
@@ -363,7 +363,7 @@ SCENES = [
              "nghìn người, trong đó có nhiều thợ máy và phi công giàu kinh nghiệm. Mỹ mất một tàu sân bay, một tàu "
              "khu trục, khoảng một trăm năm mươi máy bay và hơn ba trăm người."),
     dict(id="meaning", part=9, vis=("map", "Bản đồ Thái Bình Dương, mũi tên phản công Mỹ bắt đầu xuất hiện"),
-         nar="Nhật Bản không bao giờ bù đắp được những tổn thất ấy. Sau Midway, họ mất thế chủ động trên Thái Bình "
+         nar="Nhật Bản không bao giờ bù đắp được những tổn thất ấy. Sau Midway, quân Nhật mất thế chủ động trên Thái Bình "
              "Dương. Từ đây, người Mỹ bắt đầu phản công."),
     dict(id="myth", part=9, vis=("card", "Trang hồi ký cũ, dòng chữ '5 PHÚT' bị gạch đi"),
          nar="Nhiều năm sau, một sĩ quan Nhật viết trong hồi ký rằng, chỉ cần thêm năm phút nữa, máy bay Nhật đã "

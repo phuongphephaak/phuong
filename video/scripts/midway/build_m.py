@@ -69,11 +69,14 @@ def seg_files(sid, kind, segs):
     parts = []
     for j, s in enumerate(segs):
         part = os.path.join(TMP, f"{sid}_s{j}.mp4")
-        if kind in ("flow", "pre"):
+        k = kind
+        if kind == "mix":
+            k, s = {"f": "flow", "p": "pre", "a": "arch"}[s[0]], s[1:]
+        if k in ("flow", "pre"):
             name, st, en = s
-            src = os.path.join(HERE, kind if kind == "flow" else "pre", name + ".mp4")
+            src = os.path.join(HERE, k if k == "flow" else "pre", name + ".mp4")
             d = (en if en is not None else dur(src)) - st
-            vf = (FLOW_GRADE if kind == "flow" else "scale=1920:1080") + f",fps={FPS},format=yuv420p"
+            vf = (FLOW_GRADE if k == "flow" else "scale=1920:1080") + f",fps={FPS},format=yuv420p"
         else:
             name, st, d, crop = s
             src = os.path.join(ARCH, SRC[name])
@@ -90,6 +93,7 @@ def fit(parts, D, out, sid):
     joined = os.path.join(TMP, f"{sid}_joined.mp4")
     run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", joined])
     L = dur(joined)
+    json.dump({"L": L, "parts": [dur(p) for p in parts]}, open(os.path.join(TMP, f"{sid}_fit.json"), "w"))
     vf = []
     if L < D:
         sp = max(0.55, L / D)
@@ -134,7 +138,7 @@ def render_raw(sc, D):
     if os.path.exists(out) and abs(dur(out) - D) < 0.08:
         return out
     kind, p = VIS[sc["id"]]
-    if kind in ("flow", "pre", "arch"):
+    if kind in ("flow", "pre", "arch", "mix"):
         fit(seg_files(sc["id"], kind, p["segs"]), D, out, sc["id"])
     elif kind == "photo":
         photo(sc["id"], p, D, out)
@@ -186,8 +190,19 @@ def normalize(sc, tl, raw):
     has_radio = any(e["type"] == "radio" for e in tl["events"])
     vf = [f"scale={W}:{H}", f"tpad=stop_mode=clone:stop_duration={D}", f"trim=0:{D}", "setpts=PTS-STARTPTS"]
     vf += captions(sc, D, has_radio) + subs(tl["events"])
-    if VIS[sc["id"]][0] == "flow":
-        vf.append(f"drawtext=fontfile={INTER_SB}:text='HÌNH ẢNH MINH HỌA':fontsize=20:fontcolor=white@0.55:x=w-text_w-40:y=h-46")
+    lab = f"drawtext=fontfile={INTER_SB}:text='HÌNH ẢNH MINH HỌA':fontsize=20:fontcolor=white@0.55:x=w-text_w-40:y=h-46"
+    kind, p = VIS[sc["id"]]
+    if kind == "flow":
+        vf.append(lab)
+    elif kind == "mix" and any(sg[0] == "f" for sg in p["segs"]):
+        fj = json.load(open(os.path.join(TMP, f"{sc['id']}_fit.json")))
+        sp = max(0.55, fj["L"] / D) if fj["L"] < D else 1.0
+        t, wins = 0.0, []
+        for sg, pd in zip(p["segs"], fj["parts"]):
+            if sg[0] == "f":
+                wins.append(f"between(t,{t / sp:.2f},{(t + pd) / sp:.2f})")
+            t += pd
+        vf.append(lab + ":enable='" + "+".join(wins) + "'")
     vf.append("format=yuv420p")
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", raw, "-vf", ",".join(vf), "-an", "-c:v", "libx264", "-crf", "17",
          "-preset", "veryfast", "-r", str(FPS), out])

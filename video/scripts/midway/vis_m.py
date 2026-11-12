@@ -232,3 +232,48 @@ MUSIC = [  # (track, start scene id, volume)
 MUSIC_DIP = ["h_impact", "t1022", "flip"]          # scenes where music drops away for impact
 NO_LOGO = {"title", "sting", "end"}
 BLACK_TRANS = {"title", "sting", "pearl", "dungeon", "yorktown_dock", "t0430", "spruance_go", "t1022", "not_over", "retreat", "end"}
+
+
+# ---- v2: more archive footage in the hook, no frozen frames (segments sized to scene length)
+M = lambda *segs: ("mix", {"segs": [list(s) for s in segs]})
+N, FU, FO, PE = "npc", "full", "ford", "per"
+VIS.update({
+    "h_clock": M(["f", "F01", 0, 5.6]),
+    "h_fleet": M(["a", "npc11589", 690, 4, FU], ["a", "npc11589", 702, 3.5, FU], ["a", "npc11589", 36, 2.2, FU]),
+    "h_deck": M(["a", "npc2704", 200, 5, N], ["a", "npc11589", 144, 4.5, FU]),
+    "h_belief": M(["a", "npc11589", 594, 4.5, FU], ["a", "npc11589", 312, 4, FU]),
+    "h_dive": M(["p", "S03", 0, 10.5]),
+    "h_impact": M(["a", "ford", 455.6, 1.3, FO], ["a", "ford", 520, 2.8, FO]),
+    "h_six": M(["f", "F05", 3, None], ["a", "ford", 647, 1.4, FO], ["a", "ford", 652, 1.4, FO], ["a", "ford", 643, 1.5, FO]),
+    "h_question": M(["a", "ford", 461, 2.5, FO], ["a", "npc11589", 576, 4.5, FU], ["a", "npc11589", 720, 2, FU]),
+    "believe": M(["f", "F01", 4, None], ["a", "npc11589", 600, 5, FU]),
+    "t0430": M(["a", "npc2704", 35, 2.5, N], ["f", "F10", 0, 3], ["a", "npc11589", 210, 4, FU]),
+    "pby_sight": M(["p", "R09_catalina", 0, None], ["a", "ford", 792, 2.5, FO], ["a", "ford", 801, 2, FO]),
+    "pby_radio": M(["p", "R09_catalina", 2, None], ["a", "ford", 56, 4, FO], ["a", "ford", 64, 3, FO], ["a", "ford", 72, 3, FO]),
+    "launch": M(["f", "F10", 3, None], ["a", "npc2704", 165, 4, N]),
+    "b26": M(["a", "ford", 360, 3.5, FO], ["f", "F14", 0, 3.4], ["a", "ford", 624, 1.4, FO]),
+    "no_hits": M(["f", "F01", 3, None], ["a", "ford", 668.5, 3, FO]),
+    "hangar": M(["f", "F11", 0, 3], ["a", "npc2704", 460, 5, N]),
+    "what_ships": M(["f", "F12", 3, None], ["a", "npc11589", 360, 4.5, FU]),
+    "refuse": M(["f", "F02", 0, 3.2], ["a", "npc2704", 445, 5, N], ["a", "npc11589", 450, 4.5, FU], ["a", "npc11589", 156, 3, FU]),
+    "recover": M(["f", "F02", 3, None], ["a", "npc2704", 360, 5, N]),
+    "vt8": M(["a", "d84312", 176, 4.5, PE], ["a", "npc2704", 75, 4, N], ["a", "ford", 381, 3, FO]),
+    "vt8_die": M(["f", "F14", 3.4, None], ["a", "ford", 664, 3, FO], ["a", "ford", 673, 2, FO]),
+    "wake": M(["f", "F16", 0, None], ["a", "npc11589", 84, 4, FU]),
+    "peel": M(["p", "S03", 4, 9.2], ["a", "d84312", 412, 4, PE]),
+    "akagi_hit": M(["p", "R18_akagi", 0, None], ["a", "ford", 470, 2.8, FO]),
+    "chain": M(["f", "F18old", 5.2, None], ["a", "ford", 464, 0.9, FO], ["a", "ford", 473, 2, FO]),
+    "soryu": M(["f", "F05", 0, 3.5], ["a", "d84312", 419, 3, PE], ["a", "ford", 504, 3.5, FO]),
+    "t1028": M(["f", "F05", 3, None], ["a", "ford", 536, 4, FO], ["a", "ford", 688, 1.5, FO], ["a", "npc11589", 728, 2, FU]),
+    "gay_sees": M(["f", "F15", 3, None], ["a", "ford", 805, 4, FO]),
+    "nagumo_leave": M(["f", "F12", 4, None], ["a", "npc11589", 90, 2, FU], ["a", "npc11589", 222, 3, FU]),
+    "torpedo": M(["a", "ford", 686.5, 3, FO], ["a", "npc11589", 624, 4, FU], ["a", "npc11589", 636, 3.5, FU]),
+    "yamaguchi_end": M(["f", "F21", 3, None], ["a", "npc11589", 606, 4, FU], ["a", "npc11589", 714, 4, FU]),
+    "yorktown_end": M(["f", "F19", 4, None], ["a", "npc11589", 678, 5, FU], ["a", "npc11589", 540, 3, FU]),
+    "industry": A(["npc2704", 200, 6, "npc"], ["npc2704", 446, 6, "npc"], ["npc2704", 470, 2.5, "npc"]),
+})
+VIS.update({
+    "hiryu_strike": M(["f", "F10", 2, None], ["a", "npc2704", 185, 3, N]),
+    "best": M(["p", "S03", 9.2, None], ["a", "d84312", 456, 3, PE]),
+    "see": M(["f", "F17", 2, None], ["a", "d84312", 428, 2.5, PE]),
+})
