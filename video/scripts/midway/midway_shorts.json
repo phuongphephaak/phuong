@@ -1,0 +1,10 @@
+[
+ {"name": "short1-sau-phut", "segs": [[0, 53.5], [970.9, 980.3]],
+  "title": [["6 PHÚT", [255,255,255], 150], ["NHẬT MẤT 3 TÀU SÂN BAY", [255,230,0], 96]]},
+ {"name": "short2-meo-nuoc-ngot", "segs": [[213.2, 296.6]],
+  "title": [["BỨC ĐIỆN", [255,255,255], 130], ["\"THIẾU NƯỚC NGỌT\"", [255,230,0], 110]]},
+ {"name": "short3-nagumo", "segs": [[466.3, 558.0]],
+  "title": [["SAI LẦM", [255,255,255], 130], ["CỦA ĐÔ ĐỐC NAGUMO", [255,230,0], 100]]},
+ {"name": "short4-vet-song", "segs": [[677.8, 793.0]],
+  "title": [["VỆT SÓNG TRẮNG", [255,255,255], 120], ["ĐỊNH ĐOẠT THÁI BÌNH DƯƠNG", [255,230,0], 90]]}
+]
