@@ -388,8 +388,8 @@ Quy ước:
 
 | Hạng mục | Ước tính |
 |---|---|
-| Thời lượng | khoảng 9,5–10 phút (lời đọc khoảng 1.200 từ cộng các khoảng nghỉ) |
-| Ký tự ElevenLabs | khoảng 6.500–7.000 ký tự, vừa với khoảng 24.000 ký tự còn lại trong tháng |
+| Thời lượng | khoảng 9,5–10 phút (lời đọc khoảng 1.050 từ, cộng các đoạn nhạc piano và điệu nhảy không lời cộng các khoảng nghỉ) |
+| Ký tự ElevenLabs | khoảng 5.800 ký tự, vừa với khoảng 24.000 ký tự còn lại trong tháng |
 | Số nhịp | khoảng 50 nhịp, khoảng 25 nhịp có chuyển động 🚶 |
 | Nhân vật mới | chú Gus (lao công, xe lau sàn), cậu bé Tyler, cô gái trên xe buýt, cô pha chế, ông bán hoa, đồng nghiệp văn phòng, em bé; sếp Kent dùng lại từ tập 1 |
 | Bối cảnh mới | văn phòng (có sẵn từ tập 1), nhà ga có cây đàn piano, căn hộ bừa bộn của Jay, sân sau tiệc sinh nhật (đèn dây), trong xe buýt; dùng lại quán cà phê, bếp, phố, phòng ngủ |
