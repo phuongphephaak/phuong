@@ -1,5 +1,5 @@
 # What If You Could See Everyone's Hidden Talent?
-**Tập 3, kịch bản đầy đủ, khoảng 9–9,5 phút** · lời đọc tiếng Anh, câu ngắn, từ thông dụng · kèm bản dịch tiếng Việt và ghi chú hình ảnh, chuyển động
+**Tập 3, kịch bản đầy đủ, khoảng 9,5–10 phút** · lời đọc tiếng Anh, câu ngắn, từ thông dụng · kèm bản dịch tiếng Việt và ghi chú hình ảnh, chuyển động
 
 Quy ước:
 - 🎬 = hình ảnh
@@ -124,7 +124,39 @@ Quy ước:
 
 ---
 
-## PHẦN 3: JAY VÀ BỮA TỐI (2:50 – 4:10)
+## PHẦN 2B: VĂN PHÒNG (2:50 – 3:50)
+
+🎬 Văn phòng. Bàn làm việc, máy tính, cây cảnh.
+🚶 Bạn đi dọc lối giữa các bàn, nhìn thẻ trên đầu từng người.
+
+**VO:** At work, it gets even stranger. Talents are not always useful.
+
+✨ Đồng nghiệp đeo kính: **WHISTLING — 95%** · Anh IT: **PERFECT PARALLEL PARKING — 100%** · Chị kế toán: **TALKING TO HORSES — 97%**
+
+**VO:** Sandra in accounting can talk to horses. She has never met a horse. She lives on the twelfth floor.
+
+🎬 Phòng họp. Sếp Kent đứng trước bảng, mặt khó chịu như mọi khi.
+✨ Kent: **CALMING CRYING BABIES — 99%**
+
+**VO:** And then there's your boss, Mr. Kent. The angriest man in the building. His talent? Calming crying babies.
+
+🎬 Ngày "đưa con đi làm". Một em bé khóc ré lên giữa văn phòng 🔊 tiếng khóc. Mọi người hoảng.
+🚶 Kent đi tới, bế em bé lên, lắc nhẹ.
+
+**VO:** You don't believe it until Bring Your Kid to Work Day. A baby starts screaming. Nobody can stop it. Then Mr. Kent walks over, picks it up, and whispers something.
+
+🔊 im lặng. Em bé ngủ ngon. ✨ thẻ Kent chuyển **vàng** · 🔊 ding
+
+*Kent:* "…Nobody saw that."
+*Everyone:* "We all saw that."
+
+**VO:** For the rest of the day, Mr. Kent is a little bit nicer. Just a little.
+
+> 🇻🇳 Ở công ty còn lạ hơn. Tài năng không phải lúc nào cũng có ích. Đồng nghiệp đeo kính: "Huýt sáo, 95%". Anh IT: "Đỗ xe song song hoàn hảo, 100%". Chị kế toán Sandra: "Nói chuyện với ngựa, 97%". Chị chưa gặp con ngựa nào bao giờ, và sống ở tầng 12. Còn sếp Kent, người khó tính nhất tòa nhà, có tài "dỗ em bé nín khóc, 99%". Bạn không tin, cho đến ngày "đưa con đi làm": một em bé khóc ré lên, không ai dỗ được. Kent đi tới, bế lên, thì thầm gì đó. Em bé ngủ ngon lành. "…Không ai thấy gì hết nhé." "Bọn em thấy hết rồi." Cả ngày hôm đó sếp Kent dễ chịu hơn một chút. Chỉ một chút thôi.
+
+---
+
+## PHẦN 3: JAY VÀ BỮA TỐI (3:50 – 5:05)
 
 🎬 Căn hộ của Jay, bừa bộn, chồng hộp mì gói.
 🚶 Jay đi ra mở cửa, vẫn đang húp mì.
@@ -167,7 +199,7 @@ Quy ước:
 
 ---
 
-## PHẦN 4: CHÚ GUS Ở NHÀ GA (4:10 – 5:40)
+## PHẦN 4: CHÚ GUS Ở NHÀ GA (5:05 – 6:30)
 
 🎬 Nhà ga, tối muộn, vắng người. Một cây đàn piano công cộng phủ bụi ở góc.
 🚶 Chú Gus đẩy xe lau sàn chậm rãi, cúi đầu.
@@ -209,7 +241,7 @@ Quy ước:
 
 ---
 
-## PHẦN 5: TYLER VÀ CÁI SAI CỦA BẠN (5:40 – 6:55)
+## PHẦN 5: TYLER VÀ CÁI SAI CỦA BẠN (6:30 – 7:40)
 
 🎬 Phố nhà bạn. Bức tường có hình vẽ bậy bằng phấn.
 🚶 Cậu bé Tyler chạy trốn khi một người hàng xóm la mắng.
@@ -254,7 +286,7 @@ Quy ước:
 
 ---
 
-## PHẦN 6: BỮA TIỆC CỦA BÀ ROSE (6:55 – 8:05)
+## PHẦN 6: BỮA TIỆC CỦA BÀ ROSE (7:40 – 8:45)
 
 🎬 Sân sau nhà bà Rose, tiệc sinh nhật bà, đèn dây, nhạc cũ.
 🚶 Họ hàng đi lại, cầm đĩa thức ăn.
@@ -299,12 +331,14 @@ Quy ước:
 
 ---
 
-## PHẦN 7: THẺ CỦA BẠN (8:05 – 9:00)
+## PHẦN 7: THẺ CỦA BẠN (8:45 – 9:40)
 
 🎬 Đêm, phòng ngủ. Bạn đứng trước gương. Trên đầu vẫn là **???**.
 🚶 Biscuit nhảy lên bàn, ngồi cạnh bạn.
 
-**VO:** That night, you look in the mirror again. Still empty. Everyone you know found something this week. Jay. Gus. Tyler. Your dad. Everyone except you.
+**VO:** That night, you look in the mirror again. Still empty. Everyone you know found something this week. Jay. Gus. Tyler. Your dad. Even Mr. Kent. Everyone except you.
+
+**VO:** Maybe some people just don't have one. Maybe you're the one person in the world who isn't great at anything. You try to remember the last time you were proud of yourself. You can't.
 
 🎬 Hồi tưởng nhanh: Jay cầm chảo, Gus bên đàn, Tyler với cuốn sổ, Bố xoay bà Rose. Mỗi cảnh có một tiếng "ding".
 
@@ -316,6 +350,8 @@ Quy ước:
 
 **VO:** Your label was never empty. It was just waiting. Because your talent only works when you use it on someone else.
 
+**VO:** You didn't cook the eggs. You didn't play the piano. You didn't dance. But none of it would have happened without you. Some people shine. And some people turn the lights on for everyone else.
+
 🎬 Biscuit nhìn thẻ, rồi nhìn bạn, rồi đẩy cái cốc trên bàn rơi xuống. 🔊 choang
 
 **VO:** Biscuit is not impressed.
@@ -324,7 +360,7 @@ Quy ước:
 
 ---
 
-## PHẦN 8: CÚ TWIST CUỐI (9:00 – 9:30)
+## PHẦN 8: CÚ TWIST CUỐI (9:40 – 10:05)
 
 🎬 Sáng hôm sau, trên xe buýt. Bạn ngồi cạnh cửa sổ.
 🚶 Một cô gái bước lên xe, đi dọc lối đi rồi ngồi xuống đối diện bạn. Không thấy thẻ trên đầu cô.
@@ -352,16 +388,16 @@ Quy ước:
 
 | Hạng mục | Ước tính |
 |---|---|
-| Thời lượng | khoảng 9–9,5 phút (lời đọc khoảng 1.450 từ cộng các khoảng nghỉ) |
-| Ký tự ElevenLabs | khoảng 7.500–8.000 ký tự, vừa với khoảng 24.000 ký tự còn lại trong tháng |
+| Thời lượng | khoảng 9,5–10 phút (lời đọc khoảng 1.200 từ cộng các khoảng nghỉ) |
+| Ký tự ElevenLabs | khoảng 6.500–7.000 ký tự, vừa với khoảng 24.000 ký tự còn lại trong tháng |
 | Số nhịp | khoảng 50 nhịp, khoảng 25 nhịp có chuyển động 🚶 |
-| Nhân vật mới | chú Gus (lao công, xe lau sàn), cậu bé Tyler, cô gái trên xe buýt, cô pha chế, ông bán hoa |
-| Bối cảnh mới | nhà ga có cây đàn piano, căn hộ bừa bộn của Jay, sân sau tiệc sinh nhật (đèn dây), trong xe buýt; dùng lại quán cà phê, bếp, phố, phòng ngủ |
+| Nhân vật mới | chú Gus (lao công, xe lau sàn), cậu bé Tyler, cô gái trên xe buýt, cô pha chế, ông bán hoa, đồng nghiệp văn phòng, em bé; sếp Kent dùng lại từ tập 1 |
+| Bối cảnh mới | văn phòng (có sẵn từ tập 1), nhà ga có cây đàn piano, căn hộ bừa bộn của Jay, sân sau tiệc sinh nhật (đèn dây), trong xe buýt; dùng lại quán cà phê, bếp, phố, phòng ngủ |
 | Hiệu ứng mới | thẻ tài năng ✨ có thanh %, hai trạng thái xám/vàng, hiệu ứng chuyển xám→vàng (lấp lánh + "ding"), dấu "???" nhấp nháy rồi hiện chữ |
 
 **Các điểm giữ chân người xem:**
 - **0:40:** cài "thẻ của bạn trống trơn", trả lời ở Phần 7.
-- **Mỗi phần có một lần thẻ chuyển vàng:** Jay (hài), Gus (cảm động), Tyler, Bố và bà Rose (ấm áp).
+- **Mỗi phần có một lần thẻ chuyển vàng:** Kent và Jay (hài), Gus (cảm động), Tyler, Bố và bà Rose (ấm áp).
 - **Phần 5 có xung đột thật** (Mia từ chối) để câu chuyện không quá suôn sẻ, và đưa ra thông điệp "tài năng là cánh cửa, không phải mệnh lệnh".
 - **Nối với tập 1–2:** Biscuit và Max quay lại, Biscuit lại đẩy cốc rơi như mở đầu tập 2.
 - **Twist cuối:** cô gái không có thẻ và cũng nhìn thấy được thẻ, mở đường cho phần tiếp theo.
