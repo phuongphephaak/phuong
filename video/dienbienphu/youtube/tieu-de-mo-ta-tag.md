@@ -5,6 +5,13 @@
 2. "Không Ai Đưa Được Pháo Lên Núi" – Sai Lầm Chết Người Của Pháp Ở Điện Biên Phủ
 3. 56 Ngày Đêm Điện Biên Phủ: Từ Quyết Định Kéo Pháo Ra Đến Chiến Thắng Lừng Lẫy
 
+### Tiêu đề gắn với Đại tướng Võ Nguyên Giáp
+1. Quyết Định Khó Khăn Nhất Đời Đại Tướng Võ Nguyên Giáp: Kéo Pháo Ra Ở Điện Biên Phủ
+2. Vì Sao Đại Tướng Võ Nguyên Giáp Ra Lệnh Kéo Pháo Ra Chỉ Vài Giờ Trước Giờ Nổ Súng?
+3. Đại Tướng Võ Nguyên Giáp Và Ván Cờ Điện Biên Phủ: Từ "Đánh Nhanh" Đến "Đánh Chắc"
+4. Võ Nguyên Giáp – Người Đưa Pháo Lên Núi, Đánh Sập Pháo Đài Điện Biên Phủ
+5. Navarre Giăng Bẫy, Võ Nguyên Giáp Bước Vào – Và Lật Ngược Cả Cuộc Chiến
+
 ## Mô tả
 Năm 1954, Pháp xây dựng tập đoàn cứ điểm mạnh nhất Đông Dương giữa lòng chảo Điện Biên Phủ, tin chắc không ai có thể đưa pháo hạng nặng vượt qua những dãy núi bao quanh. Họ đã nhầm.
 
