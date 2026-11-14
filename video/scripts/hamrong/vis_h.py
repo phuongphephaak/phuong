@@ -37,8 +37,8 @@ VIS = {
     "h_strike": A(["f", 0.2, 5.3, T], ["f", 977, 5.5, T]),
     "h_belief": A(["f", 1022, 5.4, T], ["f", 1034, 6, T]),
     "h_dive": A(["p", 36, 4.2, T], ["f", 38, 4.4, T]),
-    "h_impact": A(["f", 1223, 2.2, T], ["p", 118, 2.2, T]),
-    "h_question": A(["f", 1212, 3.2, T], ["p", 120, 4.5, T], ["h", 50, 5.5, T]),
+    "h_impact": A(["p", 119.5, 2.4, T], ["f", 1145, 2, T]),
+    "h_question": A(["f", 1212, 3.2, T], ["p", 120, 4, T], ["h", 50, 5.5, T]),
     "title": X("title", photo="fr_clouds", l1="TRẬN ĐẦU", l2="BẦU TRỜI HÀM RỒNG 1965"),
     "sting": X("sting"),
     # ---- 2 bridge
@@ -67,7 +67,7 @@ VIS = {
     "mig17": stat("fr_f105", ["MiG-17", 110, YEL], ["~6 TẤN · DƯỚI TỐC ĐỘ ÂM THANH · CHỈ CÓ PHÁO", 40, WHT],
                   ["F-105", 110, CY], ["NẶNG GẦN GẤP 4 · VƯỢT TỐC ĐỘ ÂM THANH", 40, WHT]),
     "thud": A(["f", 828, 3.5, T], ["f", 908, 4.5, T], ["f", 917, 3.5, T], ["f", 968, 4, T]),
-    "edge": X("phrase", photo="fr_formation", text="ĐÁNH GẦN · ĐÁNH NHANH · ĐÁNH BẤT NGỜ",
+    "edge": X("phrase", photo="fr_formation", text="ĐÁNH GẦN · ĐÁNH NHANH · ĐÁNH BẤT NGỜ", size=76,
               sub="MiG-17 LƯỢN VÒNG RẤT GẮT Ở TẦM THẤP"),
     "plan": mig_route("", "BAY THẤP · DẪN ĐƯỜNG TỪ MẶT ĐẤT"),
     # ---- 4 3 April
@@ -76,7 +76,7 @@ VIS = {
     "risner_note": X("portrait", photo="risner", name="Robinson Risner", sub="TRUNG TÁ KHÔNG QUÂN MỸ · CHỈ HUY ĐỢT TẤN CÔNG",
                      bg="photo", bgphoto="fr_refuel"),
     "bullpup": A(["f", 1142, 3, T], ["f", 1124, 2.6, T], ["f", 1145, 5.5, T]),
-    "aaa": A(["f", 1223, 4, T], ["p", 117, 5, T]),
+    "aaa": A(["f", 1223, 4, T], ["p", 119.5, 4.5, T]),
     "lan_up": mig_route("03/04/1965", "BIÊN ĐỘI PHẠM NGỌC LAN"),
     "lan_attack": A(["n", 468, 4, T], ["n", 483, 3.5, T], ["n", 830, 6, T]),
     "lan_hit": stat("fr_f8", ["BIÊN ĐỘI PHẠM NGỌC LAN", 60, WHT], ["BẮN RƠI 2 MÁY BAY F-8", 100, YEL],
@@ -100,7 +100,7 @@ VIS = {
         {"t": 3.6, "type": "arrow", "path": [[105.0, 20.32], [105.3, 20.12], [105.5, 19.95]], "dur": 1.6, "color": "cyan", "icon": "plane", "w": 7},
         {"t": 4.6, "type": "tag", "at": [105.05, 20.3], "text": "MiG-17 TỪ TRÊN MÂY", "dy": -60}]),
     "attack": A(["p", 40, 4.5, T], ["f", 38, 4.4, T]),
-    "fire": A(["f", 1094, 4.2, T], ["p", 117, 4.5, T], ["f", 1223, 3.5, T]),
+    "fire": A(["f", 1094, 4.2, T], ["p", 119.5, 4.5, T], ["f", 1145, 3.5, T]),
     "two_down": X("map", view0=[105.95, 19.55, 1.6], view1=[105.95, 19.45, 1.25], items=[
         {"t": 0.2, "type": "pin", "at": HR, "small": "", "big": "HÀM RỒNG", "size": 40},
         {"t": 0.8, "type": "pin", "at": HONME, "small": "", "big": "ĐẢO HÒN MÊ", "size": 40, "color": "cyan", "anchor": "r"},
@@ -109,7 +109,7 @@ VIS = {
     "shock": X("phrase", photo="fr_clouds", text="2 NGÀY · 2 TRẬN · 2 CHIẾN THẮNG", sub="03/04 – 04/04/1965"),
     "report": A(["n", 778, 4.5, T], ["f", 576, 4.5, T], ["f", 588, 4, T]),
     # ---- 6 the price
-    "chase": A(["f", 1079, 3.6, T], ["f", 1212, 3, T], ["f", 1223, 4.5, T]),
+    "chase": A(["f", 1079, 3.6, T], ["f", 1212, 3, T], ["f", 1223, 2.5, T], ["f", 1142, 2.5, T]),
     "lost": X("phrase", photo="fr_sunset", text="PHẠM GIẤY · LÊ MINH HUÂN · TRẦN NGUYÊN NĂM", size=64,
               sub="ANH DŨNG HY SINH NGÀY 04/04/1965"),
     "hanh_back": X("map", view0=[105.65, 19.55, 2.4], view1=[105.6, 19.45, 2.0], items=[
@@ -123,7 +123,7 @@ VIS = {
         {"t": 2.0, "type": "pin", "at": SAOVANG, "small": "SÂN BAY MỚI", "big": "SAO VÀNG", "color": "yellow", "anchor": "r"},
         {"t": 3.2, "type": "arrow", "path": [SAOVANG, HR], "dur": 1.2, "color": "yellow", "dashed": True, "w": 5},
         {"t": 4.6, "type": "tag", "at": [105.62, 19.8], "text": "SÁT CHIẾN TRƯỜNG HƠN", "dy": 70}]),
-    "lesson": X("phrase", photo="fr_sight", text="ĐÁNH BẤT NGỜ · ĐÁNH NHANH · RÚT NHANH", sub="SỞ TRƯỜNG CỦA PHI CÔNG MiG"),
+    "lesson": X("phrase", photo="fr_sight", text="ĐÁNH BẤT NGỜ · ĐÁNH NHANH · RÚT NHANH", size=76, sub="SỞ TRƯỜNG CỦA PHI CÔNG MiG"),
     # ---- 7 end
     "us_change": A(["n", 486, 3.5, T], ["n", 806, 3.5, T], ["f", 1628, 5, T]),
     "seven": A(["f", 1127, 4, T], ["f", 1151, 4.5, T], ["f", 1136, 4.5, T]),

@@ -80,7 +80,8 @@ def seg_files(sid, kind, segs):
         else:
             name, st, d, crop = s
             src = os.path.join(ARCH, SRC[name])
-            vf = CROP[crop] + ARCH_GRADE + f",fps={FPS},format=yuv420p"
+            lift = "eq=gamma=1.4:brightness=0.03:saturation=1.1," if (name == "p" and st >= 80) else ""
+            vf = lift + CROP[crop] + ARCH_GRADE + f",fps={FPS},format=yuv420p"
         run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(st), "-t", f"{d:.3f}", "-i", src, "-vf", vf, "-an",
              "-c:v", "libx264", "-crf", "17", "-preset", "veryfast", part])
         parts.append(part)
