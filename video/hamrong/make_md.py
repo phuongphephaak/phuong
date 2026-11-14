@@ -16,7 +16,7 @@ for i, s in enumerate(SCENES, 1):
     t += max(len(s.get("nar", "").split()) / RATE + s.get("hold", 0) + PAD, 2.5)
 head = ["# Kịch bản: TRẬN ĐẦU – Bầu trời Hàm Rồng 1965", "",
         f"- **Độ dài ước tính:** ~{mmss(t)} · {len(SCENES)} cảnh · {chars:,} ký tự lời dẫn ({syl:,} từ)".replace(",", "."),
-        f"- **Credit ElevenLabs:** ~{chars:,} / ~8.000 còn lại → còn dư ~{8000 - chars:,} để đọc lại câu lỗi".replace(",", "."),
+        f"- **Credit ElevenLabs:** ~{chars:,} / ~10.000 còn lại → còn dư ~{10000 - chars:,} để đọc lại câu lỗi".replace(",", "."),
         "- Chữ trong `khung` là chữ hiện trên màn hình (không đọc)."]
 open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "kich-ban.md"), "w").write("\n".join(head + out) + "\n")
 print(mmss(t))

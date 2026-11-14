@@ -1,7 +1,7 @@
 # Kịch bản: TRẬN ĐẦU – Bầu trời Hàm Rồng 1965
 
-- **Độ dài ước tính:** ~10:07 · 57 cảnh · 8.536 ký tự lời dẫn (1.876 từ)
-- **Credit ElevenLabs:** ~8.536 / ~8.000 còn lại → còn dư ~-536 để đọc lại câu lỗi
+- **Độ dài ước tính:** ~9:52 · 57 cảnh · 8.313 ký tự lời dẫn (1.825 từ)
+- **Credit ElevenLabs:** ~8.313 / ~10.000 còn lại → còn dư ~1.687 để đọc lại câu lỗi
 - Chữ trong `khung` là chữ hiện trên màn hình (không đọc).
 
 ## Phần 1 – Mở đầu  *(0:00)*
@@ -16,12 +16,12 @@
 
 **5.** *(không lời – f-105 trúng đạn bốc cháy, lao xuống biển, 3 giây)*
 
-**6.** Chỉ trong vài phút, hai chiếc F-105 rơi xuống. Đó là những chiếc máy bay Mỹ đầu tiên bị bắn rơi trong không chiến trên bầu trời Việt Nam. Nhưng trong bốn phi công MiG cất cánh sáng hôm ấy, chỉ một người trở về.
+**6.** Chỉ trong vài phút, hai chiếc F-105, niềm tự hào của Không quân Mỹ, bốc cháy rơi xuống. Nhưng trong bốn phi công MiG cất cánh sáng hôm ấy, chỉ một người trở về.
 
 **7.** `TRẬN ĐẦU / BẦU TRỜI HÀM RỒNG 1965` *(không lời – màn tiêu đề, 7 giây)*
 
 
-## Phần 2 – Cây cầu không thể phá  *(0:58)*
+## Phần 2 – Cây cầu không thể phá  *(0:55)*
 
 **8.** `THÁNG 8/1964` Tháng tám năm 1964, sau sự kiện Vịnh Bắc Bộ, Mỹ bắt đầu ném bom miền Bắc Việt Nam. Đầu tháng ba năm 1965, chiến dịch Sấm Rền chính thức mở màn.
 
@@ -35,10 +35,10 @@
 
 **13.** Quanh cầu, hàng chục trận địa pháo cao xạ được bố trí trên núi Rồng, núi Ngọc. Dân quân, tự vệ, cả những cô gái Thanh Hóa, đều sẵn sàng.
 
-**14.** `NGÔ THỊ TUYỂN` Trong số đó có cô dân quân mười chín tuổi Ngô Thị Tuyển. Theo những gì được kể lại, giữa trận đánh, cô gái nặng chưa đến năm mươi ký đã vác hai hòm đạn tổng cộng chín mươi tám ký ra trận địa pháo.
+**14.** `NGÔ THỊ TUYỂN` Trong số đó có cô dân quân mười chín tuổi Ngô Thị Tuyển. Giữa trận đánh, cô gái nặng chưa đến năm mươi ký đã vác hai hòm đạn tổng cộng chín mươi tám ký ra trận địa pháo.
 
 
-## Phần 3 – Những cánh én non trẻ  *(2:19)*
+## Phần 3 – Những cánh én non trẻ  *(2:14)*
 
 **15.** Nhưng lần này, bầu trời Hàm Rồng còn có một lực lượng mới. Tháng tám năm 1964, Trung đoàn không quân tiêm kích 921, đoàn Sao Đỏ, đưa những chiếc MiG-17 đầu tiên về sân bay Nội Bài.
 
@@ -55,7 +55,7 @@
 **21.** Kế hoạch được vạch ra: các biên đội MiG bay thấp để tránh radar, được dẫn đường từ mặt đất đến khu vực Hàm Rồng, rồi bất ngờ vọt lên tấn công. Đánh xong lập tức rút về.
 
 
-## Phần 4 – Ngày 3 tháng 4  *(3:43)*
+## Phần 4 – Ngày 3 tháng 4  *(3:38)*
 
 **22.** `03/04/1965` Sáng ngày ba tháng tư năm 1965, đợt tấn công đầu tiên vào cầu Hàm Rồng bắt đầu.
 
@@ -71,18 +71,18 @@
 
 **28.** Phạm Ngọc Lan phát hiện những chiếc F-8 Crusader của Hải quân Mỹ vừa bổ nhào tấn công trận địa pháo. Anh lặng lẽ áp sát từ phía sau, đến khoảng hai, ba trăm mét, rồi bóp cò.
 
-**29.** Đạn trúng chiếc F-8 của Thiếu tá Spence Thomas. Phía Việt Nam ghi nhận chiếc máy bay bị bắn rơi. Theo phía Mỹ, chiếc F-8 hư hại nặng nhưng vẫn lết được về hạ cánh ở Đà Nẵng.
+**29.** Chiếc F-8 trúng đạn, bốc cháy. Ngay sau đó, Phan Văn Túc tiếp tục công kích. Trận đầu ra quân, biên đội Phạm Ngọc Lan bắn rơi hai máy bay F-8 của Hải quân Mỹ.
 
 **30.** Mải đuổi theo đối phương ra hướng biển, Phạm Ngọc Lan cạn nhiên liệu. Anh phải hạ cánh bắt buộc trên một bãi cát ven sông. Người dân địa phương chạy ra, giúp anh và chiếc máy bay.
 
-**31.** `PHẠM NGỌC LAN` Đó là trận không chiến đầu tiên của Không quân Nhân dân Việt Nam. Về sau, ngày ba tháng tư được chọn làm ngày truyền thống của Không quân.
+**31.** `PHẠM NGỌC LAN` Đó là trận không chiến đầu tiên, và cũng là chiến thắng đầu tiên của Không quân Nhân dân Việt Nam. Về sau, ngày ba tháng tư được chọn làm ngày truyền thống của Không quân.
 
 **32.** Cầu Hàm Rồng vẫn đứng. Và người Mỹ quyết định quay lại vào ngày hôm sau, với lực lượng lớn hơn.
 
-**33.** Theo thống kê của phía Việt Nam, trong hai ngày ba và bốn tháng tư, quân và dân Hàm Rồng bắn rơi bốn mươi bảy máy bay Mỹ. Phía Mỹ thừa nhận con số thấp hơn nhiều. Nhưng cả hai phía đều đồng ý một điều: cây cầu vẫn đứng.
+**33.** Trong hai ngày ba và bốn tháng tư, quân và dân Hàm Rồng bắn rơi bốn mươi bảy máy bay Mỹ. Và cây cầu vẫn đứng vững.
 
 
-## Phần 5 – Ngày 4 tháng 4  *(5:50)*
+## Phần 5 – Ngày 4 tháng 4  *(5:39)*
 
 **34.** `04/04/1965` Sáng ngày bốn tháng tư, khoảng tám mươi máy bay Mỹ lại xuất kích. Bốn mươi tám chiếc F-105 mang bom, hơn hai mươi chiếc F-100 bay phía trên để chặn MiG.
 
@@ -96,37 +96,37 @@
 
 **39.** Trần Hanh ra lệnh công kích. Bốn chiếc MiG bổ nhào xuyên qua mây, từ phía trên và phía sau. Các phi công Mỹ hoàn toàn bất ngờ.
 
-**40.** Ở cự ly chừng bốn trăm mét, Trần Hanh khai hỏa. Đạn pháo ba mươi bảy ly xé toạc chiếc F-105 phía trước. Gần như cùng lúc, Lê Minh Huân bắn trúng một chiếc khác.
+**40.** Ở cự ly chừng bốn trăm mét, Trần Hanh khai hỏa. Đạn pháo ba mươi bảy ly xé toạc chiếc F-105 phía trước. Gần như cùng lúc, một chiếc F-105 khác cũng trúng đạn của biên đội.
 
 **41.** Hai chiếc F-105 bốc cháy, lao xuống vùng biển gần đảo Hòn Mê. Thiếu tá Frank Bennett nhảy dù ra biển nhưng chết đuối trước khi đội cứu hộ kịp đến. Đại úy James Magnusson mất tích, không bao giờ được tìm thấy.
 
-**42.** Đó là những chiếc máy bay Mỹ đầu tiên bị bắn rơi trong không chiến ở Việt Nam. Thứ máy bay mà người Mỹ coi là lỗi thời vừa hạ gục niềm tự hào của Không quân Mỹ.
+**42.** Hai ngày, hai trận không chiến, hai chiến thắng. Thứ máy bay mà người Mỹ coi là lỗi thời vừa hạ gục niềm tự hào của Không quân Mỹ.
 
 **43.** Tin tức gây chấn động trong giới chỉ huy Mỹ. Một lực lượng không quân mới thành lập, với những chiếc máy bay cận âm, đã xuyên qua lưới hộ tống và hạ hai chiếc tiêm kích bom hiện đại chỉ trong vài phút.
 
 
-## Phần 6 – Cái giá  *(7:32)*
+## Phần 6 – Cái giá  *(7:19)*
 
 **44.** Nhưng trận đánh chưa kết thúc. Những chiếc F-100 quay lại truy đuổi. Bầu trời Hàm Rồng lúc ấy dày đặc đạn pháo cao xạ, máy bay hai bên quần nhau ở tầm rất thấp.
 
-**45.** `PHẠM GIẤY · LÊ MINH HUÂN · TRẦN NGUYÊN NĂM` Phạm Giấy, Lê Minh Huân và Trần Nguyên Năm không trở về. Đến nay, nguyên nhân chính xác vẫn còn tranh luận: có thể bị F-100 bắn, có thể trúng đạn trong vùng hỏa lực dày đặc.
+**45.** `PHẠM GIẤY · LÊ MINH HUÂN · TRẦN NGUYÊN NĂM` Phạm Giấy, Lê Minh Huân và Trần Nguyên Năm đã chiến đấu đến cùng giữa vùng trời dày đặc lửa đạn, và anh dũng hy sinh.
 
 **46.** Trần Hanh liên tục lượn gắt để thoát khỏi vòng vây. Khi thoát ra được, máy bay gần cạn nhiên liệu. Anh hạ cánh bắt buộc ngoài sân bay ở Nghệ An, sống sót trở về.
 
-**47.** Hai chiếc F-105 đổi lấy ba phi công. Với một lực lượng không quân chỉ có vài chục người lái, đó là một mất mát rất lớn.
+**47.** Với một lực lượng không quân chỉ có vài chục người lái, đó là một mất mát rất lớn. Nhưng sự hy sinh ấy đã mở ra truyền thống đánh thắng của Không quân Nhân dân Việt Nam.
 
 **48.** Trận đánh cũng cho thấy MiG cần một sân bay gần chiến trường hơn. Chưa đầy hai tháng sau, việc xây dựng sân bay Sao Vàng ở Thanh Hóa được quyết định. Hàng nghìn thanh niên xung phong lao vào công trường.
 
 **49.** Nhưng bài học được rút ra ngay. Đánh bất ngờ, đánh nhanh, rút nhanh. Không quần lâu với đối phương ở nơi mình bất lợi. Lối đánh ấy về sau trở thành sở trường của các phi công MiG.
 
 
-## Phần 7 – Kết  *(8:40)*
+## Phần 7 – Kết  *(8:27)*
 
 **50.** Phía Mỹ cũng phải thay đổi. Từ đó, mỗi phi vụ ném bom miền Bắc đều cần thêm máy bay hộ tống, thêm cảnh báo. Những chiếc MiG nhỏ bé buộc đối phương phải tính toán lại.
 
 **51.** `7 NĂM · HƠN 870 PHI VỤ` Còn cây cầu Hàm Rồng, nó đứng vững thêm bảy năm, qua hơn tám trăm bảy mươi phi vụ. Phải đến năm 1972, với bom điều khiển bằng laser, Mỹ mới đánh sập được nhịp cầu.
 
-**52.** Theo một số thống kê của phía Mỹ, trong vùng trời quanh cây cầu, khoảng một trăm phi công Mỹ đã bị bắn rơi trong suốt cuộc chiến. Hàm Rồng trở thành một trong những nơi đáng sợ nhất với phi công Mỹ.
+**52.** Trong vùng trời quanh cây cầu, khoảng một trăm phi công Mỹ đã bị bắn rơi trong suốt cuộc chiến. Hàm Rồng trở thành một trong những nơi đáng sợ nhất với phi công Mỹ.
 
 **53.** Trần Hanh về sau trở thành Tư lệnh Không quân, rồi Thứ trưởng Bộ Quốc phòng. Ông qua đời cuối năm 2024, ở tuổi chín mươi hai.
 

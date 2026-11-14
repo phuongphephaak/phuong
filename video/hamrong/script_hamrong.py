@@ -2,7 +2,7 @@
 
 Cùng định dạng script_dbp.py: id, part, vis=(loại, mô tả), nar (lời dẫn), cap (chữ trên màn hình), hold.
 Nguồn chính: Wikipedia (Thanh Hóa Bridge, Trần Hanh, Phạm Ngọc Lan), The Aviationist (2018),
-HistoryNet ("Crusader"), VietTimes. Chỗ hai phía ghi nhận khác nhau thì lời dẫn nói rõ.
+HistoryNet ("Crusader"), VietTimes, Báo Nhân Dân. Bản này kể theo góc nhìn và số liệu của phía Việt Nam.
 """
 
 PARTS = {
@@ -29,8 +29,8 @@ SCENES = [
          nar="Rồi từ trong tầng mây, bốn chiếc MiG-17 nhỏ bé bất ngờ bổ nhào xuống, ngay sau đuôi đội hình F-105."),
     dict(id="h_impact", part=1, vis=("flow", "F-105 trúng đạn bốc cháy, lao xuống biển"), hold=3),
     dict(id="h_question", part=1, vis=("card", "Nền tối"),
-         nar="Chỉ trong vài phút, hai chiếc F-105 rơi xuống. Đó là những chiếc máy bay Mỹ đầu tiên bị bắn rơi trong không chiến "
-             "trên bầu trời Việt Nam. Nhưng trong bốn phi công MiG cất cánh sáng hôm ấy, chỉ một người trở về."),
+         nar="Chỉ trong vài phút, hai chiếc F-105, niềm tự hào của Không quân Mỹ, bốc cháy rơi xuống. "
+             "Nhưng trong bốn phi công MiG cất cánh sáng hôm ấy, chỉ một người trở về."),
     dict(id="title", part=1, vis=("card", "Màn tiêu đề"), cap=["TRẬN ĐẦU", "BẦU TRỜI HÀM RỒNG 1965"], hold=7),
 
     # ---------------- 2. CÂY CẦU ----------------
@@ -57,7 +57,7 @@ SCENES = [
 
     # ---------------- 3. NHỮNG CÁNH ÉN ----------------
     dict(id="tuyen", part=2, vis=("photo", "Nữ dân quân Hàm Rồng vác đạn"), cap=["NGÔ THỊ TUYỂN"],
-         nar="Trong số đó có cô dân quân mười chín tuổi Ngô Thị Tuyển. Theo những gì được kể lại, giữa trận đánh, "
+         nar="Trong số đó có cô dân quân mười chín tuổi Ngô Thị Tuyển. Giữa trận đánh, "
              "cô gái nặng chưa đến năm mươi ký đã vác hai hòm đạn tổng cộng chín mươi tám ký ra trận địa pháo."),
     dict(id="vpaf", part=3, vis=("archive", "MiG-17 trên đường băng, phi công 1960s"),
          nar="Nhưng lần này, bầu trời Hàm Rồng còn có một lực lượng mới. Tháng tám năm 1964, Trung đoàn không quân "
@@ -103,21 +103,21 @@ SCENES = [
          nar="Phạm Ngọc Lan phát hiện những chiếc F-8 Crusader của Hải quân Mỹ vừa bổ nhào tấn công trận địa pháo. "
              "Anh lặng lẽ áp sát từ phía sau, đến khoảng hai, ba trăm mét, rồi bóp cò."),
     dict(id="lan_hit", part=4, vis=("flow", "F-8 trúng đạn, bốc khói, bật đốt sau bỏ chạy"),
-         nar="Đạn trúng chiếc F-8 của Thiếu tá Spence Thomas. Phía Việt Nam ghi nhận chiếc máy bay bị bắn rơi. "
-             "Theo phía Mỹ, chiếc F-8 hư hại nặng nhưng vẫn lết được về hạ cánh ở Đà Nẵng."),
+         nar="Chiếc F-8 trúng đạn, bốc cháy. Ngay sau đó, Phan Văn Túc tiếp tục công kích. "
+             "Trận đầu ra quân, biên đội Phạm Ngọc Lan bắn rơi hai máy bay F-8 của Hải quân Mỹ."),
     dict(id="lan_fuel", part=4, vis=("flow", "MiG-17 hạ cánh bắt buộc trên bãi cát ven sông"),
          nar="Mải đuổi theo đối phương ra hướng biển, Phạm Ngọc Lan cạn nhiên liệu. Anh phải hạ cánh bắt buộc "
              "trên một bãi cát ven sông. Người dân địa phương chạy ra, giúp anh và chiếc máy bay."),
     dict(id="first", part=4, vis=("photo", "Phạm Ngọc Lan"), cap=["PHẠM NGỌC LAN"],
-         nar="Đó là trận không chiến đầu tiên của Không quân Nhân dân Việt Nam. Về sau, ngày ba tháng tư được chọn làm "
+         nar="Đó là trận không chiến đầu tiên, và cũng là chiến thắng đầu tiên của Không quân Nhân dân Việt Nam. Về sau, ngày ba tháng tư được chọn làm "
              "ngày truyền thống của Không quân."),
     dict(id="d3_end", part=4, vis=("archive", "Cầu Hàm Rồng vẫn đứng giữa khói"),
          nar="Cầu Hàm Rồng vẫn đứng. Và người Mỹ quyết định quay lại vào ngày hôm sau, với lực lượng lớn hơn."),
 
     # ---------------- 5. NGÀY 4 THÁNG 4 ----------------
     dict(id="claims", part=4, vis=("archive", "Mảnh xác máy bay, dân quân bên xác máy bay"),
-         nar="Theo thống kê của phía Việt Nam, trong hai ngày ba và bốn tháng tư, quân và dân Hàm Rồng bắn rơi bốn mươi bảy máy bay Mỹ. "
-             "Phía Mỹ thừa nhận con số thấp hơn nhiều. Nhưng cả hai phía đều đồng ý một điều: cây cầu vẫn đứng."),
+         nar="Trong hai ngày ba và bốn tháng tư, quân và dân Hàm Rồng bắn rơi bốn mươi bảy máy bay Mỹ. "
+             "Và cây cầu vẫn đứng vững."),
     dict(id="d4", part=5, vis=("card", "Ngày 04/04/1965"), cap=["04/04/1965"],
          nar="Sáng ngày bốn tháng tư, khoảng tám mươi máy bay Mỹ lại xuất kích. Bốn mươi tám chiếc F-105 mang bom, "
              "hơn hai mươi chiếc F-100 bay phía trên để chặn MiG."),
@@ -136,12 +136,12 @@ SCENES = [
              "Các phi công Mỹ hoàn toàn bất ngờ."),
     dict(id="fire", part=5, vis=("flow", "Pháo 37 ly khai hỏa, F-105 bốc cháy"),
          nar="Ở cự ly chừng bốn trăm mét, Trần Hanh khai hỏa. Đạn pháo ba mươi bảy ly xé toạc chiếc F-105 phía trước. "
-             "Gần như cùng lúc, Lê Minh Huân bắn trúng một chiếc khác."),
+             "Gần như cùng lúc, một chiếc F-105 khác cũng trúng đạn của biên đội."),
     dict(id="two_down", part=5, vis=("flow", "Hai chiếc F-105 lao xuống biển, một chiếc dù bung"),
          nar="Hai chiếc F-105 bốc cháy, lao xuống vùng biển gần đảo Hòn Mê. Thiếu tá Frank Bennett nhảy dù ra biển nhưng "
              "chết đuối trước khi đội cứu hộ kịp đến. Đại úy James Magnusson mất tích, không bao giờ được tìm thấy."),
     dict(id="shock", part=5, vis=("archive", "Phi công Mỹ họp rút kinh nghiệm, bản đồ"),
-         nar="Đó là những chiếc máy bay Mỹ đầu tiên bị bắn rơi trong không chiến ở Việt Nam. Thứ máy bay mà người Mỹ "
+         nar="Hai ngày, hai trận không chiến, hai chiến thắng. Thứ máy bay mà người Mỹ "
              "coi là lỗi thời vừa hạ gục niềm tự hào của Không quân Mỹ."),
 
     # ---------------- 6. CÁI GIÁ ----------------
@@ -152,14 +152,14 @@ SCENES = [
          nar="Nhưng trận đánh chưa kết thúc. Những chiếc F-100 quay lại truy đuổi. Bầu trời Hàm Rồng lúc ấy dày đặc "
              "đạn pháo cao xạ, máy bay hai bên quần nhau ở tầm rất thấp."),
     dict(id="lost", part=6, vis=("card", "Ba ngôi sao, nền tối"), cap=["PHẠM GIẤY · LÊ MINH HUÂN · TRẦN NGUYÊN NĂM"],
-         nar="Phạm Giấy, Lê Minh Huân và Trần Nguyên Năm không trở về. Đến nay, nguyên nhân chính xác vẫn còn tranh luận: "
-             "có thể bị F-100 bắn, có thể trúng đạn trong vùng hỏa lực dày đặc."),
+         nar="Phạm Giấy, Lê Minh Huân và Trần Nguyên Năm đã chiến đấu đến cùng giữa vùng trời dày đặc lửa đạn, "
+             "và anh dũng hy sinh."),
     dict(id="hanh_back", part=6, vis=("flow", "MiG-17 đơn độc bay thấp qua thung lũng, kim nhiên liệu chạm vạch đỏ"),
          nar="Trần Hanh liên tục lượn gắt để thoát khỏi vòng vây. Khi thoát ra được, máy bay gần cạn nhiên liệu. "
              "Anh hạ cánh bắt buộc ngoài sân bay ở Nghệ An, sống sót trở về."),
     dict(id="price", part=6, vis=("archive", "Đồng đội tiễn biệt, hoa"),
-         nar="Hai chiếc F-105 đổi lấy ba phi công. Với một lực lượng không quân chỉ có vài chục người lái, "
-             "đó là một mất mát rất lớn."),
+         nar="Với một lực lượng không quân chỉ có vài chục người lái, đó là một mất mát rất lớn. "
+             "Nhưng sự hy sinh ấy đã mở ra truyền thống đánh thắng của Không quân Nhân dân Việt Nam."),
     dict(id="sao_vang", part=6, vis=("archive", "Công trường xây sân bay, người dân đắp đường băng"),
          nar="Trận đánh cũng cho thấy MiG cần một sân bay gần chiến trường hơn. Chưa đầy hai tháng sau, việc xây dựng sân bay Sao Vàng "
              "ở Thanh Hóa được quyết định. Hàng nghìn thanh niên xung phong lao vào công trường."),
@@ -176,7 +176,7 @@ SCENES = [
          nar="Còn cây cầu Hàm Rồng, nó đứng vững thêm bảy năm, qua hơn tám trăm bảy mươi phi vụ. Phải đến năm 1972, "
              "với bom điều khiển bằng laser, Mỹ mới đánh sập được nhịp cầu."),
     dict(id="cost_area", part=7, vis=("archive", "Máy bay Mỹ trúng đạn trên vùng trời Thanh Hóa"),
-         nar="Theo một số thống kê của phía Mỹ, trong vùng trời quanh cây cầu, khoảng một trăm phi công Mỹ đã bị bắn rơi trong suốt cuộc chiến. "
+         nar="Trong vùng trời quanh cây cầu, khoảng một trăm phi công Mỹ đã bị bắn rơi trong suốt cuộc chiến. "
              "Hàm Rồng trở thành một trong những nơi đáng sợ nhất với phi công Mỹ."),
     dict(id="hanh_later", part=7, vis=("photo", "Trần Hanh những năm sau"),
          nar="Trần Hanh về sau trở thành Tư lệnh Không quân, rồi Thứ trưởng Bộ Quốc phòng. Ông qua đời cuối năm 2024, "
