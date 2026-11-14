@@ -59,7 +59,7 @@ SCENES = [
     dict(id="tuyen", part=2, vis=("photo", "Nữ dân quân Hàm Rồng vác đạn"), cap=["NGÔ THỊ TUYỂN"],
          nar="Trong số đó có cô dân quân mười chín tuổi Ngô Thị Tuyển. Giữa trận đánh, "
              "cô gái nặng chưa đến năm mươi ký đã vác hai hòm đạn tổng cộng chín mươi tám ký ra trận địa pháo."),
-    dict(id="vpaf", part=3, vis=("archive", "MiG-17 trên đường băng, phi công 1960s"),
+    dict(id="vpaf", part=3, vis=("photo", "Phi công Đoàn Sao Đỏ bên MiG-17"), cap=["ĐOÀN SAO ĐỎ – TRUNG ĐOÀN KHÔNG QUÂN 921"],
          nar="Nhưng lần này, bầu trời Hàm Rồng còn có một lực lượng mới. Tháng tám năm 1964, Trung đoàn không quân "
              "tiêm kích 921, đoàn Sao Đỏ, đưa những chiếc MiG-17 đầu tiên về sân bay Nội Bài."),
     dict(id="young", part=3, vis=("photo", "Phi công trẻ bên máy bay"),
@@ -69,7 +69,6 @@ SCENES = [
          nar="Nhiều người từng là bộ đội bộ binh, được chọn đi học lái máy bay khi chưa từng ngồi trên một chiếc ô tô. "
              "Họ học tiếng nước ngoài, học khí động học, rồi học bay, chỉ trong vài năm."),
     dict(id="mig17", part=3, vis=("card", "So sánh MiG-17 và F-105 trên bản vẽ kỹ thuật"),
-         cap=["MiG-17: ~6 TẤN · DƯỚI TỐC ĐỘ ÂM THANH", "F-105: GẦN 24 TẤN · VƯỢT TỐC ĐỘ ÂM THANH"],
          nar="MiG-17 là một thiết kế từ đầu thập niên năm mươi. Nhỏ, nhẹ, bay dưới tốc độ âm thanh, chỉ có pháo. "
              "Đối diện là F-105, nặng gấp gần bốn lần, bay nhanh hơn tốc độ âm thanh."),
     dict(id="thud", part=3, vis=("archive", "F-105 cất cánh, cận cảnh khoang bom"),
@@ -102,7 +101,7 @@ SCENES = [
     dict(id="lan_attack", part=4, vis=("flow", "MiG-17 bám đuôi F-8 Crusader, đạn pháo xé không khí"),
          nar="Phạm Ngọc Lan phát hiện những chiếc F-8 Crusader của Hải quân Mỹ vừa bổ nhào tấn công trận địa pháo. "
              "Anh lặng lẽ áp sát từ phía sau, đến khoảng hai, ba trăm mét, rồi bóp cò."),
-    dict(id="lan_hit", part=4, vis=("flow", "F-8 trúng đạn, bốc khói, bật đốt sau bỏ chạy"),
+    dict(id="lan_hit", part=4, vis=("flow", "F-8 trúng đạn, bốc khói, bật đốt sau bỏ chạy"), cap=["BẮN RƠI 2 F-8 – BIÊN ĐỘI PHẠM NGỌC LAN"],
          nar="Chiếc F-8 trúng đạn, bốc cháy. Ngay sau đó, Phan Văn Túc tiếp tục công kích. "
              "Trận đầu ra quân, biên đội Phạm Ngọc Lan bắn rơi hai máy bay F-8 của Hải quân Mỹ."),
     dict(id="lan_fuel", part=4, vis=("flow", "MiG-17 hạ cánh bắt buộc trên bãi cát ven sông"),

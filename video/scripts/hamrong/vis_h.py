@@ -60,15 +60,12 @@ VIS = {
     "tuyen": stat("fr_militia", ["NGÔ THỊ TUYỂN", 110, YEL], ["NỮ DÂN QUÂN 19 TUỔI · NẶNG CHƯA ĐẾN 50 KG", 44, WHT],
                   ["VÁC 98 KG ĐẠN RA TRẬN ĐỊA", 66, WHT]),
     # ---- 3 the swallows
-    "vpaf": stat("fr_skywatch", ["TRUNG ĐOÀN KHÔNG QUÂN 921", 70, WHT], ["ĐOÀN SAO ĐỎ", 130, YEL],
-                 ["08/1964 · NHỮNG CHIẾC MiG-17 ĐẦU TIÊN VỀ NỘI BÀI", 42, CY]),
-    "young": X("phrase", photo="fr_skywatch", text="VÀI CHỤC CHIẾC MÁY BAY", sub="CHƯA AI TỪNG KHÔNG CHIẾN THẬT"),
+    "vpaf": P("vpaf_pilots"),
+    "young": X("phrase", photo="vpaf_pilots", text="VÀI CHỤC CHIẾC MÁY BAY", sub="CHƯA AI TỪNG KHÔNG CHIẾN THẬT"),
     "training": A(["h", 282, 3.8, T], ["h", 334, 3.8, T], ["h", 36, 4, T]),
-    "mig17": stat("fr_f105", ["MiG-17", 110, YEL], ["~6 TẤN · DƯỚI TỐC ĐỘ ÂM THANH · CHỈ CÓ PHÁO", 40, WHT],
-                  ["F-105", 110, CY], ["NẶNG GẦN GẤP 4 · VƯỢT TỐC ĐỘ ÂM THANH", 40, WHT]),
-    "thud": A(["f", 828, 3.5, T], ["f", 908, 4.5, T], ["f", 917, 3.5, T], ["f", 968, 4, T]),
-    "edge": X("phrase", photo="fr_formation", text="ĐÁNH GẦN · ĐÁNH NHANH · ĐÁNH BẤT NGỜ", size=76,
-              sub="MiG-17 LƯỢN VÒNG RẤT GẮT Ở TẦM THẤP"),
+    "mig17": M(["p", "mig_card", 0, None], ["p", "f105_card", 0, None]),
+    "thud": A(["f", 0.2, 4, T], ["f", 917, 3.5, T], ["f", 968, 4, T], ["f", 828, 3, T]),
+    "edge": X("phrase", photo="mig_gear", text="ĐÁNH GẦN · ĐÁNH NHANH · ĐÁNH BẤT NGỜ", size=76, sub="MiG-17 LƯỢN VÒNG RẤT GẮT Ở TẦM THẤP"),
     "plan": mig_route("", "BAY THẤP · DẪN ĐƯỜNG TỪ MẶT ĐẤT"),
     # ---- 4 3 April
     "d3": stat("fr_clouds", ["03/04/1965", 150, YEL], ["ĐỢT TẤN CÔNG ĐẦU TIÊN VÀO CẦU HÀM RỒNG", 50, WHT]),
@@ -77,13 +74,11 @@ VIS = {
                      bg="photo", bgphoto="fr_refuel"),
     "bullpup": A(["f", 1142, 3, T], ["f", 1124, 2.6, T], ["f", 1145, 5.5, T]),
     "aaa": A(["f", 1223, 4, T], ["p", 119.5, 4.5, T]),
-    "lan_up": mig_route("03/04/1965", "BIÊN ĐỘI PHẠM NGỌC LAN"),
-    "lan_attack": A(["n", 468, 4, T], ["n", 483, 3.5, T], ["n", 830, 6, T]),
-    "lan_hit": stat("fr_f8", ["BIÊN ĐỘI PHẠM NGỌC LAN", 60, WHT], ["BẮN RƠI 2 MÁY BAY F-8", 100, YEL],
-                    ["TRẬN ĐẦU RA QUÂN · 03/04/1965", 44, CY]),
+    "lan_up": M(["p", "mig4_kb", 0, None], ["a", "f", 1160, 3.2, T], ["p", "mig_fly_kb", 0, 3]),
+    "lan_attack": A(["f", 1103, 2.2, T], ["f", 1106, 1.6, T], ["f", 1098, 4.2, T], ["f", 1160, 3.2, T], ["f", 1119.5, 2.4, T]),
+    "lan_hit": A(["f", 1099.5, 2.6, T], ["p", 117.5, 5, T], ["f", 1223, 3.6, T]),
     "lan_fuel": A(["h", 270, 5, T], ["h", 286, 4, T], ["h", 290, 3.5, T]),
-    "first": X("portrait", photo="lan", name="Phạm Ngọc Lan", sub="BIÊN ĐỘI TRƯỞNG · TRẬN ĐẦU 03/04/1965",
-               bg="photo", bgphoto="fr_skywatch"),
+    "first": X("portrait", photo="lan_crop", name="Phạm Ngọc Lan", sub="BIÊN ĐỘI TRƯỞNG · TRẬN ĐẦU 03/04/1965", bg="photo", bgphoto="vpaf_pilots"),
     "d3_end": A(["f", 1151, 4, T], ["f", 1157, 3.5, T]),
     "claims": A(["h", 342, 4.5, T], ["h", 350, 5, T]),
     # ---- 5 4 April
@@ -130,12 +125,11 @@ VIS = {
     "cost_area": A(["f", 1223, 4.5, T], ["h", 344, 5.5, T]),
     "hanh_later": X("portrait", photo="hanh", name="Trần Hanh", sub="TƯ LỆNH KHÔNG QUÂN · THỨ TRƯỞNG BỘ QUỐC PHÒNG",
                     bg="photo", bgphoto="fr_sunset"),
-    "lan_later": X("portrait", photo="lan", name="Phạm Ngọc Lan", sub="THIẾU TƯỚNG · NGƯỜI THẦY CỦA NHIỀU LỚP PHI CÔNG",
-                   bg="photo", bgphoto="fr_sunset"),
+    "lan_later": X("portrait", photo="lan_crop", name="Phạm Ngọc Lan", sub="THIẾU TƯỚNG · NGƯỜI THẦY CỦA NHIỀU LỚP PHI CÔNG", bg="photo", bgphoto="fr_sunset"),
     "three": A(["n", 8, 6, T], ["h", 58, 4.5, T]),
     "final": A(["n", 20, 4.6, T], ["f", 1628, 5, T], ["n", 12, 4, T]),
     "end": X("end", credits=[
-        "Phim tư liệu: U.S. Air Force \"There Is a Way\", U.S. Navy \"The American Navy in Vietnam\", National Archives (public domain)",
+        "Ảnh: Wikimedia Commons · Phim tư liệu: U.S. Air Force \"There Is a Way\", U.S. Navy \"The American Navy in Vietnam\", National Archives (public domain)",
         "Bản đồ: NASA Blue Marble, sơ đồ minh họa · Giọng đọc, âm thanh: ElevenLabs"]),
 }
 
@@ -170,3 +164,8 @@ MUSIC_DIP = ["h_impact", "lost"]
 NO_LOGO = {"title", "sting", "end"}
 BLACK_TRANS = {"title", "sting", "tonkin", "vpaf", "d3", "d4", "lost", "us_change", "end"}
 BED = "jet_formation"
+BED_VOL = 0.05
+# quieter engines and guns (user feedback v1)
+LOUD = {"jet_flyby", "jet_formation", "jet_dive", "cannon_burst", "aaa_fire", "jet_crash", "cockpit_wind", "big_explosion"}
+SFX = {k: [(n, o, v * (0.5 if n in LOUD else 1.0)) for n, o, v in L] for k, L in SFX.items()}
+ILLUS = {"lan_up", "lan_attack", "lan_hit", "h_dive", "attack", "fire", "chase"}

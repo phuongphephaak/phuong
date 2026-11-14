@@ -9,7 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE); sys.path.insert(0, "/home/user/phuong/video/hamrong")
 from script_hamrong import SCENES as _SC
 SPEAKERS = {}
-from vis_h import VIS, SFX, MUSIC, MUSIC_DIP, NO_LOGO, BLACK_TRANS, BED
+from vis_h import VIS, SFX, MUSIC, MUSIC_DIP, NO_LOGO, BLACK_TRANS, BED, BED_VOL, ILLUS
 
 SCENES = []
 for sc in _SC:
@@ -195,6 +195,8 @@ def normalize(sc, tl, raw):
     kind, p = VIS[sc["id"]]
     if kind == "flow":
         vf.append(lab)
+    elif sc["id"] in ILLUS:
+        vf.append(lab.replace("HÌNH ẢNH MINH HỌA", "TƯ LIỆU MINH HỌA"))
     elif kind == "mix" and any(sg[0] == "f" for sg in p["segs"]):
         fj = json.load(open(os.path.join(TMP, f"{sc['id']}_fit.json")))
         sp = max(0.55, fj["L"] / D) if fj["L"] < D else 1.0
@@ -306,7 +308,7 @@ def mix(out_wav):
             if f:
                 x[-f:] *= np.linspace(1, 0, f)[:, None]
             place(fx, x * vol, s["start"] + off)
-    bed = rms(load(find_sfx(BED)), -20) * 0.12
+    bed = rms(load(find_sfx(BED)), -20) * BED_VOL
     place(fx, looped(bed, N), 0)
     for t0 in tl.get("subscribe", []):
         place(fx, rms(load(find_sfx("click_bell")), -20) * 0.8, t0 + 2.3)
