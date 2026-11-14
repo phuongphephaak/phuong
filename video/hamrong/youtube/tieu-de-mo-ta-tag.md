@@ -20,7 +20,7 @@ Trong video: vì sao Mỹ quyết đánh sập cầu Hàm Rồng, cô dân quân
 7:16 Cái giá
 8:18 Kết
 
-📌 Tư liệu: phim của Không quân Mỹ "There Is a Way", Hải quân Mỹ "The American Navy in Vietnam", phim lưu trữ của Cục Lưu trữ Quốc gia Hoa Kỳ (phạm vi công cộng). Số liệu theo tư liệu Báo Nhân Dân, VietTimes, Quân chủng Phòng không – Không quân.
+📌 Tư liệu: phim của Không quân Mỹ "There Is a Way", Hải quân Mỹ "The American Navy in Vietnam", phim lưu trữ của Cục Lưu trữ Quốc gia Hoa Kỳ (phạm vi công cộng); ảnh phi công Đoàn Sao Đỏ và MiG-17 từ Wikimedia Commons. Số liệu theo tư liệu Báo Nhân Dân, VietTimes, Quân chủng Phòng không – Không quân.
 
 🔔 Đăng ký kênh Mật Lệnh và bấm chuông để không bỏ lỡ những trận đánh làm thay đổi lịch sử.
 
