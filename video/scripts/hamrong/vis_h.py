@@ -78,7 +78,7 @@ VIS = {
     "lan_attack": A(["f", 1103, 2.2, T], ["f", 1106, 1.6, T], ["f", 1098, 4.2, T], ["f", 1160, 3.2, T], ["f", 1119.5, 2.4, T]),
     "lan_hit": A(["f", 1099.5, 2.6, T], ["p", 117.5, 5, T], ["f", 1223, 3.6, T]),
     "lan_fuel": A(["h", 270, 5, T], ["h", 286, 4, T], ["h", 290, 3.5, T]),
-    "first": X("portrait", photo="lan_crop", name="Phạm Ngọc Lan", sub="BIÊN ĐỘI TRƯỞNG · TRẬN ĐẦU 03/04/1965", bg="photo", bgphoto="vpaf_pilots"),
+    "first": X("portrait", photo="lan_card", name="Phạm Ngọc Lan", sub="BIÊN ĐỘI TRƯỞNG · TRẬN ĐẦU 03/04/1965", bg="photo", bgphoto="vpaf_pilots"),
     "d3_end": A(["f", 1151, 4, T], ["f", 1157, 3.5, T]),
     "claims": A(["h", 342, 4.5, T], ["h", 350, 5, T]),
     # ---- 5 4 April
@@ -125,7 +125,7 @@ VIS = {
     "cost_area": A(["f", 1223, 4.5, T], ["h", 344, 5.5, T]),
     "hanh_later": X("portrait", photo="hanh", name="Trần Hanh", sub="TƯ LỆNH KHÔNG QUÂN · THỨ TRƯỞNG BỘ QUỐC PHÒNG",
                     bg="photo", bgphoto="fr_sunset"),
-    "lan_later": X("portrait", photo="lan_crop", name="Phạm Ngọc Lan", sub="THIẾU TƯỚNG · NGƯỜI THẦY CỦA NHIỀU LỚP PHI CÔNG", bg="photo", bgphoto="fr_sunset"),
+    "lan_later": X("portrait", photo="lan_card", name="Phạm Ngọc Lan", sub="THIẾU TƯỚNG · NGƯỜI THẦY CỦA NHIỀU LỚP PHI CÔNG", bg="photo", bgphoto="fr_sunset"),
     "three": A(["n", 8, 6, T], ["h", 58, 4.5, T]),
     "final": A(["n", 20, 4.6, T], ["f", 1628, 5, T], ["n", 12, 4, T]),
     "end": X("end", credits=[
