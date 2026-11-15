@@ -20,7 +20,7 @@ SCENES = [
     # ---------------- 1. MỞ ĐẦU ----------------
     dict(id="o_date", part=1, vis=("archive", "Đội hình F-105 bay trên mây"), cap=["30/04/1967 – HÒA BÌNH"],
          nar="Trưa ngày ba mươi tháng tư năm 1967. Trên bầu trời Hòa Bình, một đội hình F-105 của Không quân Mỹ "
-             "đang ung dung bay về phía Hà Nội với khoảng năm trăm tấn bom."),
+             "đang ung dung bay về phía Hà Nội với hàng chục tấn bom."),
     dict(id="o_two", part=1, vis=("flow", "Hai chiếc MiG-21 bay sát núi rừng"),
          nar="Bên dưới, men theo những dãy núi, hai chiếc MiG-21 lặng lẽ áp sát. Người bay phía sau là một thiếu úy hai mươi bốn tuổi. "
              "Anh mới có hơn ba trăm giờ bay, và chưa từng bắn rơi một chiếc máy bay nào."),

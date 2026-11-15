@@ -10,13 +10,13 @@ Năm 1967, một thiếu úy 24 tuổi bay ở vị trí số 2 trong biên đ�
 
 ⏱ CHƯƠNG
 0:00 Mở đầu
-1:02 Cậu bé Bích Sơn
+1:01 Cậu bé Bích Sơn
 2:20 Con ngựa chiến MiG-21
 3:43 Cái bẫy đầu năm
-4:47 Trận đầu
-6:16 Chim cắt số 2
-7:23 Chín chiến công
-9:25 Kết
+4:46 Trận đầu
+6:15 Chim cắt số 2
+7:22 Chín chiến công
+9:24 Kết
 
 📌 Tư liệu: phim Không quân Mỹ "There Is a Way", "Airstrikes North 1966", "The Gunfighters", Hải quân Mỹ, Cục Lưu trữ Quốc gia Hoa Kỳ (phạm vi công cộng); ảnh MiG-21 từ Wikimedia Commons. Số liệu theo Wikipedia, VietNamNet, Soha, Dân Việt.
 🔔 Đăng ký Mật Lệnh để không bỏ lỡ những trận đánh làm thay đổi lịch sử.
