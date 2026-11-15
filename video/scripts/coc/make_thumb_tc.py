@@ -15,8 +15,8 @@ else:
     from tc import FONT
     d = ImageDraw.Draw(im); f = ImageFont.truetype(FONT, 88); t = "CHIM CẮT SỐ 2 – THẤY LÀ PHẢI SỢ"
     w = d.textlength(t, font=f)
-    d.rectangle([640 - w / 2 - 14, 40, 640 + w / 2 + 14, 166], fill=(220, 20, 30), outline=(0, 0, 0), width=4)
     a = "CHIM CẮT SỐ 2 – "; x0 = 640 - w / 2
-    d.text((x0, 48), a, font=f, fill=WHITE)
-    d.text((x0 + d.textlength(a, font=f), 48), "THẤY LÀ PHẢI SỢ", font=f, fill=YEL)
+    for (x, txt, col) in [(x0, a, WHITE), (x0 + d.textlength(a, font=f), "THẤY LÀ PHẢI SỢ", YEL)]:
+        d.text((x + 5, 54), txt, font=f, fill=(0, 0, 0), stroke_width=7, stroke_fill=(0, 0, 0))
+        d.text((x, 48), txt, font=f, fill=col, stroke_width=7, stroke_fill=(0, 0, 0))
     im.save("thumb-coc-B.jpg", quality=93)
