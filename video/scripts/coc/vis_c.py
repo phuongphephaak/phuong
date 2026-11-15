@@ -104,7 +104,7 @@ SFX = {
     "falcon": [("jet_dive", 0, 0.9), ("jet_crash", 8, 0.7)], "olds": [("jet_formation", 0, 0.6)],
     "aug": [("jet_crash", 3, 0.8)], "oct": [("aaa_fire", 0, 0.7)], "nov20": [("jet_dive", 0.5, 0.8), ("jet_crash", 7, 0.8)],
     "ace": [("big_explosion", 0.5, 0.7)], "may68": [("jet_flyby", 1, 0.8)], "may68_hit": [("jet_crash", 2.5, 0.9)],
-    "drones": [("jet_formation", 0, 0.5)], "final": [("river_dusk", 0, 0.8), ("jet_flyby", 4, 0.4)],
+    "drones": [("jet_formation", 0, 0.5)], "final": [("jet_flyby", 4, 0.4)],
 }
 MUSIC = [
     ("music_battle", "o_date", 0.85), ("music_tension", "village", 0.7), ("music_tension", "mig21", 0.75),

@@ -1,12 +1,12 @@
 # Kịch bản: CHIM CẮT SỐ 2 – Nguyễn Văn Cốc
 
-- **Độ dài ước tính:** ~11:05 · 63 cảnh · 9.390 ký tự lời dẫn (2.070 từ)
-- **Credit ElevenLabs:** ~9.390 / ~116.000 còn lại
+- **Độ dài ước tính:** ~11:06 · 63 cảnh · 9.397 ký tự lời dẫn (2.072 từ)
+- **Credit ElevenLabs:** ~9.397 / ~116.000 còn lại
 - Chữ trong `khung` là chữ hiện trên màn hình (không đọc).
 
 ## Phần 1 – Mở đầu  *(0:00)*
 
-**1.** `30/04/1967 – HÒA BÌNH` Trưa ngày ba mươi tháng tư năm 1967. Trên bầu trời Hòa Bình, một đội hình F-105 của Không quân Mỹ đang ung dung bay về phía Hà Nội, khoang bom chất đầy.
+**1.** `30/04/1967 – HÒA BÌNH` Trưa ngày ba mươi tháng tư năm 1967. Trên bầu trời Hòa Bình, một đội hình F-105 của Không quân Mỹ đang ung dung bay về phía Hà Nội với khoảng năm trăm tấn bom.
 
 **2.** Bên dưới, men theo những dãy núi, hai chiếc MiG-21 lặng lẽ áp sát. Người bay phía sau là một thiếu úy hai mươi bốn tuổi. Anh mới có hơn ba trăm giờ bay, và chưa từng bắn rơi một chiếc máy bay nào.
 
@@ -19,7 +19,7 @@
 **6.** `CHIM CẮT SỐ 2 / NGUYỄN VĂN CỐC` *(không lời – màn tiêu đề, 7 giây)*
 
 
-## Phần 2 – Cậu bé Bích Sơn  *(1:00)*
+## Phần 2 – Cậu bé Bích Sơn  *(1:01)*
 
 **7.** `BÍCH SƠN – VIỆT YÊN – BẮC GIANG` Nguyễn Văn Cốc sinh tháng mười hai năm 1942, ở xã Bích Sơn, huyện Việt Yên, tỉnh Bắc Giang. Tuổi thơ của cậu đến sớm với mất mát.
 
@@ -36,7 +36,7 @@
 **13.** Anh chưa kịp về nước thì lại được giữ lại thêm một năm. Lần này là để học một loại máy bay hoàn toàn mới: MiG-21.
 
 
-## Phần 3 – Con ngựa chiến MiG-21  *(2:15)*
+## Phần 3 – Con ngựa chiến MiG-21  *(2:16)*
 
 **14.** `MiG-21` MiG-21 nhỏ, nhẹ, cánh hình tam giác, bay nhanh gấp đôi tốc độ âm thanh. Nhưng nó không dễ chiều. Nhiều năm sau, ông Cốc vẫn ví nó như một con ngựa chiến khó thuần, mà đã thuần được thì lợi hại vô cùng.
 
@@ -68,7 +68,7 @@
 **26.** Người Mỹ coi Bolo là một chiến thắng vang dội. Nhưng chính họ cũng hiểu, cái bẫy ấy chỉ dùng được một lần. Lần sau, những chiếc MiG sẽ không lao lên một cách mù quáng nữa.
 
 
-## Phần 5 – Trận đầu  *(4:44)*
+## Phần 5 – Trận đầu  *(4:45)*
 
 **27.** `NGUYỄN NGỌC ĐỘ – BIÊN ĐỘI TRƯỞNG` Gần bốn tháng sau, đêm hai mươi chín tháng tư, biên đội trưởng Nguyễn Ngọc Độ nhận kèm cặp Nguyễn Văn Cốc. Hai người sẽ cùng trực chiến vào sáng hôm sau.
 
@@ -106,7 +106,7 @@
 **42.** Không phải trận nào cũng suôn sẻ. Có lần, máy bay của anh bị Phantom bắn hỏng. Có lần, anh phải nhảy dù vì cạn nhiên liệu giữa trận. Nhưng lần nào trở về, anh cũng lại xin lên trực chiến.
 
 
-## Phần 7 – Chín chiến công  *(7:23)*
+## Phần 7 – Chín chiến công  *(7:24)*
 
 **43.** `1967: 6 CHIẾN CÔNG` Chỉ riêng năm 1967, Nguyễn Văn Cốc bắn rơi sáu máy bay Mỹ.
 
