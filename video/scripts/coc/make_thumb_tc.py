@@ -12,5 +12,5 @@ if v == "a":
 else:
     im = base("../coc/photos/mig4324.jpg", (0, 50, 1012, 619))
     headline(im, [("HẠ GỤC", WHITE), ("9 MÁY BAY MỸ", YEL)])
-    tag(im, 640, 690, "CHIM CẮT SỐ 2 – NGUYỄN VĂN CỐC", bg=(220, 20, 30), fg=WHITE, size=64)
+    tag(im, 640, 690, "CHIM CẮT SỐ 2 – THẤY LÀ PHẢI SỢ", bg=(220, 20, 30), fg=WHITE, size=64)
     im.save("thumb-coc-B.jpg", quality=93)
