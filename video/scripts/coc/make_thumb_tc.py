@@ -11,6 +11,10 @@ if v == "a":
     im.save("thumb-coc-A.jpg", quality=93)
 else:
     im = base("../coc/photos/mig4324.jpg", (0, 50, 1012, 619))
-    headline(im, [("HẠ GỤC", WHITE), ("9 MÁY BAY MỸ", YEL)])
-    tag(im, 640, 690, "CHIM CẮT SỐ 2 – THẤY LÀ PHẢI SỢ", bg=(220, 20, 30), fg=WHITE, size=64)
+    from PIL import ImageDraw, ImageFont
+    from tc import FONT
+    d = ImageDraw.Draw(im); f = ImageFont.truetype(FONT, 88); t = "CHIM CẮT SỐ 2 – THẤY LÀ PHẢI SỢ"
+    w = d.textlength(t, font=f)
+    d.rectangle([640 - w / 2 - 14, 40, 640 + w / 2 + 14, 166], fill=(220, 20, 30), outline=(0, 0, 0), width=4)
+    d.text((640 - w / 2, 48), t, font=f, fill=WHITE)
     im.save("thumb-coc-B.jpg", quality=93)
