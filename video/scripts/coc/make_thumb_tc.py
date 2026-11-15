@@ -16,5 +16,7 @@ else:
     d = ImageDraw.Draw(im); f = ImageFont.truetype(FONT, 88); t = "CHIM CẮT SỐ 2 – THẤY LÀ PHẢI SỢ"
     w = d.textlength(t, font=f)
     d.rectangle([640 - w / 2 - 14, 40, 640 + w / 2 + 14, 166], fill=(220, 20, 30), outline=(0, 0, 0), width=4)
-    d.text((640 - w / 2, 48), t, font=f, fill=WHITE)
+    a = "CHIM CẮT SỐ 2 – "; x0 = 640 - w / 2
+    d.text((x0, 48), a, font=f, fill=WHITE)
+    d.text((x0 + d.textlength(a, font=f), 48), "THẤY LÀ PHẢI SỢ", font=f, fill=YEL)
     im.save("thumb-coc-B.jpg", quality=93)
