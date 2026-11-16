@@ -1,0 +1,684 @@
+1
+00:00:00,500 --> 00:00:02,682
+Sáng ngày mười bảy tháng tư năm 1975,
+
+2
+00:00:02,732 --> 00:00:05,577
+những người lính mặc đồ đen tiến vào Phnôm Pênh.
+
+3
+00:00:05,627 --> 00:00:10,403
+Dân thủ đô đổ ra đường vẫy cờ trắng, tin rằng chiến tranh cuối cùng đã kết thúc.
+
+4
+00:00:11,250 --> 00:00:16,275
+Chỉ vài giờ sau, loa phóng thanh ra lệnh: tất cả phải rời thành phố ngay,
+
+5
+00:00:16,325 --> 00:00:17,527
+vì Mỹ sắp ném bom.
+
+6
+00:00:17,577 --> 00:00:20,029
+Đi ba ngày thôi, rồi sẽ được trở về.
+
+7
+00:00:20,880 --> 00:00:22,412
+Hơn hai triệu người lên đường.
+
+8
+00:00:22,462 --> 00:00:26,629
+Phần lớn trong số họ không bao giờ được nhìn thấy nhà mình thêm một lần nào nữa.
+
+9
+00:00:27,480 --> 00:00:32,578
+Người đứng sau mệnh lệnh ấy là một thầy giáo cũ, nói năng nhỏ nhẹ, luôn mỉm cười.
+
+10
+00:00:32,628 --> 00:00:35,946
+Học trò nhớ về ông như một người hiền lành và dễ mến.
+
+11
+00:00:36,800 --> 00:00:41,012
+Chưa đầy bốn năm sau, khoảng một triệu bảy trăm nghìn người Campuchia đã chết,
+
+12
+00:00:41,062 --> 00:00:42,706
+gần một phần tư dân số cả nước.
+
+13
+00:00:43,560 --> 00:00:45,348
+Ông ta tên là Saloth Sar.
+
+14
+00:00:45,398 --> 00:00:49,466
+Thế giới biết đến ông ta bằng một cái tên khác: Pol Pot.
+
+15
+00:01:05,370 --> 00:01:10,114
+Saloth Sar sinh năm 1925 tại làng Prek Sbauv, tỉnh Kampong Thom,
+
+16
+00:01:10,164 --> 00:01:12,886
+bên một nhánh sông nhỏ giữa vùng lúa.
+
+17
+00:01:12,936 --> 00:01:16,631
+Cha cậu là một nông dân khá giả, có ruộng và trâu.
+
+18
+00:01:17,480 --> 00:01:20,214
+Gia đình ấy còn có một mối quan hệ đặc biệt.
+
+19
+00:01:20,264 --> 00:01:22,998
+Người chị họ của cậu là phi tần của nhà vua,
+
+20
+00:01:23,048 --> 00:01:27,618
+nên cậu bé nhà quê sớm được gửi lên kinh đô và có dịp lui tới hoàng cung.
+
+21
+00:01:28,470 --> 00:01:31,456
+Lên sáu tuổi, cậu vào chùa làm chú tiểu hơn một năm,
+
+22
+00:01:31,506 --> 00:01:34,434
+rồi học tiếp ở một trường Công giáo của người Pháp.
+
+23
+00:01:34,484 --> 00:01:37,529
+Bạn học nhớ về cậu là một đứa trẻ trầm tính, dễ chịu,
+
+24
+00:01:37,579 --> 00:01:39,339
+nhưng học hành rất bình thường.
+
+25
+00:01:40,190 --> 00:01:42,455
+Cậu thi trượt nhiều lần, bị giữ lại lớp,
+
+26
+00:01:42,505 --> 00:01:45,695
+rồi phải chuyển sang học nghề mộc ở một trường kỹ thuật.
+
+27
+00:01:45,745 --> 00:01:50,093
+Tại đây cậu quen Ieng Sary, người về sau sẽ trở thành cánh tay phải của cậu.
+
+28
+00:01:50,940 --> 00:01:52,707
+Năm 1949, may mắn mỉm cười.
+
+29
+00:01:52,757 --> 00:01:58,361
+Saloth Sar giành được học bổng sang Pháp, theo học ngành điện tử vô tuyến tại Paris.
+
+30
+00:01:59,210 --> 00:02:01,831
+Nhưng thứ thu hút cậu không nằm trong giảng đường.
+
+31
+00:02:01,881 --> 00:02:05,731
+Cậu cùng Ieng Sary tham gia một nhóm sinh viên nghiên cứu chủ nghĩa Marx,
+
+32
+00:02:05,781 --> 00:02:07,441
+rồi gia nhập Đảng Cộng sản Pháp.
+
+33
+00:02:08,290 --> 00:02:09,982
+Chuyện học thì vẫn như cũ.
+
+34
+00:02:10,032 --> 00:02:14,874
+Cậu trượt kỳ thi năm thứ nhất, trượt năm thứ hai, rồi trượt thêm lần nữa.
+
+35
+00:02:14,924 --> 00:02:15,946
+Học bổng bị cắt.
+
+36
+00:02:16,800 --> 00:02:21,861
+Tháng một năm 1953, Saloth Sar trở về quê nhà, không có tấm bằng nào trong tay.
+
+37
+00:02:21,911 --> 00:02:24,707
+Thứ duy nhất cậu mang về là một hệ tư tưởng,
+
+38
+00:02:24,757 --> 00:02:27,748
+cùng những người bạn sẵn sàng đi theo đến cùng.
+
+39
+00:02:28,600 --> 00:02:33,690
+Về nước, anh đi dạy lịch sử, địa lý và văn học Pháp ở một trường tư tại Phnôm Pênh.
+
+40
+00:02:33,740 --> 00:02:37,529
+Học trò kể rằng thầy Sar điềm tĩnh, ăn nói có sức thuyết phục.
+
+41
+00:02:37,579 --> 00:02:39,077
+Thầy say mê thơ Verlaine.
+
+42
+00:02:39,930 --> 00:02:42,010
+Năm 1956, anh cưới Khieu Ponnary,
+
+43
+00:02:42,060 --> 00:02:45,689
+một trong những phụ nữ Campuchia đầu tiên có bằng tú tài.
+
+44
+00:02:45,739 --> 00:02:48,788
+Đám cưới diễn ra đúng ngày quốc khánh nước Pháp.
+
+45
+00:02:49,640 --> 00:02:51,043
+Ban ngày là thầy giáo.
+
+46
+00:02:51,093 --> 00:02:56,523
+Ban đêm, anh dần leo lên những vị trí cao nhất trong một đảng cộng sản hoạt động bí
+
+47
+00:02:56,573 --> 00:02:56,787
+mật.
+
+48
+00:02:56,837 --> 00:03:00,352
+Năm 1962, người đứng đầu đảng mất tích một cách bí ẩn.
+
+49
+00:03:01,200 --> 00:03:04,385
+Đầu năm 1963, Saloth Sar trở thành bí thư.
+
+50
+00:03:04,435 --> 00:03:08,699
+Ngay sau đó, anh bỏ lại tất cả và biến mất vào rừng sâu.
+
+51
+00:03:09,550 --> 00:03:14,423
+Năm 1965, ông lặn lội theo đường mòn Trường Sơn ra Hà Nội, rồi sang Bắc Kinh.
+
+52
+00:03:14,473 --> 00:03:17,045
+Ở Trung Quốc, ông được đón tiếp nồng hậu,
+
+53
+00:03:17,095 --> 00:03:20,498
+đúng lúc nước này chuẩn bị bước vào Cách mạng Văn hóa.
+
+54
+00:03:21,350 --> 00:03:25,028
+Trở về, ông đổi tên đảng, chuyển căn cứ lên vùng núi phía đông bắc,
+
+55
+00:03:25,078 --> 00:03:27,143
+và giữ mọi thứ trong bí mật tuyệt đối.
+
+56
+00:03:27,193 --> 00:03:30,704
+Ngay cả đảng viên cũng không biết ai thực sự đang lãnh đạo mình.
+
+57
+00:03:31,550 --> 00:03:35,142
+Năm 1970, tướng Lon Nol lật đổ Quốc vương Sihanouk.
+
+58
+00:03:35,192 --> 00:03:40,142
+Từ Bắc Kinh, vị vua bị phế truất kêu gọi dân chúng vào rừng chiến đấu.
+
+59
+00:03:40,192 --> 00:03:43,856
+Hàng vạn nông dân hưởng ứng, và họ đi theo Khmer Đỏ.
+
+60
+00:03:44,710 --> 00:03:49,065
+Cũng năm ấy, Saloth Sar bắt đầu tự gọi mình là Pol, rồi Pol Pot.
+
+61
+00:03:49,115 --> 00:03:53,333
+Ông từng nói với người thân cận: đổi tên giúp đánh lừa kẻ thù.
+
+62
+00:03:54,180 --> 00:03:55,738
+Năm năm nội chiến tàn khốc.
+
+63
+00:03:55,788 --> 00:03:57,405
+Bom Mỹ trút xuống nông thôn.
+
+64
+00:03:57,455 --> 00:04:02,287
+Lực lượng Khmer Đỏ từ vài nghìn tay súng lớn lên thành một đội quân siết chặt vòng
+
+65
+00:04:02,337 --> 00:04:03,299
+vây quanh thủ đô.
+
+66
+00:04:04,150 --> 00:04:07,012
+Rồi đến ngày mười bảy tháng tư năm 1975.
+
+67
+00:04:07,062 --> 00:04:09,342
+Khmer Đỏ gọi đó là năm số không.
+
+68
+00:04:09,392 --> 00:04:14,366
+Mọi thứ có từ trước phải bị xóa sạch, để làm lại một đất nước từ đầu.
+
+69
+00:04:15,220 --> 00:04:17,821
+Cuộc di tản diễn ra giữa tháng nóng nhất trong năm.
+
+70
+00:04:17,871 --> 00:04:20,473
+Hàng chục nghìn bệnh nhân bị đẩy ra khỏi bệnh viện,
+
+71
+00:04:20,523 --> 00:04:22,604
+có người vẫn nằm nguyên trên giường bệnh.
+
+72
+00:04:22,654 --> 00:04:25,776
+Ước tính khoảng hai mươi nghìn người chết ngay trên đường đi.
+
+73
+00:04:26,630 --> 00:04:27,531
+Tiền bị xóa bỏ.
+
+74
+00:04:27,581 --> 00:04:29,495
+Ngân hàng quốc gia bị đánh sập.
+
+75
+00:04:29,545 --> 00:04:33,107
+Chợ, trường học, chùa chiền, bệnh viện lần lượt đóng cửa.
+
+76
+00:04:33,157 --> 00:04:36,846
+Đeo kính hay biết ngoại ngữ cũng đủ để bị nghi là trí thức.
+
+77
+00:04:37,700 --> 00:04:39,665
+Không ai nói tên người lãnh đạo.
+
+78
+00:04:39,715 --> 00:04:43,003
+Mọi mệnh lệnh đều nhân danh Angkar, nghĩa là Tổ chức.
+
+79
+00:04:43,053 --> 00:04:45,774
+Angkar có mắt như quả dứa, nhìn thấy tất cả.
+
+80
+00:04:46,620 --> 00:04:48,507
+Người dân bị chia làm hai hạng.
+
+81
+00:04:48,557 --> 00:04:52,256
+Nông dân ở các vùng Khmer Đỏ kiểm soát từ trước là người cũ.
+
+82
+00:04:52,306 --> 00:04:57,441
+Còn dân thành phố bị gọi là người mới, phải nhận khẩu phần ít nhất, việc nặng nhất,
+
+83
+00:04:57,491 --> 00:04:58,691
+và luôn bị nghi ngờ.
+
+84
+00:04:59,540 --> 00:05:04,105
+Cả đất nước mặc một màu đen, sống trong những hợp tác xã khổng lồ,
+
+85
+00:05:04,155 --> 00:05:06,413
+làm việc từ sáng sớm đến tối mịt.
+
+86
+00:05:06,463 --> 00:05:08,581
+Bữa ăn chung chỉ có cháo loãng.
+
+87
+00:05:09,430 --> 00:05:12,066
+Pol Pot đặt chỉ tiêu ba tấn thóc trên mỗi héc-ta,
+
+88
+00:05:12,116 --> 00:05:14,368
+gấp nhiều lần sản lượng trước chiến tranh.
+
+89
+00:05:14,418 --> 00:05:18,862
+Gạo được thu gom để xuất khẩu, trong khi chính những người làm ra nó thì chết đói.
+
+90
+00:05:19,710 --> 00:05:23,234
+Trẻ em trên bảy tuổi bị tách khỏi cha mẹ để Angkar dạy dỗ.
+
+91
+00:05:23,284 --> 00:05:28,103
+Nhiều em được trao súng, và được dạy rằng kẻ thù có thể là chính người thân của
+
+92
+00:05:28,153 --> 00:05:28,411
+mình.
+
+93
+00:05:29,260 --> 00:05:33,871
+Một khẩu hiệu được truyền miệng khắp nơi: giữ ngươi lại cũng chẳng được lợi gì,
+
+94
+00:05:33,921 --> 00:05:36,054
+mất ngươi đi cũng chẳng thiệt hại gì.
+
+95
+00:05:36,900 --> 00:05:41,439
+Giữa Phnôm Pênh vắng lặng, có một ngôi trường trung học vẫn sáng đèn.
+
+96
+00:05:41,489 --> 00:05:46,161
+Các lớp học được ngăn thành phòng giam, sân chơi trở thành nơi tra tấn.
+
+97
+00:05:46,211 --> 00:05:47,691
+Ký hiệu của nó là S-21.
+
+98
+00:05:48,540 --> 00:05:51,924
+Người cai quản nhà tù cũng từng là một thầy giáo.
+
+99
+00:05:51,974 --> 00:05:54,938
+Kang Kek Iew, tức Duch, trước kia dạy toán.
+
+100
+00:05:54,988 --> 00:05:58,443
+Ông ta điều hành S-21 với sự tỉ mỉ đến lạnh người.
+
+101
+00:05:59,290 --> 00:06:03,756
+Mỗi tù nhân bị chụp ảnh khi đến, bị ép viết bản thú tội, rồi bị đưa đi.
+
+102
+00:06:03,806 --> 00:06:09,036
+Theo hồ sơ của tòa án quốc tế, khoảng mười tám nghìn người đã đi qua cánh cổng này.
+
+103
+00:06:09,890 --> 00:06:12,974
+Số người còn sống bước ra chỉ đếm trên đầu ngón tay.
+
+104
+00:06:13,024 --> 00:06:15,867
+Một họa sĩ được giữ lại để vẽ chân dung Pol Pot.
+
+105
+00:06:15,917 --> 00:06:18,278
+Một người khác sống sót vì biết sửa máy.
+
+106
+00:06:19,130 --> 00:06:21,106
+Nạn nhân không chỉ là kẻ thù cũ.
+
+107
+00:06:21,156 --> 00:06:24,904
+Càng về sau, chính cán bộ Khmer Đỏ lần lượt bị đưa vào S-21.
+
+108
+00:06:24,954 --> 00:06:29,842
+Pol Pot nhìn đâu cũng thấy phản bội, nhưng chưa từng một lần đặt chân đến đây.
+
+109
+00:06:30,690 --> 00:06:33,069
+Trong số tù nhân ấy có cả người Việt Nam.
+
+110
+00:06:33,119 --> 00:06:37,926
+Ra trước tòa nhiều năm sau, Duch thừa nhận đã ra lệnh giết ba trăm bốn mươi lăm tù
+
+111
+00:06:37,976 --> 00:06:41,481
+nhân Việt Nam, phần lớn bị bắt trên biển hoặc dọc biên giới.
+
+112
+00:06:42,330 --> 00:06:44,674
+Cách thành phố mười lăm cây số là Choeung Ek,
+
+113
+00:06:44,724 --> 00:06:47,547
+một trong hàng trăm cánh đồng chết trên khắp đất nước.
+
+114
+00:06:47,597 --> 00:06:50,953
+Hôm nay, tháp tưởng niệm ở đó chứa hơn năm nghìn chiếc sọ người.
+
+115
+00:06:51,800 --> 00:06:54,663
+Trong tất cả kẻ thù mà Pol Pot tưởng tượng ra,
+
+116
+00:06:54,713 --> 00:06:57,576
+có một cái tên được nhắc nhiều nhất: Việt Nam.
+
+117
+00:06:57,626 --> 00:07:02,199
+Người Việt sinh sống ở Campuchia gần như bị xóa sổ ngay từ những năm đầu.
+
+118
+00:07:03,050 --> 00:07:06,233
+Chưa đầy hai tuần sau ngày miền Nam được giải phóng,
+
+119
+00:07:06,283 --> 00:07:10,399
+quân Khmer Đỏ đổ bộ lên đảo Thổ Chu, bắt đi hơn năm trăm người dân.
+
+120
+00:07:10,449 --> 00:07:11,829
+Đó mới chỉ là khởi đầu.
+
+121
+00:07:12,680 --> 00:07:16,574
+Từ An Giang đến Tây Ninh, các cuộc tấn công vượt biên ngày càng dày đặc.
+
+122
+00:07:16,624 --> 00:07:20,519
+Chúng nhắm vào làng mạc, trường học, những người nông dân đang làm đồng.
+
+123
+00:07:21,370 --> 00:07:24,810
+Việt Nam nhiều lần đề nghị ngừng bắn và ngồi vào bàn đàm phán.
+
+124
+00:07:24,860 --> 00:07:26,442
+Tất cả đều bị Pol Pot gạt đi.
+
+125
+00:07:26,492 --> 00:07:29,087
+Ông ta tin rằng chỉ cần có chỗ dựa từ Bắc Kinh,
+
+126
+00:07:29,137 --> 00:07:31,508
+đội quân của mình có thể đánh bại Việt Nam.
+
+127
+00:07:32,360 --> 00:07:37,722
+Đêm mười tám tháng tư năm 1978, quân Khmer Đỏ tràn vào xã Ba Chúc, huyện Tri Tôn,
+
+128
+00:07:37,772 --> 00:07:38,658
+tỉnh An Giang.
+
+129
+00:07:39,510 --> 00:07:42,429
+Người dân chạy vào chùa Tam Bửu và chùa Phi Lai,
+
+130
+00:07:42,479 --> 00:07:44,779
+tin rằng cửa Phật sẽ che chở cho mình.
+
+131
+00:07:44,829 --> 00:07:46,696
+Nhưng không có nơi nào an toàn.
+
+132
+00:07:47,550 --> 00:07:51,812
+Trong mười hai ngày, ba nghìn một trăm năm mươi bảy người dân thường bị sát hại.
+
+133
+00:07:51,862 --> 00:07:54,129
+Có người mất cùng lúc hàng chục người thân.
+
+134
+00:07:54,179 --> 00:07:56,016
+Chỉ một vài người may mắn sống sót.
+
+135
+00:07:56,870 --> 00:08:01,235
+Hôm nay, nhà mồ Ba Chúc vẫn lưu giữ hơn một nghìn chiếc sọ của nạn nhân,
+
+136
+00:08:01,285 --> 00:08:05,649
+như một lời nhắc rằng tội ác ấy đã từng diễn ra trên chính đất Việt Nam.
+
+137
+00:08:06,500 --> 00:08:08,947
+Ngày hai mươi lăm tháng mười hai năm 1978,
+
+138
+00:08:08,997 --> 00:08:13,645
+quân tình nguyện Việt Nam cùng lực lượng cách mạng Campuchia mở cuộc phản công.
+
+139
+00:08:13,695 --> 00:08:17,212
+Những mũi tiến công thọc sâu, chia cắt đội quân của Pol Pot.
+
+140
+00:08:18,060 --> 00:08:23,011
+Chỉ mười ba ngày sau, ngày bảy tháng một năm 1979, Phnôm Pênh được giải phóng.
+
+141
+00:08:23,061 --> 00:08:27,884
+Pol Pot đã kịp rời thủ đô trước đó vài giờ, chạy về phía biên giới Thái Lan.
+
+142
+00:08:28,730 --> 00:08:33,916
+Những ngày sau đó, nhiếp ảnh gia quân đội Hồ Văn Tây lần theo một mùi hôi kỳ lạ,
+
+143
+00:08:33,966 --> 00:08:35,814
+đến trước cánh cổng của S-21.
+
+144
+00:08:35,864 --> 00:08:40,722
+Những bức ảnh ông chụp được ở đó đã cho cả thế giới thấy điều gì đã xảy ra.
+
+145
+00:08:41,570 --> 00:08:46,092
+Pol Pot mất Phnôm Pênh, nhưng người đỡ đầu của ông ta chưa chịu buông tay.
+
+146
+00:08:46,142 --> 00:08:50,849
+Tháng hai năm 1979, Trung Quốc tấn công sáu tỉnh biên giới phía Bắc Việt Nam,
+
+147
+00:08:50,899 --> 00:08:53,876
+để giảm áp lực cho đội quân Khmer Đỏ đang tan rã.
+
+148
+00:08:54,730 --> 00:08:56,438
+Nghịch lý là, nhiều năm sau đó,
+
+149
+00:08:56,488 --> 00:09:00,465
+chính quyền Khmer Đỏ vẫn giữ chiếc ghế của Campuchia tại Liên Hợp Quốc.
+
+150
+00:09:00,515 --> 00:09:04,946
+Pol Pot ẩn mình trong rừng, tiếp tục chiến tranh du kích thêm gần hai mươi năm.
+
+151
+00:09:05,800 --> 00:09:08,566
+Đến năm 1997, tổ chức của ông ta tan rã.
+
+152
+00:09:08,616 --> 00:09:13,423
+Pol Pot ra lệnh giết người đồng chí lâu năm Son Sen cùng cả gia đình.
+
+153
+00:09:13,473 --> 00:09:16,591
+Lần này, chính thuộc hạ quay lưng với ông ta.
+
+154
+00:09:17,440 --> 00:09:19,242
+Trong một khu rừng gần biên giới,
+
+155
+00:09:19,292 --> 00:09:23,562
+Pol Pot bị đưa ra trước một phiên tòa do chính những người Khmer Đỏ dựng lên,
+
+156
+00:09:23,612 --> 00:09:25,357
+và bị kết án quản thúc suốt đời.
+
+157
+00:09:26,210 --> 00:09:30,629
+Vài tháng sau, ông ta trả lời phỏng vấn nhà báo Mỹ Nate Thayer.
+
+158
+00:09:30,679 --> 00:09:34,104
+Hãy nhìn tôi xem, tôi có phải là kẻ man rợ không?
+
+159
+00:09:34,154 --> 00:09:35,878
+Lương tâm tôi trong sạch.
+
+160
+00:09:36,730 --> 00:09:40,759
+Ông ta còn nói rằng con số hàng triệu người chết là quá đáng,
+
+161
+00:09:40,809 --> 00:09:43,901
+và nhà tù S-21 chỉ là thứ do Việt Nam dựng lên.
+
+162
+00:09:43,951 --> 00:09:47,913
+Đến cuối đời, Pol Pot vẫn không nhận bất cứ trách nhiệm nào.
+
+163
+00:09:48,760 --> 00:09:50,742
+Đêm mười lăm tháng tư năm 1998,
+
+164
+00:09:50,792 --> 00:09:55,657
+Pol Pot chết trong căn nhà gỗ nơi ông ta bị quản thúc, ở tuổi bảy mươi hai.
+
+165
+00:09:55,707 --> 00:09:59,786
+Ba ngày sau, thi thể được thiêu trên một đống lốp xe cũ và rác.
+
+166
+00:10:00,640 --> 00:10:04,208
+Ông ta chết trước khi phải đứng trước bất kỳ tòa án quốc tế nào.
+
+167
+00:10:04,258 --> 00:10:07,826
+Hàng triệu nạn nhân không bao giờ được nghe kẻ cầm đầu nhận tội.
+
+168
+00:10:08,680 --> 00:10:12,959
+Từ một cậu bé hiền lành bên bờ sông, một sinh viên thi trượt ở Paris,
+
+169
+00:10:13,009 --> 00:10:16,974
+một thầy giáo đọc thơ Verlaine, Saloth Sar đã trở thành Pol Pot.
+
+170
+00:10:17,024 --> 00:10:22,056
+Lịch sử để lại một câu hỏi chưa ai trả lời trọn vẹn: điều gì đã biến con người ấy
+
+171
+00:10:22,106 --> 00:10:23,311
+thành kẻ diệt chủng?
+
