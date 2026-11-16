@@ -57,7 +57,7 @@ VIS = {
     "war": A(["g", 280, 3.5, Q], ["g", 290, 4, Q], ["a", 62, 3.5, Q], ["a", 266, 3.5, Q]),
     # 5 year zero
     "zero": X("phrase", photo="pp_air", text="NĂM SỐ 0", size=200, sub="17/04/1975"),
-    "march": A(["r", 1140, 4, T], ["r", 1161, 4, T], ["m", 432, 4, Wd]),
+    "march": A(["r", 1140, 4, T], ["e", 258, 4, Wd], ["m", 432, 4, Wd]),
     "abolish": stat("pp1964", ["TIỀN · CHỢ · TRƯỜNG HỌC", 96, RD], ["CHÙA CHIỀN · BỆNH VIỆN", 96, RD], ["TẤT CẢ BỊ XÓA BỎ", 50, WHT]),
     "angkar": A(["s", 311, 4, T], ["s", 321, 4, T], ["s", 501, 4, T]),
     "newpeople": A(["s", 531, 4, T], ["s", 541, 4, T], ["s", 1301, 4, T]),
