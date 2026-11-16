@@ -81,6 +81,17 @@ def seg_files(sid, kind, segs):
         else:
             name, st, d, crop = s
             src = SRC[name] if SRC[name].startswith("http") else os.path.join(ARCH, SRC[name])
+            if src.startswith("http"):
+                cache = os.path.join(ARCH, "cut", f"{name}_{st}_{d:.2f}.mkv")
+                os.makedirs(os.path.dirname(cache), exist_ok=True)
+                for _try in range(5):
+                    if os.path.exists(cache) and dur(cache) >= d + 1.5:
+                        break
+                    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(max(0, st - 2)), "-t", f"{d + 4:.2f}", "-i", src,
+                                    "-an", "-c:v", "libx264", "-crf", "12", "-preset", "veryfast", *(["-flags", "+ildct+ilme"] if name in PRE else []), cache])
+                else:
+                    raise RuntimeError("download failed " + cache)
+                src, st = cache, (2 if st >= 2 else st)
             lift = "eq=gamma=1.4:brightness=0.03:saturation=1.1," if (name == "p" and st >= 80) else ""
             vf = PRE.get(name, "") + lift + CROP[crop] + ARCH_GRADE + f",fps={FPS},format=yuv420p"
         run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(st), "-t", f"{d:.3f}", "-i", src, "-vf", vf, "-an",

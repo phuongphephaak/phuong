@@ -23,7 +23,7 @@ def stat(photo, *lines):
 VIS = {
     # 1 hook
     "o_date": A(["r", 271, 4, T], ["r", 1141, 4, T], ["r", 1151, 4, T]),
-    "o_order": A(["r", 541, 4, T], ["r", 900, 4, T], ["m", 432, 4, Wd]),
+    "o_order": A(["r", 541, 4, T], ["r", 900, 4, T], ["m", 444, 3, Wd]),
     "o_never": A(["e", 252, 4, Wd], ["e", 266, 4, Wd], ["m", 444, 4, Wd]),
     "o_man": P("ceausescu"),
     "o_toll": stat("stupa", ["1.700.000", 170, RD], ["NGƯỜI CHẾT · GẦN 1/4 DÂN SỐ CAMPUCHIA", 56, WHT], ["1975 – 1979", 44, YEL]),
@@ -32,8 +32,8 @@ VIS = {
     "sting": X("sting"),
     # 2 childhood
     "village": P("preksbauv"),
-    "palace": A(["b", 16, 4, T], ["b", 150, 4, T], ["b", 916, 4, T]),
-    "monk": A(["b", 916, 4, T], ["b", 931, 4, T], ["b", 16, 4, T]),
+    "palace": A(["b", 18, 4, T], ["b", 200, 4, T], ["b", 225, 4, T]),
+    "monk": A(["b", 916, 4, T], ["b", 270, 4, T], ["b", 931, 4, T]),
     "fail": P("pp1964"),
     # 3 Paris
     "paris": X("phrase", photo="pp_air", text="PARIS · 1949", size=170, sub="HỌC BỔNG NGÀNH ĐIỆN TỬ VÔ TUYẾN"),
@@ -44,7 +44,7 @@ VIS = {
     "teacher": P("pp1964"),
     "marry": X("phrase", photo="pp1964", text="14/07/1956", size=160, sub="CƯỚI KHIEU PONNARY · ĐÚNG NGÀY QUỐC KHÁNH PHÁP"),
     "double": X("phrase", photo="pp_air", text="NGÀY: THẦY GIÁO", size=120, sub="ĐÊM: LÃNH ĐẠO MỘT ĐẢNG BÍ MẬT"),
-    "jungle": A(["s", 22, 4, T], ["m", 650, 4, Wd], ["m", 662, 4, Wd]),
+    "jungle": X("phrase", photo="preksbauv", text="1963", size=210, sub="BÍ THƯ · BIẾN MẤT VÀO RỪNG SÂU"),
     "travel": X("map", view0=[110.5, 25.5, 34], view1=[110.5, 25.5, 30], items=[
         {"t": 0.4, "type": "pin", "at": PP, "small": "", "big": "PHNÔM PÊNH", "size": 40, "anchor": "r"},
         {"t": 1.4, "type": "arrow", "path": [PP, [106.6, 15.5], HN], "dur": 2.0, "color": "yellow", "dashed": True, "w": 6},
@@ -53,17 +53,17 @@ VIS = {
         {"t": 6.2, "type": "pin", "at": BJ, "small": "1965 – 1966", "big": "BẮC KINH", "size": 44, "color": "red"}]),
     "secret": A(["s", 31, 4, T], ["s", 51, 4, T], ["s", 131, 4, T]),
     "coup": A(["m", 36, 4, Wd], ["m", 180, 4, Wd], ["m", 204, 4, Wd]),
-    "pol": A(["s", 161, 4, T], ["s", 172, 4, T], ["s", 1262, 4, T]),
+    "pol": A(["s", 172, 4, T], ["s", 1262, 4, T], ["s", 51, 4, T]),
     "war": A(["g", 280, 3.5, Q], ["g", 290, 4, Q], ["a", 62, 3.5, Q], ["a", 266, 3.5, Q]),
     # 5 year zero
     "zero": X("phrase", photo="pp_air", text="NĂM SỐ 0", size=200, sub="17/04/1975"),
-    "march": A(["r", 1140, 4, T], ["e", 258, 4, Wd], ["m", 432, 4, Wd]),
+    "march": A(["r", 1140, 4, T], ["e", 262, 4, Wd], ["e", 272, 4, Wd]),
     "abolish": stat("pp1964", ["TIỀN · CHỢ · TRƯỜNG HỌC", 96, RD], ["CHÙA CHIỀN · BỆNH VIỆN", 96, RD], ["TẤT CẢ BỊ XÓA BỎ", 50, WHT]),
     "angkar": X("phrase", photo="ce_graves", text="ANGKAR", size=210, sub="\"TỔ CHỨC\" · CÓ MẮT NHƯ QUẢ DỨA, NHÌN THẤY TẤT CẢ"),
     "newpeople": stat("pp1964", ["\"NGƯỜI CŨ\"", 110, WHT], ["\"NGƯỜI MỚI\"", 110, RD], ["DÂN THÀNH PHỐ: ĂN ÍT NHẤT · LÀM NẶNG NHẤT", 46, WHT]),
     "black": A(["e", 384, 4, Wd], ["e", 396, 4, Wd], ["e", 420, 4, Wd]),
     "quota": stat("preksbauv", ["3 TẤN", 180, YEL], ["THÓC TRÊN MỖI HÉC-TA · CHỈ TIÊU CỦA POL POT", 50, WHT]),
-    "kids": A(["s", 211, 4, T], ["m", 408, 4, Wd], ["s", 231, 4, T]),
+    "kids": A(["s", 211, 4, T], ["m", 411.5, 2.5, Wd], ["s", 231, 4, T]),
     "slogan": X("quote", photo="ce_graves", lines=["\"Giữ ngươi lại chẳng được lợi gì,", "mất ngươi đi chẳng thiệt hại gì.\""], by="KHẨU HIỆU KHMER ĐỎ", size=64),
     # 6 S-21
     "school": P("ts_bldg"),
@@ -114,7 +114,7 @@ VIS = {
         {"t": 3.6, "type": "tag", "at": [105.6, 22.0], "text": "6 TỈNH BIÊN GIỚI PHÍA BẮC", "dy": 120}]),
     "un": X("phrase", photo="ceausescu", text="GHẾ LIÊN HỢP QUỐC", size=130, sub="KHMER ĐỎ VẪN ĐẠI DIỆN CAMPUCHIA SUỐT NHIỀU NĂM"),
     "anlong": P("tamok"),
-    "trial": X("phrase", photo="tamok", text="TÙ CHUNG THÂN", size=160, sub="PHIÊN TÒA DO CHÍNH KHMER ĐỎ DỰNG LÊN · 07/1997"),
+    "trial": X("phrase", photo="pp_air", text="TÙ CHUNG THÂN", size=160, sub="PHIÊN TÒA DO CHÍNH KHMER ĐỎ DỰNG LÊN · 07/1997"),
     "thayer": X("quote", photo="polpot", lines=["\"Hãy nhìn tôi xem,", "tôi có phải kẻ man rợ không?", "Lương tâm tôi trong sạch.\""], by="POL POT · PHỎNG VẤN NATE THAYER, 10/1997", size=68),
     "deny": X("phrase", photo="ts_cells", text="\"S-21 DO VIỆT NAM DỰNG LÊN\"", size=96, sub="POL POT CHỐI BỎ TỘI ÁC ĐẾN CUỐI ĐỜI"),
     "death": P("cremation"),
