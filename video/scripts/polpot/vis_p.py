@@ -23,9 +23,9 @@ def stat(photo, *lines):
 VIS = {
     # 1 hook
     "o_date": A(["r", 271, 4, T], ["r", 1141, 4, T], ["r", 1151, 4, T]),
-    "o_order": A(["s", 522, 4, T], ["s", 532, 4, T], ["r", 1162, 4, T]),
+    "o_order": A(["r", 541, 4, T], ["r", 900, 4, T], ["m", 432, 4, Wd]),
     "o_never": A(["e", 252, 4, Wd], ["e", 266, 4, Wd], ["m", 444, 4, Wd]),
-    "o_man": P("polpot"),
+    "o_man": P("ceausescu"),
     "o_toll": stat("stupa", ["1.700.000", 170, RD], ["NGƯỜI CHẾT · GẦN 1/4 DÂN SỐ CAMPUCHIA", 56, WHT], ["1975 – 1979", 44, YEL]),
     "o_name": X("portrait", photo="polpot_c", name="Saloth Sar", sub="POL POT · 1925 – 1998", bg="photo", bgphoto="ceausescu"),
     "title": X("title", photo="stupa", l1="POL POT", l2="TỪ SINH VIÊN PARIS ĐẾN KẺ DIỆT CHỦNG"),
@@ -33,7 +33,7 @@ VIS = {
     # 2 childhood
     "village": P("preksbauv"),
     "palace": A(["b", 16, 4, T], ["b", 150, 4, T], ["b", 916, 4, T]),
-    "monk": A(["s", 612, 4, T], ["s", 625, 4, T], ["s", 893, 4, T]),
+    "monk": A(["b", 916, 4, T], ["b", 931, 4, T], ["b", 16, 4, T]),
     "fail": P("pp1964"),
     # 3 Paris
     "paris": X("phrase", photo="pp_air", text="PARIS · 1949", size=170, sub="HỌC BỔNG NGÀNH ĐIỆN TỬ VÔ TUYẾN"),
@@ -44,7 +44,7 @@ VIS = {
     "teacher": P("pp1964"),
     "marry": X("phrase", photo="pp1964", text="14/07/1956", size=160, sub="CƯỚI KHIEU PONNARY · ĐÚNG NGÀY QUỐC KHÁNH PHÁP"),
     "double": X("phrase", photo="pp_air", text="NGÀY: THẦY GIÁO", size=120, sub="ĐÊM: LÃNH ĐẠO MỘT ĐẢNG BÍ MẬT"),
-    "jungle": A(["s", 12, 4, T], ["s", 22, 4, T], ["s", 1292, 4, T]),
+    "jungle": A(["s", 22, 4, T], ["m", 650, 4, Wd], ["m", 662, 4, Wd]),
     "travel": X("map", view0=[110.5, 25.5, 34], view1=[110.5, 25.5, 30], items=[
         {"t": 0.4, "type": "pin", "at": PP, "small": "", "big": "PHNÔM PÊNH", "size": 40, "anchor": "r"},
         {"t": 1.4, "type": "arrow", "path": [PP, [106.6, 15.5], HN], "dur": 2.0, "color": "yellow", "dashed": True, "w": 6},
@@ -59,11 +59,11 @@ VIS = {
     "zero": X("phrase", photo="pp_air", text="NĂM SỐ 0", size=200, sub="17/04/1975"),
     "march": A(["r", 1140, 4, T], ["e", 258, 4, Wd], ["m", 432, 4, Wd]),
     "abolish": stat("pp1964", ["TIỀN · CHỢ · TRƯỜNG HỌC", 96, RD], ["CHÙA CHIỀN · BỆNH VIỆN", 96, RD], ["TẤT CẢ BỊ XÓA BỎ", 50, WHT]),
-    "angkar": A(["s", 311, 4, T], ["s", 321, 4, T], ["s", 501, 4, T]),
-    "newpeople": A(["s", 531, 4, T], ["s", 541, 4, T], ["s", 1301, 4, T]),
+    "angkar": X("phrase", photo="ce_graves", text="ANGKAR", size=210, sub="\"TỔ CHỨC\" · CÓ MẮT NHƯ QUẢ DỨA, NHÌN THẤY TẤT CẢ"),
+    "newpeople": stat("pp1964", ["\"NGƯỜI CŨ\"", 110, WHT], ["\"NGƯỜI MỚI\"", 110, RD], ["DÂN THÀNH PHỐ: ĂN ÍT NHẤT · LÀM NẶNG NHẤT", 46, WHT]),
     "black": A(["e", 384, 4, Wd], ["e", 396, 4, Wd], ["e", 420, 4, Wd]),
     "quota": stat("preksbauv", ["3 TẤN", 180, YEL], ["THÓC TRÊN MỖI HÉC-TA · CHỈ TIÊU CỦA POL POT", 50, WHT]),
-    "kids": A(["s", 211, 4, T], ["s", 231, 4, T], ["s", 1172, 4, T]),
+    "kids": A(["s", 211, 4, T], ["m", 408, 4, Wd], ["s", 231, 4, T]),
     "slogan": X("quote", photo="ce_graves", lines=["\"Giữ ngươi lại chẳng được lợi gì,", "mất ngươi đi chẳng thiệt hại gì.\""], by="KHẨU HIỆU KHMER ĐỎ", size=64),
     # 6 S-21
     "school": P("ts_bldg"),
@@ -114,7 +114,7 @@ VIS = {
         {"t": 3.6, "type": "tag", "at": [105.6, 22.0], "text": "6 TỈNH BIÊN GIỚI PHÍA BẮC", "dy": 120}]),
     "un": X("phrase", photo="ceausescu", text="GHẾ LIÊN HỢP QUỐC", size=130, sub="KHMER ĐỎ VẪN ĐẠI DIỆN CAMPUCHIA SUỐT NHIỀU NĂM"),
     "anlong": P("tamok"),
-    "trial": A(["s", 1131, 4, T], ["s", 1302, 4, T], ["s", 1122, 4, T]),
+    "trial": X("phrase", photo="tamok", text="TÙ CHUNG THÂN", size=160, sub="PHIÊN TÒA DO CHÍNH KHMER ĐỎ DỰNG LÊN · 07/1997"),
     "thayer": X("quote", photo="polpot", lines=["\"Hãy nhìn tôi xem,", "tôi có phải kẻ man rợ không?", "Lương tâm tôi trong sạch.\""], by="POL POT · PHỎNG VẤN NATE THAYER, 10/1997", size=68),
     "deny": X("phrase", photo="ts_cells", text="\"S-21 DO VIỆT NAM DỰNG LÊN\"", size=96, sub="POL POT CHỐI BỎ TỘI ÁC ĐẾN CUỐI ĐỜI"),
     "death": P("cremation"),

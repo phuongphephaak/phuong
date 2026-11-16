@@ -22,7 +22,8 @@ INTER = subprocess.run(["fc-match", "-f", "%{file}", "Inter:extrabold"], capture
 INTER_SB = subprocess.run(["fc-match", "-f", "%{file}", "Inter:semibold"], capture_output=True, text=True).stdout
 AUD = os.path.join(HERE, "aud")
 ARCH = os.path.join(HERE, "arch")
-SRC = {"s": "sihanouk73.mp4", "r": "refugees70.mp4", "m": "army70.mp4", "e": "aerial70.mp4", "b": "ballet65.mp4", "a": "airstrikes1966.mp4", "g": "gunfighters.mp4"}
+SRC = {"s": "https://archive.org/download/gov.archives.arc.618048/gov.archives.arc.618048.mpeg", "r": "refugees70.mp4", "m": "https://archive.org/download/LC-55680/LC-55680.mov", "e": "https://archive.org/download/LC-55813a/LC-55813a.mov", "b": "https://archive.org/download/gov.archives.arc.52434/gov.archives.arc.52434.mpeg", "a": "airstrikes1966.mp4", "g": "gunfighters.mp4"}
+PRE = {"s": "yadif=0:-1:0,", "b": "yadif=0:-1:0,"}
 CROP = {"w": "scale=2016:1134,setsar=1,crop=1920:1080,", "pa": "crop=474:266:79:22,scale=1920:1080,setsar=1,", "t": "scale=2016:1512,setsar=1,crop=1920:1080,", "tc": "scale=2112:1584,setsar=1,crop=1920:1080,"}
 CLIPS, NORM, TMP = (os.path.join(HERE, d) for d in ("clips", "norm", "tmp"))
 for d in (CLIPS, NORM, TMP):
@@ -62,7 +63,7 @@ def timeline():
 
 # ------------------------------------------------------------------ visuals
 FLOW_GRADE = "crop=iw/1.045:ih/1.045,scale=1920:1080:flags=lanczos,eq=saturation=0.86:contrast=1.05:gamma=0.97,noise=alls=5:allf=t"
-ARCH_GRADE = "scale=1920:1080:flags=lanczos,eq=contrast=1.08:brightness=-0.01,noise=alls=7:allf=t"
+ARCH_GRADE = "scale=1920:1080:flags=lanczos,hqdn3d=2:2:4:4,unsharp=7:7:1.1:5:5:0.0,eq=contrast=1.10:brightness=-0.01,noise=alls=4:allf=t"
 
 
 def seg_files(sid, kind, segs):
@@ -79,9 +80,9 @@ def seg_files(sid, kind, segs):
             vf = (FLOW_GRADE if k == "flow" else "scale=1920:1080") + f",fps={FPS},format=yuv420p"
         else:
             name, st, d, crop = s
-            src = os.path.join(ARCH, SRC[name])
+            src = SRC[name] if SRC[name].startswith("http") else os.path.join(ARCH, SRC[name])
             lift = "eq=gamma=1.4:brightness=0.03:saturation=1.1," if (name == "p" and st >= 80) else ""
-            vf = lift + CROP[crop] + ARCH_GRADE + f",fps={FPS},format=yuv420p"
+            vf = PRE.get(name, "") + lift + CROP[crop] + ARCH_GRADE + f",fps={FPS},format=yuv420p"
         run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(st), "-t", f"{d:.3f}", "-i", src, "-vf", vf, "-an",
              "-c:v", "libx264", "-crf", "17", "-preset", "veryfast", part])
         parts.append(part)
