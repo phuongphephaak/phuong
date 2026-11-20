@@ -263,7 +263,7 @@ def seg_render(name, t, dur, i):
             for j, (k, s) in enumerate([("hq", "MƯỜNG THANH"), ("himlam", "HIM LAM"), ("doclap", "ĐỘC LẬP"),
                                         ("bankeo", "BẢN KÉO"), ("a1", "ĐỒI A1"), ("isabelle", "HỒNG CÚM")]):
                 x, y, z = lab[k]
-                if z > 0 and 0.03 < x < 0.97 and 0.05 < y < 0.95:
+                if z > 0 and 0.03 < x < 0.97 and 0.05 < y < 0.95 and not (x < 0.42 and y < 0.5 and 2.7 < t < 8.3):
                     place_label(img, x * W, y * H, s, ease((t - 1.0 - 0.25 * j) / 0.5) * (1 - ease((t - 8.4) / 0.4)))
             ka = ease((t - 3.2) / 0.5) * (1 - ease((t - 7.8) / 0.5))
             if ka > 0:
