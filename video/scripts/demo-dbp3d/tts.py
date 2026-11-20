@@ -1,6 +1,6 @@
 import json, os, urllib.request
 KEY = os.environ["ELEVENLABS_API_KEY"]; OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "aud")
-L = {"l1": "Chiều ngày mười ba tháng ba, năm một nghìn chín trăm năm mươi tư.",
+L = {"l1": "Chiều ngày mười ba tháng ba, năm một nghìn chín trăm năm mươi tư. Điện Biên Phủ, vùng núi Tây Bắc Việt Nam.",
      "l2": "Dưới đáy lòng chảo Điện Biên Phủ, quân Pháp dựng bốn mươi chín cứ điểm. Họ tin đây là một pháo đài không thể công phá.",
      "l3": "Nhưng trên những ngọn núi bao quanh, từng khẩu pháo của ta đã được kéo bằng tay vào trận địa.",
      "l4": "Mười bảy giờ năm phút, toàn bộ trận địa pháo đồng loạt khai hỏa. Mục tiêu đầu tiên: Him Lam.",

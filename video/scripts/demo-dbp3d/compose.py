@@ -22,10 +22,12 @@ LAB = json.load(open(os.path.join(HERE, "labels.json")))
 LOGO = Image.open(os.path.join(HERE, "logo.png")).convert("RGBA")
 rnd = random.Random(5)
 
-SEGS = [("proj1", 0.0, 3.6), ("A", 3.6, 12.6), ("B", 12.6, 18.6), ("C", 18.6, 24.6),
-        ("proj2", 24.6, 27.6), ("giap", 27.6, 30.6), ("end", 30.6, 33.2)]
+SEGS = [("globe", 0.0, 6.4), ("A", 6.4, 15.4), ("B", 15.4, 21.4), ("C", 21.4, 27.4),
+        ("photo", 27.4, 30.4), ("giap", 30.4, 33.4), ("end", 33.4, 36.0)]
+sys.path.insert(0, HERE)
+from globe import globe_frame
 SHOT0 = {"A": 1, "B": 271, "C": 451}
-XF = 0.25  # crossfade seconds
+XF = 0.35  # crossfade seconds
 
 
 def text_sp(d, xy, s, f, fill, sp=0, anchor="la"):
@@ -198,16 +200,48 @@ def proj(photo, t, dur, i, zoom0=1.0, zoom1=1.08, cx=0.5, cy=0.5):
     return img
 
 
+def archive(photo, t, dur, i, zoom0=1.0, zoom1=1.08, cx=0.5, cy=0.5):
+    """ảnh tư liệu toàn khung: Ken Burns + sepia + hạt phim + vết xước (không khung rạp)"""
+    k = t / dur
+    ph = sepia(Image.open(os.path.join(PH, photo)).convert("RGB"), 0.85)
+    pic = cover(ph, W, H, zoom0 + (zoom1 - zoom0) * ease(k), cx, cy)
+    a = np.asarray(pic).astype(np.float32) * (1.0 + 0.04 * math.sin(i * 2.1) * rnd.random())
+    a = grain(vignette(a, 0.75), 9, i)
+    if rnd.random() < 0.3:
+        sx = rnd.randint(0, W - 3); a[:, sx:sx + 2] = a[:, sx:sx + 2] * 0.6 + 80
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
+
+
+def legend(img, a=1.0):
+    if a <= 0: return
+    lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
+    f = F(INTER, 22); rows = [((40, 100, 220), "QUÂN ĐỘI NHÂN DÂN VIỆT NAM"), ((200, 25, 30), "QUÂN PHÁP")]
+    w = int(max(d.textlength(s, font=f) + 2 * len(s) for _, s in rows) + 90); h = 32 + 44 * len(rows)
+    x0, y0 = W - w - 50, 40
+    d.rectangle((x0, y0, x0 + w, y0 + h), fill=(12, 12, 12, 200)); d.rectangle((x0 + 5, y0 + 5, x0 + w - 5, y0 + h - 5), outline=(235, 225, 200, 160), width=1)
+    for j, (c, s) in enumerate(rows):
+        cy = y0 + 38 + 44 * j
+        d.ellipse((x0 + 24, cy - 13, x0 + 50, cy + 13), fill=(*c, 255), outline=(255, 255, 255, 230), width=2)
+        text_sp(d, (x0 + 66, cy), s, f, (240, 235, 220, 255), 2, "lm")
+    img.alpha_composite(with_alpha(lay, a))
+
+
 # ---------------- segments ----------------
 def frame_3d(shot, t):
     f = min(SHOT0[shot] + int(round(t * FPS)), {"A": 270, "B": 450, "C": 630}[shot])
-    p = os.path.join(HERE, "frames", f"f_{f:04d}.jpg")
+    p = os.path.join(HERE, "frames2", f"f_{f:04d}.jpg")
     im = Image.open(p).convert("RGB").resize((W, H), Image.LANCZOS)
     im = ImageEnhance.Contrast(im).enhance(1.06)
     return im, f
 
 
 def seg_render(name, t, dur, i):
+    if name == "globe":
+        img = globe_frame(t, dur)
+        a = grain(np.asarray(img.convert("RGB")).astype(np.float32), 4, i)
+        img = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
+        date_badge(img, "13 · 03 · 1954", ease((t - 0.8) / 0.5))
+        return img
     if name == "proj1":
         img = proj("dbp002.jpg", t, dur, i, 1.0, 1.1, 0.5, 0.45)
         s = "13 · 03 · 1954"; n = int(min(len(s), max(0, (t - 0.3) / 0.07)))
@@ -237,22 +271,23 @@ def seg_render(name, t, dur, i):
                 def draw(dd, sh):
                     dd.text((110, 210), "49", font=F(OSWALD, 190), fill=sh or (255, 255, 255, 255))
                     dd.text((330, 250), "CỨ ĐIỂM", font=F(OSWALD, 86), fill=sh or (255, 255, 255, 255))
-                    text_sp(dd, (118, 440), "TẬP ĐOÀN CỨ ĐIỂM CỦA PHÁP", F(INTER, 28), sh or (150, 200, 255, 255), 4)
+                    text_sp(dd, (118, 440), "TẬP ĐOÀN CỨ ĐIỂM CỦA PHÁP", F(INTER, 28), sh or (255, 125, 110, 255), 4)
                 shadow(lay, draw, 12, (0, 4), 255); img.alpha_composite(with_alpha(lay, ka))
             date_badge(img, "11 · 1953 – 03 · 1954", ease(t / 0.5))
         elif name == "B":
-            tag(img, 90, 760, "VÒNG VÂY", "PHÁO BINH QĐND VIỆT NAM TRÊN CÁC ĐỈNH NÚI", ease((t - 1.0) / 0.5) * (1 - ease((t - 5.5) / 0.4)))
+            tag(img, 90, 760, "VÒNG VÂY", "PHÁO BINH QĐND VIỆT NAM TRÊN CÁC ĐỈNH NÚI", ease((t - 1.0) / 0.5) * (1 - ease((t - 5.5) / 0.4)), (40, 100, 220))
             date_badge(img, "13 · 03 · 1954")
         else:
             x, y, z = lab["himlam"]
             callout(img, x * W, y * H, "CỨ ĐIỂM HIM LAM", "Mục tiêu đầu tiên · 17:05", ease((t - 0.6) / 0.5))
             date_badge(img, "13 · 03 · 1954   17:05")
+        legend(img, ease((t - 0.3) / 0.5))
         # trung thực: đây là sa bàn mô phỏng
         d = ImageDraw.Draw(img); text_sp(d, (60, H - 50), "SA BÀN MÔ PHỎNG", F(INTER, 20), (235, 230, 215, 170), 4, "ls")
         return img
-    if name == "proj2":
-        img = proj("xungphong.jpg", t, dur, i, 1.0, 1.12, 0.5, 0.5)
-        tag(img, 380, 690, "HIM LAM", "ĐÊM 13/03/1954 · CỨ ĐIỂM ĐẦU TIÊN THẤT THỦ", ease((t - 0.4) / 0.4), (200, 30, 30))
+    if name == "photo":
+        img = archive("xungphong.jpg", t, dur, i, 1.0, 1.12, 0.5, 0.5)
+        tag(img, 110, 820, "HIM LAM", "ĐÊM 13/03/1954 · CỨ ĐIỂM ĐẦU TIÊN THẤT THỦ", ease((t - 0.4) / 0.4), (200, 30, 30))
         return img
     if name == "giap":
         k = t / dur
