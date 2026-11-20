@@ -18,7 +18,7 @@ def F(p, s):
     if k not in _fc: _fc[k] = ImageFont.truetype(p, int(s))
     return _fc[k]
 ease = lambda x: 0 if x <= 0 else 1 if x >= 1 else x * x * (3 - 2 * x)
-LAB = json.load(open(os.path.join(HERE, "labels.json")))
+LAB = json.load(open(os.path.join(HERE, "labels3.json")))
 LOGO = Image.open(os.path.join(HERE, "logo.png")).convert("RGBA")
 rnd = random.Random(5)
 
@@ -125,11 +125,10 @@ def callout(img, px, py, l1, l2, a=1.0):
 
 def place_label(img, px, py, s, a):
     lay = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    f = F(INTER, 26)
+    f = F(INTER, 40)          # nhãn kiểu Verdun: chữ trắng đậm lớn, bóng mềm, không chấm
     def draw(dd, sh):
-        dd.ellipse((px - 5, py - 5, px + 5, py + 5), fill=sh or (255, 255, 255, 255))
-        text_sp(dd, (px, py - 16), s, f, sh or (255, 255, 255, 255), 3, "md")
-    shadow(lay, draw, 5, (0, 2), 255)
+        text_sp(dd, (px, py - 20), s, f, sh or (255, 255, 255, 255), 3, "md")
+    shadow(lay, draw, 7, (0, 3), 235)
     img.alpha_composite(with_alpha(lay, a))
 
 
@@ -229,9 +228,10 @@ def legend(img, a=1.0):
 # ---------------- segments ----------------
 def frame_3d(shot, t):
     f = min(SHOT0[shot] + int(round(t * FPS)), {"A": 270, "B": 450, "C": 630}[shot])
-    p = os.path.join(HERE, "frames2", f"f_{f:04d}.jpg")
-    im = Image.open(p).convert("RGB").resize((W, H), Image.LANCZOS)
-    im = ImageEnhance.Contrast(im).enhance(1.06)
+    p = os.path.join(HERE, "frames3", f"f_{f:04d}.jpg")
+    im = Image.open(p).convert("RGB")
+    if im.size != (W, H): im = im.resize((W, H), Image.LANCZOS)
+    im = im.filter(ImageFilter.UnsharpMask(1.2, 40, 2))
     return im, f
 
 
@@ -256,7 +256,7 @@ def seg_render(name, t, dur, i):
     if name in "ABC":
         im, f = frame_3d(name, t)
         a = np.asarray(im).astype(np.float32) * np.array([1.04, 1.0, 0.94])
-        a = grain(vignette(a, 0.6), 5, i)
+        a = grain(vignette(a, 0.45), 3, i)
         img = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
         lab = LAB[str(f)]
         if name == "A":
