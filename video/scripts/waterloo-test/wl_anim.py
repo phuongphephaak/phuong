@@ -400,34 +400,52 @@ def flag_img(kind):
         d.rectangle((0, 0, w - 1, h - 1), outline=(40, 30, 20), width=4)
     # nếp gấp vải
     a = np.asarray(im.convert("RGBA")).astype(np.float32)
-    if not kind.startswith("portrait"):
-        xx = np.arange(a.shape[1])[None, :, None]
-        a[..., :3] *= 1 + 0.10 * np.sin(xx / a.shape[1] * 2 * math.pi * 1.6 + 0.7)
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
 
 
-def std_tex(kind, label):
+def wave_flag(fl, t, ph0, cloth=True):
+    """vải cờ gợn sóng: nếp chạy ngang, mép dưới đung đưa, sáng tối theo nếp"""
+    from scipy.ndimage import map_coordinates
+    a = np.asarray(fl).astype(np.float32); h, w = a.shape[:2]; padb = 10
+    a = np.concatenate([a, np.zeros((padb, w, 4), np.float32)], 0)
+    yy, xx = np.mgrid[0:h + padb, 0:w].astype(np.float32)
+    u = xx / w; v = np.clip(yy / h, 0, 1)
+    amp = 1.0 if cloth else 0.55
+    ph = 2 * np.pi * (1.25 * u - 0.55 * t) + ph0
+    ph2 = 2 * np.pi * (2.3 * u - 0.9 * t) + ph0 * 1.7
+    dy = amp * (3.2 * np.sin(ph) + 1.0 * np.sin(ph2)) * v ** 1.2
+    dx = amp * 1.4 * np.sin(ph * 0.5 + 1.0) * v
+    sy, sx = yy - dy, xx - dx
+    out = np.stack([map_coordinates(a[..., c], [sy, sx], order=1, mode="constant", cval=0) for c in range(4)], -1)
+    shade = 1 + amp * (0.15 * np.cos(ph) + 0.06 * np.cos(ph2)) * (0.35 + 0.65 * v)
+    out[..., :3] *= shade[..., None]
+    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGBA")
+
+
+def std_tex(kind, label, t=0.0):
     key = ("std", kind, label)
-    if key in _spr: return _spr[key]
-    fl = flag_img(kind)
-    side = (40, 60, 160) if kind in ("france",) or kind in ("portrait:napoleon", "portrait:derlon") else (190, 30, 30)
-    fw, fh = fl.size
-    plate_h = 26
-    tw = max(fw, 0)
-    pole = 40
-    im = Image.new("RGBA", (fw + 20, fh + plate_h + pole + 24), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
-    x0 = 10; y0 = 14
-    # biển tên
-    d.rectangle((x0 - 2, y0, x0 + fw + 2, y0 + plate_h), fill=(245, 242, 235), outline=side, width=3)
-    f = F(BARLOW, 17)
-    d.text((x0 + fw / 2, y0 + plate_h / 2 + 1), label, font=f, fill=(30, 25, 25), anchor="mm")
-    d.ellipse((x0 + fw / 2 - 5, y0 - 10, x0 + fw / 2 + 5, y0), fill=(200, 160, 60) if side[2] > 100 else (90, 90, 95), outline=(40, 30, 10))
-    im.alpha_composite(fl, (x0, y0 + plate_h + 2))
-    d.rectangle((x0 - 1, y0 + plate_h + 1, x0 + fw, y0 + plate_h + fh + 2), outline=(25, 20, 20), width=2)
-    # cán cờ
-    d.rectangle((x0 + fw / 2 - 2, y0 + plate_h + fh + 2, x0 + fw / 2 + 2, im.height - 2), fill=(70, 60, 50))
-    _spr[key] = (im, (x0 + fw / 2, im.height - 2))
-    return _spr[key]
+    if key not in _spr:
+        fl = flag_img(kind).convert("RGBA")
+        d = ImageDraw.Draw(fl); d.rectangle((0, 0, fl.width - 1, fl.height - 1), outline=(25, 20, 20), width=2)
+        side = (40, 60, 160) if kind in ("france",) or kind in ("portrait:napoleon", "portrait:derlon") else (190, 30, 30)
+        fw, fh = fl.size
+        plate_h = 26; pole = 40
+        im = Image.new("RGBA", (fw + 20, fh + plate_h + pole + 24), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        x0 = 10; y0 = 14
+        # cán cờ (sau tấm vải)
+        d.rectangle((x0 + fw / 2 - 2, y0 + plate_h + fh - 6, x0 + fw / 2 + 2, im.height - 2), fill=(70, 60, 50))
+        top = Image.new("RGBA", im.size, (0, 0, 0, 0)); d = ImageDraw.Draw(top)
+        d.rectangle((x0 - 2, y0, x0 + fw + 2, y0 + plate_h), fill=(245, 242, 235), outline=side, width=3)
+        f = F(BARLOW, 17)
+        d.text((x0 + fw / 2, y0 + plate_h / 2 + 1), label, font=f, fill=(30, 25, 25), anchor="mm")
+        d.ellipse((x0 + fw / 2 - 5, y0 - 10, x0 + fw / 2 + 5, y0), fill=(200, 160, 60) if side[2] > 100 else (90, 90, 95), outline=(40, 30, 10))
+        _spr[key] = (im, top, fl, (x0, y0 + plate_h + 1), (x0 + fw / 2, im.height - 2), not kind.startswith("portrait"))
+    base, top, fl, fpos, anchor, cloth = _spr[key]
+    ph0 = (sum(map(ord, label)) * 0.37) % (2 * math.pi)
+    im = base.copy()
+    im.alpha_composite(wave_flag(fl, t, ph0, cloth), fpos)
+    im.alpha_composite(top)
+    return im, anchor
 
 
 def std_sprite(kind, label, scale):
@@ -612,13 +630,16 @@ _mip = {}
 
 
 def mip(tex, L):
+    if L == 0: return tex
     key = (id(tex), L)
-    if key not in _mip:
+    hit = _mip.get(key)
+    if hit is None or hit[0] is not tex:
         im = tex
         for _ in range(L):
             im = im.resize((max(1, im.width // 2), max(1, im.height // 2)), Image.LANCZOS)
-        _mip[key] = im
-    return _mip[key]
+        if len(_mip) > 400: _mip.clear()
+        _mip[key] = hit = (tex, im)
+    return hit[1]
 
 
 def blit(img, tex, anchor, uv, scale, ang=0.0, alpha=1.0, M=None, shadow=None, tint=None):
@@ -767,7 +788,7 @@ def render(fi):
                  shadow=(5 * s, 6 * s, 2.2 * s, 0.55))
         else:
             sc_ = s * 0.56
-            tex, (ax, ay) = std_tex(obj["kind"], obj["label"])
+            tex, (ax, ay) = std_tex(obj["kind"], obj["label"], t)
             # bóng cờ đổ nghiêng xuống mặt đất
             blit(img, tex, (ax, ay), (u0, v0), sc_, M=[[1, -0.75], [0, 0.42]], tint=(15, 18, 5), alpha=0.42)
             blit(img, tex, (ax, ay), (u0, v0), sc_)
