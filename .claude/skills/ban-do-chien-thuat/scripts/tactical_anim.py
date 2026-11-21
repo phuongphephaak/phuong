@@ -267,6 +267,20 @@ def build_oob():
 
 UNITS, STDS, ADV = build_oob()
 
+
+def _group_skirmishers(units):
+    r = np.random.default_rng(77); out = []
+    for u in units:
+        out.append(u)
+        if u.kind in ("skb", "skf"):
+            for k in range(int(r.integers(1, 3))):
+                dx, dy = r.uniform(-14, 14), r.uniform(-9, 9)
+                out.append(Unit(u.kind, [(kk[0], kk[1] + dx, kk[2] + dy, kk[3], kk[4]) for kk in u.keys]))
+    return out
+
+
+UNITS = _group_skirmishers(UNITS)
+
 # ============================ sprites ============================
 PPM = 4  # px trên mét cho sprite gốc
 COL = {"br": (215, 22, 22), "hn": (225, 60, 50), "nl": (235, 115, 30), "fr": (28, 58, 205), "frg": (20, 40, 150),
@@ -328,12 +342,32 @@ def gun_tex():
 
 
 def pin_tex(kind):
-    """tán binh: ghim nhỏ đứng"""
+    """lính tán binh tí hon: mũ đen, áo màu phe, đai chéo trắng, quần, súng hỏa mai dựng đứng có lưỡi lê"""
     if kind in _spr: return _spr[kind]
-    c = (200, 30, 28) if kind == "skb" else (30, 60, 210)
-    im = Image.new("RGBA", (40, 70), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
-    d.polygon([(20, 6), (33, 62), (20, 50), (7, 62)], fill=c + (255,), outline=(250, 250, 250, 255))
-    d.ellipse((15, 0, 25, 10), fill=(240, 235, 225, 255), outline=(30, 20, 20, 255))
+    coat = (200, 28, 26) if kind == "skb" else (32, 62, 200)
+    trou = (205, 205, 200) if kind == "skf" else (110, 110, 118)
+    o = (18, 14, 12, 255)
+    im = Image.new("RGBA", (60, 170), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    # chân
+    d.polygon([(19, 112), (29, 112), (28, 160), (18, 160)], fill=trou + (255,), outline=o)
+    d.polygon([(31, 112), (41, 112), (42, 160), (32, 160)], fill=trou + (255,), outline=o)
+    d.rectangle((17, 156, 29, 164), fill=(25, 20, 18, 255)); d.rectangle((31, 156, 43, 164), fill=(25, 20, 18, 255))
+    # áo
+    d.polygon([(15, 48), (45, 48), (47, 116), (13, 116)], fill=coat + (255,), outline=o)
+    d.line([(17, 52), (43, 108)], fill=(250, 250, 248, 255), width=5); d.line([(43, 52), (17, 108)], fill=(250, 250, 248, 255), width=5)
+    # tay giữ súng
+    d.polygon([(40, 54), (50, 60), (50, 86), (44, 86)], fill=coat + (255,), outline=o)
+    # đầu + mũ shako
+    d.ellipse((21, 30, 39, 50), fill=(230, 190, 160, 255), outline=o)
+    d.rectangle((19, 10, 41, 34), fill=(22, 20, 22, 255), outline=o)
+    d.rectangle((17, 30, 43, 35), fill=(22, 20, 22, 255))
+    # súng hỏa mai + lưỡi lê
+    d.rectangle((47, 20, 56, 152), fill=(38, 26, 18, 255), outline=o)
+    d.rectangle((49, 4, 54, 24), fill=(170, 172, 178, 255), outline=o)
+    d.polygon([(49, 5), (51.5, -4), (54, 5)], fill=(235, 236, 240, 255))
+    # sáng phía trái
+    a = np.asarray(im).astype(np.float32); xx = np.linspace(1.18, 0.85, im.width)[None, :, None]
+    a[..., :3] *= xx; im = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
     _spr[kind] = im; return im
 
 
@@ -694,6 +728,142 @@ def label_tex(txt):
         _lab[txt] = lay
     return _lab[txt]
 
+
+# ============================ vũ khí minh hoạ (đúng thời 1815) ============================
+WEAPONS_ICONS = [  # loại, tên, gắn vào (cờ hoặc toạ độ), lệch (mét), (hiện, ẩn), phe
+    dict(kind="cannon", label="12-POUNDER", at=(3420, 1990), off=(0, 0), t=(1.0, 7.6), side="fr"),
+    dict(kind="charleville", label="CHARLEVILLE M1777", at="france:2ND DIVISION", off=(-190, -110), t=(10.0, 16.2), side="fr"),
+    dict(kind="brownbess", label="BROWN BESS", at=(3560, 1330), off=(0, 0), t=(13.4, 18.4), side="br"),
+    dict(kind="baker", label="BAKER RIFLE \u00b7 95TH", at=(2905, 1700), off=(-150, -40), t=(14.0, 18.4), side="br"),
+    dict(kind="sabre", label="1796 HEAVY CAVALRY SWORD", at="union:UNION BDE", off=(95, 25), t=(18.9, 23.4), side="br"),
+]
+WEAPONS = []   # bật lại bằng WEAPONS = WEAPONS_ICONS nếu muốn biểu tượng vũ khí riêng
+WOOD, WOOD_D, STEEL, STEEL_D, BRASS = (122, 74, 38), (70, 40, 18), (168, 172, 178), (78, 80, 86), (196, 160, 70)
+
+
+def weapon_tex(kind):
+    key = ("wpn", kind)
+    if key in _spr: return _spr[key]
+    Wc, Hc = 720, 220
+    im = Image.new("RGBA", (Wc, Hc), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    o = (25, 18, 12, 255)
+    if kind in ("brownbess", "charleville", "baker"):
+        L = 640 if kind != "baker" else 520
+        x0 = 30; y = 110
+        bar_end = x0 + L
+        # nòng thép
+        d.rectangle((x0 + 150, y - 9, bar_end, y + 1), fill=STEEL + (255,), outline=o, width=3)
+        d.line([(x0 + 160, y - 6), (bar_end - 4, y - 6)], fill=(225, 228, 232, 255), width=2)
+        # báng gỗ + thân dưới nòng
+        stock = [(x0, y + 52), (x0 + 6, y - 6), (x0 + 120, y - 10), (x0 + 175, y - 2), (bar_end - (70 if kind != "baker" else 40), y - 2),
+                 (bar_end - (70 if kind != "baker" else 40), y + 12), (x0 + 210, y + 14), (x0 + 175, y + 20), (x0 + 120, y + 26), (x0 + 22, y + 60)]
+        d.polygon(stock, fill=WOOD + (255,), outline=o)
+        d.line([(x0 + 14, y + 4), (x0 + 120, y - 2)], fill=(160, 104, 58, 255), width=3)
+        # que thông nòng
+        d.line([(x0 + 215, y + 8), (bar_end - 10, y + 8)], fill=STEEL_D + (255,), width=3)
+        # cò súng + vòng che cò
+        d.arc((x0 + 150, y + 6, x0 + 200, y + 40), 0, 180, fill=(BRASS if kind == "brownbess" else STEEL_D) + (255,), width=4)
+        d.line([(x0 + 172, y + 12), (x0 + 168, y + 26)], fill=o, width=3)
+        # bộ khoá đá lửa
+        d.rectangle((x0 + 170, y - 16, x0 + 222, y + 4), fill=STEEL_D + (255,), outline=o, width=2)
+        d.polygon([(x0 + 176, y - 16), (x0 + 168, y - 34), (x0 + 184, y - 36), (x0 + 190, y - 16)], fill=STEEL + (255,), outline=o)
+        # vòng đai nòng
+        bands = [x0 + 330, x0 + 460, bar_end - 74] if kind == "charleville" else ([x0 + 400] if kind == "baker" else [])
+        for bx in bands:
+            d.rectangle((bx, y - 11, bx + 9, y + 13), fill=(STEEL if kind == "charleville" else BRASS) + (255,), outline=o, width=2)
+        if kind == "brownbess":
+            d.rectangle((x0 + 2, y + 38, x0 + 20, y + 58), fill=BRASS + (255,))
+        if kind == "baker":   # hộp đồng ở báng + thước ngắm
+            d.rounded_rectangle((x0 + 40, y + 8, x0 + 110, y + 26), 6, fill=BRASS + (255,), outline=o, width=2)
+            d.rectangle((bar_end - 30, y - 18, bar_end - 22, y - 9), fill=STEEL_D + (255,))
+        if kind in ("brownbess", "charleville"):   # lưỡi lê
+            d.rectangle((bar_end - 18, y + 1, bar_end - 4, y + 12), fill=STEEL_D + (255,), outline=o, width=2)
+            d.polygon([(bar_end - 6, y + 8), (Wc - 8, y + 2), (bar_end - 6, y + 16)], fill=(205, 208, 214, 255), outline=o)
+    elif kind == "cannon":
+        # nòng đồng
+        d.polygon([(150, 70), (600, 92), (600, 122), (150, 140), (120, 132), (120, 78)], fill=(176, 128, 58, 255), outline=o)
+        d.line([(160, 86), (590, 100)], fill=(226, 186, 110, 255), width=4)
+        for bx in (220, 330, 560): d.rectangle((bx, 80 + (bx - 150) * 0.05, bx + 12, 130 - (bx - 150) * 0.05), fill=(150, 104, 44, 255), outline=o)
+        d.ellipse((96, 92, 126, 118), fill=(150, 104, 44, 255), outline=o, width=2)
+        d.rectangle((600, 88, 618, 126), fill=(150, 104, 44, 255), outline=o, width=2)
+        # giá gỗ
+        d.polygon([(30, 190), (250, 130), (330, 136), (330, 158), (60, 206)], fill=(92, 104, 70, 255), outline=o)
+        # bánh xe
+        cx, cy, r = 280, 150, 62
+        d.ellipse((cx - r, cy - r, cx + r, cy + r), outline=o, width=12)
+        d.ellipse((cx - r + 3, cy - r + 3, cx + r - 3, cy + r - 3), outline=(92, 104, 70, 255), width=7)
+        for k in range(12):
+            a = k * math.pi / 6; d.line([(cx, cy), (cx + (r - 6) * math.cos(a), cy + (r - 6) * math.sin(a))], fill=(80, 90, 60, 255), width=5)
+        d.ellipse((cx - 13, cy - 13, cx + 13, cy + 13), fill=STEEL_D + (255,), outline=o, width=2)
+    elif kind == "sabre":
+        # lưỡi thẳng, mũi kiểu "rìu" (mẫu 1796 kỵ binh nặng)
+        d.polygon([(190, 98), (650, 96), (686, 108), (650, 120), (190, 118)], fill=(212, 216, 222, 255), outline=o)
+        d.line([(196, 104), (640, 102)], fill=(250, 252, 255, 255), width=3)
+        d.line([(200, 111), (600, 110)], fill=STEEL_D + (255,), width=2)
+        # chắn tay + chuôi
+        d.rounded_rectangle((170, 70, 196, 150), 8, fill=STEEL + (255,), outline=o, width=3)
+        d.arc((60, 60, 200, 168), 90, 270, fill=STEEL + (255,), width=9)
+        d.rounded_rectangle((70, 96, 172, 122), 10, fill=(40, 30, 24, 255), outline=o, width=2)
+        for gx in range(80, 165, 12): d.line([(gx, 98), (gx + 6, 120)], fill=(120, 100, 70, 255), width=2)
+        d.ellipse((50, 94, 76, 124), fill=STEEL + (255,), outline=o, width=2)
+    # viền sáng mỏng cho nổi trên nền bản đồ
+    a = im.split()[3]
+    rim = Image.new("RGBA", im.size, (250, 244, 225, 0)); rim.putalpha(a.filter(ImageFilter.MaxFilter(7)).point(lambda v: int(v * 0.85)))
+    rim.alpha_composite(im); im = rim
+    bb = im.getbbox(); im = im.crop((bb[0] - 4, bb[1] - 4, bb[2] + 4, bb[3] + 4))
+    _spr[key] = im
+    return im
+
+
+def weapon_card(w):
+    """biểu tượng vũ khí + biển tên bên dưới"""
+    key = ("wcard", w["kind"], w["label"])
+    if key in _spr: return _spr[key]
+    ic = weapon_tex(w["kind"])
+    f = F(BARLOW, 34)
+    tw = int(f.getlength(w["label"])) + 40
+    side = (190, 30, 30) if w["side"] == "br" else (40, 60, 160)
+    Wd = max(ic.width, tw) + 20; Hd = ic.height + 70
+    im = Image.new("RGBA", (Wd, Hd), (0, 0, 0, 0))
+    im.alpha_composite(ic, ((Wd - ic.width) // 2, 0))
+    d = ImageDraw.Draw(im)
+    px0 = (Wd - tw) // 2; py0 = ic.height + 12
+    d.rectangle((px0, py0, px0 + tw, py0 + 48), fill=(245, 242, 235, 255), outline=side + (255,), width=4)
+    d.text((Wd / 2, py0 + 25), w["label"], font=f, fill=(30, 25, 25, 255), anchor="mm")
+    _spr[key] = (im, (Wd / 2, Hd))
+    return _spr[key]
+
+
+def std_pos(sd, t):
+    ks = sd["keys"]
+    if len(ks) == 1 or t <= ks[0][0]: return ks[0][1:]
+    for i in range(len(ks) - 1):
+        if ks[i][0] <= t <= ks[i + 1][0]:
+            e = ease((t - ks[i][0]) / (ks[i + 1][0] - ks[i][0]))
+            return lerp(ks[i][1], ks[i + 1][1], e), lerp(ks[i][2], ks[i + 1][2], e)
+    return ks[-1][1:]
+
+
+def draw_weapons(img, cam, t):
+    for w in WEAPONS:
+        t0, t1 = w["t"]
+        if t < t0 or t > t1 + 0.5: continue
+        if isinstance(w["at"], str):
+            kd, lb = w["at"].split(":", 1)
+            sd = [d for d in STDS if d["label"] == lb and d["kind"] == kd][0]; x, y = std_pos(sd, t)
+        else:
+            x, y = w["at"]
+        x += w["off"][0]; y += w["off"][1]
+        uu, vv, s = cam.proj([(x, y)])
+        k = (t - t0) / 0.45
+        pop = 1 + 0.12 * math.sin(min(1, k) * math.pi) if k < 1 else 1.0      # nảy nhẹ khi hiện
+        op = ease(k) * (1 - ease((t - t1) / 0.5))
+        ic = weapon_tex(w["kind"])
+        L_m = 64 if w["kind"] != "cannon" else 50          # dài cỡ một khối tiểu đoàn
+        sc = L_m * float(s[0]) / ic.width * pop
+        blit(img, ic, (ic.width / 2, ic.height / 2), (float(uu[0]), float(vv[0])), sc, alpha=op,
+             shadow=(4 * float(s[0]), 5 * float(s[0]), 1.8 * float(s[0]), 0.55))
+
 # ============================ frame ============================
 def text_shadow(img, xy, s, font, fill, anchor="mm", blur=3, op=200, off=(2, 2)):
     lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
@@ -779,8 +949,9 @@ def render(fi):
         v0 = float(it[0] - (1e4 if typ == "s" else 0)); u0 = float(u0); s = float(s)
         if typ == "u":
             if obj.kind in ("skb", "skf"):
-                p = pin_tex(obj.kind)
-                blit(img, p, (20, 62), (u0, v0), s * 13 / 70, alpha=al)
+                p = pin_tex(obj.kind); sc_ = s * 17 / 170
+                blit(img, p, (30, 162), (u0, v0), sc_, M=[[1, -0.75], [0, 0.42]], tint=(15, 18, 5), alpha=0.40 * al)
+                blit(img, p, (30, 162), (u0, v0), sc_, alpha=al)
                 continue
             ang = cam.screen_angle(x, y, hd)
             tex = gun_tex() if obj.kind == "gun" else bar_tex(obj.kind)
@@ -803,6 +974,8 @@ def render(fi):
         op = min(1, age / 0.12) * (1 - ease((age - 1.2) / 2.0))
         px = sz * s[0] * grow * 2.3
         blit(img, st, (st.width / 2, st.height * 0.65), (float(uu[0]), float(vv[0])), px / st.width, alpha=op * 0.9)
+    # --- vũ khí minh hoạ
+    draw_weapons(img, cam, t)
     # --- nhãn địa danh
     for (key, txt, off) in LABELS:
         vx, vy = GEO["villages"][key]

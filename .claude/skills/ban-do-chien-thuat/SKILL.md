@@ -70,5 +70,7 @@ Mọi script đọc và ghi trong thư mục `WORK` (mặc định là thư mụ
 - **Đặt mọi thứ đứng trên bản đồ bằng `blit()`** (affine dưới mức pixel, có mipmap): quân, cờ, nhãn, khói. Không dán theo pixel nguyên, không làm tròn kích thước hay góc, nếu không sẽ giật.
 - **Bóng mây phủ lên mặt đất trước khi vẽ mũi tên và quân.** Quân chỉ tối đi khoảng 10% theo mây, để mũi tên luôn sáng.
 - **Cờ là vải treo dưới biển tên**, gợn bằng `wave_flag()`: sóng chạy ngang, mép dưới đung đưa nhiều hơn, có sáng tối theo nếp. Chân dung gợn khoảng 55% so với cờ.
+- **Lính tán binh tí hon** (`skb`, `skf` vẽ trong `pin_tex`): đứng cầm súng dựng có lưỡi lê, áo màu phe, đai chéo trắng, mũ đen, bóng đổ nghiêng; tự gom thành nhóm 2–3 người (`_group_skirmishers`). Cao khoảng 17 m theo tỉ lệ bản đồ, ngang cỡ khối quân. Đổi súng hoặc quân phục theo thời kỳ ngay trong `pin_tex` (ví dụ thời chống Pháp vẽ K44, mũ cối).
+- **Biểu tượng vũ khí riêng** (`WEAPONS_ICONS`: pháo 12 pound, Charleville, Brown Bess, Baker, kiếm 1796) đang tắt; bật bằng `WEAPONS = WEAPONS_ICONS`, cỡ bằng một khối quân.
 - **Tông màu bản đồ:** độ sáng p5/p50/p95 khoảng 50/105/170, R ≈ G, B ≈ 0,6 R (màu kaki). Đổ bóng đồi vừa phải (`ex` khoảng 5,5); không để quá vàng, quá gồ ghề hay rừng có cạnh thẳng.
 - **Mũi tên:** màu kem vàng (255, 246, 190), đầu sáng và đuôi mờ, mọc từ đuôi lên đầu trong khoảng 2,5 giây, giữ khoảng 3 giây rồi mờ trong khoảng 1 giây. Các mũi tên phụ xuất hiện lệch nhau khoảng 0,25 giây.
