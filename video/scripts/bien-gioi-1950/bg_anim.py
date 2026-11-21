@@ -597,6 +597,88 @@ LABELS += [(tuple(GEO_NEW["P477"]), "Điểm cao 477", (-330, -40)), (tuple(_rc4
 CHURN_BBOX = (int(min(e[0] for e in CHURN)) - 500, int(min(e[1] for e in CHURN)) - 500, int(max(e[0] for e in CHURN)) + 500, int(max(e[1] for e in CHURN)) + 500)
 
 
+# ---------------- vệt máu, xác ngổn ngang, cột khói đen ở điểm giao chiến ác liệt ----------------
+_r = np.random.default_rng(99)
+_nB = GEO_NEW["B"]; _nP = GEO_NEW["P477"]
+GORE = []        # (x, y, r, t0)
+for k in range(16): GORE.append((_nB[0] + _r.normal(0, 260), _nB[1] + _r.normal(0, 150), _r.uniform(12, 28), _r.uniform(20.0, 28.5)))
+for k in range(11): GORE.append((_nP[0] + _r.normal(0, 170), _nP[1] + _r.normal(0, 140), _r.uniform(10, 24), _r.uniform(47.5, 53.5)))
+DEBRIS = []      # (x, y, ang, t0)
+for (gx, gy, gr, gt) in GORE:
+    for q in range(int(_r.integers(3, 8))):
+        DEBRIS.append((gx + _r.normal(0, gr * 1.4), gy + _r.normal(0, gr * 1.1), _r.uniform(0, 3.14), gt + _r.uniform(0, 1.5)))
+PLUMES = []      # cột khói đen: (x, y, t_bắt_đầu, t_kết_thúc, cỡ)
+for k in range(6): PLUMES.append((_nB[0] + _r.normal(0, 160), _nB[1] + _r.normal(0, 90), _r.uniform(20.5, 24.0), 62.0, _r.uniform(26, 38)))
+for k in range(4): PLUMES.append((_nP[0] + _r.normal(0, 110), _nP[1] + _r.normal(0, 90), _r.uniform(47.8, 50.5), 62.0, _r.uniform(24, 34)))
+GORE_BBOX = (int(min(_nB[0], _nP[0]) - 900), int(min(_nB[1], _nP[1]) - 700), int(max(_nB[0], _nP[0]) + 900), int(max(_nB[1], _nP[1]) + 700))
+
+
+def gore_layer(cam, t):
+    res = 2.0; x0, y0, x1, y1 = GORE_BBOX
+    act = [g for g in GORE if t > g[3]]
+    if not act: return None
+
+    def draw(w, h):
+        m = Image.new("L", (w, h), 0); d = ImageDraw.Draw(m)
+        rr_ = np.random.default_rng(5)
+        for (gx, gy, gr, gt) in GORE:
+            a = ease((t - gt) / 1.6)
+            rr_.random(40)
+            if a <= 0: continue
+            cx, cy = (gx - x0) / res, (gy - y0) / res; R = gr / res * (0.5 + 0.5 * a)
+            for q in range(9):           # vệt loang không đều + giọt bắn
+                ox, oy = rr_.normal(0, R * 0.6), rr_.normal(0, R * 0.45); rq = R * rr_.uniform(0.25, 0.6)
+                d.ellipse((cx + ox - rq, cy + oy - rq * 0.8, cx + ox + rq, cy + oy + rq * 0.8), fill=int(255 * a))
+            for q in range(10):
+                ang = rr_.uniform(0, 6.28); dist = R * rr_.uniform(1.0, 1.9); rq = rr_.uniform(0.6, 1.6)
+                d.ellipse((cx + dist * math.cos(ang) - rq, cy + dist * math.sin(ang) - rq, cx + dist * math.cos(ang) + rq, cy + dist * math.sin(ang) + rq), fill=int(220 * a))
+        m = m.filter(ImageFilter.GaussianBlur(1.2))
+        al = np.asarray(m, np.float32) / 255
+        lay = np.zeros((h, w, 4), np.float32)
+        lay[..., 0], lay[..., 1], lay[..., 2] = 92, 26, 18
+        lay[..., 3] = al * 150
+        im = Image.fromarray(lay.astype(np.uint8), "RGBA"); d = ImageDraw.Draw(im)
+        for (dx_, dy_, ang, dt) in DEBRIS:       # mảnh vỡ, xác ngổn ngang (cách điệu)
+            if t < dt: continue
+            cx, cy = (dx_ - x0) / res, (dy_ - y0) / res; L_ = 4.0; W_ = 1.4
+            c, s_ = math.cos(ang), math.sin(ang)
+            q = [(cx + c * u - s_ * v, cy + s_ * u + c * v) for u, v in ((-L_, -W_), (L_, -W_), (L_, W_), (-L_, W_))]
+            d.polygon([(x + 1, y + 1) for x, y in q], fill=(20, 15, 10, 120)); d.polygon(q, fill=(72, 50, 34, 235))
+        return im
+    return ground_layer(cam, draw, (x0, y0, x1, y1), res)
+
+
+_dark = None
+
+
+def dark_smoke_tex():
+    global _dark
+    if _dark is None:
+        st = smoke_tex(); a = np.asarray(st).astype(np.float32)
+        lum = a[..., :3].mean(-1, keepdims=True) / 255
+        a[..., :3] = np.array([38, 34, 32]) * (0.7 + 0.6 * lum)
+        _dark = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA")
+    return _dark
+
+
+def draw_plumes(img, cam, t):
+    st = dark_smoke_tex(); items = []
+    for (px, py, ts, te, sz) in PLUMES:
+        if t < ts: continue
+        grow = ease((t - ts) / 2.5)
+        NPF = 22
+        for k in range(NPF):                 # mỗi cột khói = chuỗi cụm khói bốc lên, trôi theo gió
+            ph = ((t - ts) * 0.28 + k / NPF) % 1.0
+            if ph > (t - ts) * 0.28 + 0.02: continue
+            z = ph * 260 * grow; drift = ph * 120
+            u, v, sc = cam.proj([(px + drift, py - drift * 0.35)], z)
+            size = sz * (1.0 + 2.6 * ph) * sc[0]
+            op = min(1, ph / 0.06) * (1 - ph) ** 1.1 * 0.95 * grow
+            items.append((-z, float(u[0]), float(v[0]), size, op))
+    for (_, u, v, size, op) in sorted(items):
+        blit(img, st, (st.width / 2, st.height / 2), (u, v), size / st.width * 1.9, alpha=op)
+
+
 def ground_layer(cam, draw_fn, bbox, res):
     """vẽ một lớp trong không gian bản đồ (bbox mét, res m/px) rồi chiếu ra màn hình"""
     x0, y0, x1, y1 = bbox
@@ -957,6 +1039,8 @@ def render(fi):
     CL = np.asarray(cl, np.float32)[..., None] / 255
     a[..., :3] *= (1.08 - 0.40 * CL)
     img = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA")
+    gl = gore_layer(cam, t)
+    if gl: img.alpha_composite(gl)
     # --- mũi tên + vòng tròn (dưới quân)
     for ar in ARROWS:
         l = arrow_layer(cam, ar, t)
@@ -1016,6 +1100,7 @@ def render(fi):
         op = min(1, age / 0.12) * (1 - ease((age - 1.2) / 2.0))
         px = sz * s[0] * grow * 2.3
         blit(img, st, (st.width / 2, st.height * 0.65), (float(uu[0]), float(vv[0])), px / st.width, alpha=op * 0.9)
+    draw_plumes(img, cam, t)
     # --- vũ khí minh hoạ
     draw_weapons(img, cam, t)
     # --- nhãn địa danh
