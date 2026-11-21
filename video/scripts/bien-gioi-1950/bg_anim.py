@@ -18,7 +18,8 @@ FOC = (W / 2) / math.tan(FOV / 2)
 OSWALD = os.path.join(S, "gfx", "oswald-700.ttf")
 BARLOW = os.path.join(S, "gfx", "barlow-condensed-700.ttf")
 CORM = os.path.join(S, "gfx", "dl", "cormsc700.ttf")
-GEO = json.load(open(os.path.join(HERE, "geo.json")))
+GEO = json.load(open(os.path.join(HERE, "geo_old.json")))
+GEO_NEW = json.load(open(os.path.join(HERE, "geo.json")))
 _fc = {}
 
 
@@ -50,7 +51,7 @@ CAM = [  # t, cx, cy, viewW, yaw, tilt
 
 
 def cam_at(t):
-    ks = CAM
+    ks = globals()["CAM"]
     if t <= ks[0][0]: return ks[0][1:]
     if t >= ks[-1][0]: return ks[-1][1:]
     for i in range(len(ks) - 1):
@@ -263,7 +264,7 @@ UNITS, STDS, ADV = build_oob()
 
 # ============================ sprites ============================
 PPM = 4  # px trên mét cho sprite gốc
-COL = {"vn": (34, 84, 205), "fl": (205, 30, 28), "br": (215, 22, 22), "hn": (225, 60, 50), "nl": (235, 115, 30), "fr": (28, 58, 205), "frg": (20, 40, 150),
+COL = {"vn": (210, 28, 26), "fl": (30, 62, 205), "br": (215, 22, 22), "hn": (225, 60, 50), "nl": (235, 115, 30), "fr": (28, 58, 205), "frg": (20, 40, 150),
        "frcav": (245, 245, 250), "brcav": (190, 20, 25), "rf": (30, 110, 50)}
 _spr = {}
 
@@ -291,7 +292,9 @@ def bar_tex(kind):
         elif kind == "rf":
             td.line([(0, hh), (ww, 0)], fill=(230, 230, 220, 255), width=sw)
         else:
-            if kind in ("fr", "frg", "fl"):
+            if kind == "vn":
+                td.polygon([(ww * 0.36, hh), (ww * 0.50, hh), (ww * 0.64, 0), (ww * 0.50, 0)], fill=(255, 214, 0, 255))
+            elif kind in ("fr", "frg", "fl"):
                 for k in range(2):
                     a0 = ww * k / 2; a1 = ww * (k + 1) / 2
                     td.line([(a0, 0), (a1, hh)], fill=(248, 248, 250, 255), width=sw); td.line([(a0, hh), (a1, 0)], fill=(248, 248, 250, 255), width=sw)
@@ -324,7 +327,7 @@ def gun_tex():
 def pin_tex(kind):
     """lính tán binh tí hon: mũ đen, áo màu phe, đai chéo trắng, quần, súng hỏa mai dựng đứng có lưỡi lê"""
     if kind in _spr: return _spr[kind]
-    coat = (200, 28, 26) if kind in ("skb", "skl") else (32, 62, 200)
+    coat = (200, 28, 26) if kind in ("skb", "skv") else (32, 62, 200)
     trou = (205, 205, 200) if kind == "skf" else ((150, 138, 96) if kind in ("skv", "skl") else (110, 110, 118))
     o = (18, 14, 12, 255)
     im = Image.new("RGBA", (60, 170), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
@@ -461,7 +464,7 @@ def std_tex(kind, label, t=0.0, side_=None):
     if key not in _spr:
         fl = flag_img(kind).convert("RGBA")
         d = ImageDraw.Draw(fl); d.rectangle((0, 0, fl.width - 1, fl.height - 1), outline=(25, 20, 20), width=2)
-        side = (40, 60, 160) if side_ == "vn" else (190, 30, 30)
+        side = (190, 30, 30) if side_ == "vn" else (40, 60, 160)
         fw, fh = fl.size
         plate_h = 26; pole = 40
         im = Image.new("RGBA", (fw + 20, fh + plate_h + pole + 24), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
@@ -561,6 +564,39 @@ CARDS = [dict(text="CÒN ~650 NGƯỜI", at=(2250, 1760), t=(31.0, 36.6), side="
 
 
 # ============================ ground rasters ============================
+# ---------------- chuyển sang hệ toạ độ bản đồ 8K thật ----------------
+_oB, _oP = np.array(B, float), np.array(P477, float)
+_nB, _nP = np.array(GEO_NEW["B"], float), np.array(GEO_NEW["P477"], float)
+_vo, _vn = _oP - _oB, _nP - _nB
+SIM_S = float(np.hypot(*_vn) / np.hypot(*_vo)); SIM_R = math.atan2(_vn[1], _vn[0]) - math.atan2(_vo[1], _vo[0])
+_c, _s = math.cos(SIM_R) * SIM_S, math.sin(SIM_R) * SIM_S
+
+
+def TX(x, y):
+    dx, dy = x - _oB[0], y - _oB[1]
+    return (_nB[0] + _c * dx - _s * dy, _nB[1] + _s * dx + _c * dy)
+
+
+for u in UNITS:
+    u.keys = [(k[0], *TX(k[1], k[2]), k[3] + SIM_R, k[4]) for k in u.keys]
+for sd in STDS:
+    sd["keys"] = [(k[0], *TX(k[1], k[2]), k[3]) for k in sd["keys"]]
+for ar in ARROWS:
+    ar["p"] = [TX(*q) for q in ar["p"]]; ar["w"] *= SIM_S
+for rg in RINGS:
+    rg["c"] = TX(*rg["c"]); rg["r"] *= SIM_S
+SMOKE = [(e[0], *TX(e[1], e[2]), e[3]) for e in SMOKE]
+CHURN = [(*TX(e[0], e[1]), e[2] * SIM_S, e[3]) for e in CHURN]
+for c in CARDS:
+    c["at"] = TX(*c["at"])
+CAM = [(k[0], *TX(k[1], k[2]), k[3] * SIM_S, k[4], k[5]) for k in CAM]
+_rc4 = GEO_NEW["routes"]["rc4"]
+LABELS = [(tuple(GEO_NEW["villages"][k]) if k in GEO_NEW["villages"] else k, txt, off) for (k, txt, off) in LABELS
+          if not (isinstance(k, tuple) and k == tuple(GEO["p477"])) and txt != "Đường số 4"]
+LABELS += [(tuple(GEO_NEW["P477"]), "Điểm cao 477", (-330, -40)), (tuple(_rc4[len(_rc4) * 3 // 4]), "Đường số 4", (60, 0))]
+CHURN_BBOX = (int(min(e[0] for e in CHURN)) - 500, int(min(e[1] for e in CHURN)) - 500, int(max(e[0] for e in CHURN)) + 500, int(max(e[1] for e in CHURN)) + 500)
+
+
 def ground_layer(cam, draw_fn, bbox, res):
     """vẽ một lớp trong không gian bản đồ (bbox mét, res m/px) rồi chiếu ra màn hình"""
     x0, y0, x1, y1 = bbox
@@ -633,7 +669,7 @@ def ring_layer(cam, rg, t):
 
 
 def churn_layer(cam, t):
-    res = 6.0; x0, y0, x1, y1 = 1000, 700, 3200, 3100
+    res = 6.0; x0, y0, x1, y1 = CHURN_BBOX
 
     def draw(w, h):
         im = Image.new("L", (w, h), 0); d = ImageDraw.Draw(im)
@@ -716,7 +752,7 @@ def card_tex(txt, side):
     if key not in _lab:
         f = F(BARLOW, 56); tw = int(f.getlength(txt)) + 60
         im = Image.new("RGBA", (tw, 90), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
-        col = (190, 30, 30) if side == "fr" else (40, 60, 160)
+        col = (40, 60, 160) if side == "fr" else (190, 30, 30)
         d.rectangle((2, 2, tw - 3, 87), fill=(245, 242, 235, 255), outline=col + (255,), width=5)
         d.text((tw / 2, 46), txt, font=f, fill=(30, 25, 25, 255), anchor="mm")
         _lab[key] = im
@@ -984,7 +1020,7 @@ def render(fi):
     draw_weapons(img, cam, t)
     # --- nhãn địa danh
     for (key, txt, off) in LABELS:
-        vx, vy = GEO["villages"][key] if isinstance(key, str) else key
+        vx, vy = key
         uu, vv, s = cam.proj([(vx + off[0], vy + off[1])])
         if not (-200 < uu[0] < W + 200 and -40 < vv[0] < H + 40): continue
         fs = max(14.0, 30 * float(s[0]))
@@ -1009,7 +1045,7 @@ def render(fi):
     img = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
     clock(img, t)
     d_ = ImageDraw.Draw(img)
-    d_.text((40, H - 40), "SƠ ĐỒ MINH HOẠ · KHÔNG THEO TỈ LỆ", font=F(BARLOW, 22), fill=(235, 230, 215, 150), anchor="ls")
+    d_.text((40, H - 40), "ĐỊA HÌNH THẬT (SRTM) · VỊ TRÍ ĐƠN VỊ MANG TÍNH MINH HOẠ", font=F(BARLOW, 22), fill=(235, 230, 215, 150), anchor="ls")
     if t > DUR - 1.2:
         img = Image.blend(img, Image.new("RGBA", img.size, (0, 0, 0, 255)), ease((t - (DUR - 1.2)) / 1.2))
     if t < 0.6:
