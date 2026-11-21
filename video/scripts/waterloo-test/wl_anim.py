@@ -606,6 +606,73 @@ def churn_layer(cam, t):
     return ground_layer(cam, draw, (x0, y0, x1, y1), res)
 
 
+
+# ============================ đặt sprite mượt dưới mức pixel ============================
+_mip = {}
+
+
+def mip(tex, L):
+    key = (id(tex), L)
+    if key not in _mip:
+        im = tex
+        for _ in range(L):
+            im = im.resize((max(1, im.width // 2), max(1, im.height // 2)), Image.LANCZOS)
+        _mip[key] = im
+    return _mip[key]
+
+
+def blit(img, tex, anchor, uv, scale, ang=0.0, alpha=1.0, M=None, shadow=None, tint=None):
+    """vẽ tex lên img: điểm anchor của tex nằm tại uv (float), co giãn scale, xoay ang độ (ngược kim đồng hồ),
+    M = ma trận 2x2 thêm (bóng đổ nghiêng). shadow=(dx, dy, blur, opacity) theo px màn hình."""
+    if scale <= 0.003 or alpha <= 0.003: return
+    L = 0
+    while scale * 2 ** (L + 1) < 1.0 and L < 6: L += 1
+    T = mip(tex, L); s = scale * 2 ** L; ax, ay = anchor[0] / 2 ** L, anchor[1] / 2 ** L
+    c, sn = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+    F_ = np.array([[c, sn], [-sn, c]]) * s
+    if M is not None: F_ = np.array(M) @ F_
+    Fi = np.linalg.inv(F_)
+    corners = np.array([[0, 0], [T.width, 0], [T.width, T.height], [0, T.height]], float) - [ax, ay]
+    P = corners @ F_.T + uv
+    pad = 3 + (int(abs(shadow[0]) + abs(shadow[1]) + 3 * shadow[2]) + 2 if shadow else 0)
+    ox, oy = int(math.floor(P[:, 0].min())) - pad, int(math.floor(P[:, 1].min())) - pad
+    ex, ey = int(math.ceil(P[:, 0].max())) + pad, int(math.ceil(P[:, 1].max())) + pad
+    if ex < 0 or ey < 0 or ox > img.width or oy > img.height: return
+    w, h = ex - ox, ey - oy
+    # canvas (x,y) -> tex: q = anchor + Fi @ (p - uv),  p = (x+ox, y+oy)
+    a, b = Fi[0]; d, e = Fi[1]
+    cx = ax + a * (ox - uv[0]) + b * (oy - uv[1]); cy = ay + d * (ox - uv[0]) + e * (oy - uv[1])
+    lay = T.transform((w, h), Image.AFFINE, (a, b, cx, d, e, cy), Image.BICUBIC)
+    if tint is not None:
+        sh_ = Image.new("RGBA", lay.size, tint + (0,)); sh_.putalpha(lay.split()[3]); lay = sh_
+    if alpha < 1:
+        lay.putalpha(lay.split()[3].point(lambda v: int(v * alpha)))
+    if shadow:
+        dx, dy, bl, op = shadow
+        sa = lay.split()[3]
+        sa = sa.transform(sa.size, Image.AFFINE, (1, 0, -dx, 0, 1, -dy), Image.BILINEAR).filter(ImageFilter.GaussianBlur(max(0.6, bl)))
+        sh = Image.new("RGBA", lay.size, (20, 22, 8, 0)); sh.putalpha(sa.point(lambda v: int(v * op)))
+        sh.alpha_composite(lay); lay = sh
+    # cắt phần ngoài khung
+    sx0, sy0 = max(0, -ox), max(0, -oy)
+    sx1, sy1 = min(w, img.width - ox), min(h, img.height - oy)
+    if sx1 <= sx0 or sy1 <= sy0: return
+    img.alpha_composite(lay, (ox + sx0, oy + sy0), (sx0, sy0, sx1, sy1))
+
+
+_lab = {}
+
+
+def label_tex(txt):
+    if txt not in _lab:
+        f = F(CORM, 64)
+        lay = Image.new("RGBA", (int(f.getlength(txt)) + 60, 120), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
+        d.text((lay.width / 2 + 2, 64), txt, font=f, fill=(10, 8, 0, 235), anchor="mm")
+        lay = lay.filter(ImageFilter.GaussianBlur(6)); d = ImageDraw.Draw(lay)
+        d.text((lay.width / 2, 60), txt, font=f, fill=(246, 242, 228, 255), anchor="mm")
+        _lab[txt] = lay
+    return _lab[txt]
+
 # ============================ frame ============================
 def text_shadow(img, xy, s, font, fill, anchor="mm", blur=3, op=200, off=(2, 2)):
     lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
@@ -688,27 +755,22 @@ def render(fi):
     items.sort(key=lambda it: it[0])
     for it in items:
         _, typ, obj, x, y, hd, al, u0, s = it
-        v0 = it[0] - (1e4 if typ == "s" else 0)
+        v0 = float(it[0] - (1e4 if typ == "s" else 0)); u0 = float(u0); s = float(s)
         if typ == "u":
             if obj.kind in ("skb", "skf"):
-                p = pin_tex(obj.kind); sc_ = s * 13 / 70
-                pw, ph = max(2, int(p.width * sc_ * 1.0)), max(3, int(p.height * sc_))
-                r = p.resize((pw, ph), Image.LANCZOS)
-                if al < 1: r.putalpha(r.split()[3].point(lambda v: int(v * al)))
-                img.alpha_composite(r, (int(u0 - pw / 2), int(v0 - ph)))
+                p = pin_tex(obj.kind)
+                blit(img, p, (20, 62), (u0, v0), s * 13 / 70, alpha=al)
                 continue
             ang = cam.screen_angle(x, y, hd)
-            sp = unit_sprite(obj.kind, ang, s / PPM)
-            if sp is None: continue
-            if al < 1:
-                sp = sp.copy(); sp.putalpha(sp.split()[3].point(lambda v: int(v * al)))
-            img.alpha_composite(sp, (int(u0 - sp.width / 2), int(v0 - sp.height / 2)))
+            tex = gun_tex() if obj.kind == "gun" else bar_tex(obj.kind)
+            blit(img, tex, (tex.width / 2, tex.height / 2), (u0, v0), s / PPM, ang=ang, alpha=al,
+                 shadow=(5 * s, 6 * s, 2.2 * s, 0.55))
         else:
             sc_ = s * 0.56
-            r, (ax, ay), shim = std_sprite(obj["kind"], obj["label"], sc_)
-            sh = Image.new("RGBA", shim.size, (15, 18, 5, 0)); sh.putalpha(shim.point(lambda v: int(v * 0.42)))
-            img.alpha_composite(sh, (int(u0 - ax + r.height * 0.02), int(v0 - shim.height + 4)))
-            img.alpha_composite(r, (int(u0 - ax), int(v0 - ay)))
+            tex, (ax, ay) = std_tex(obj["kind"], obj["label"])
+            # bóng cờ đổ nghiêng xuống mặt đất
+            blit(img, tex, (ax, ay), (u0, v0), sc_, M=[[1, -0.75], [0, 0.42]], tint=(15, 18, 5), alpha=0.42)
+            blit(img, tex, (ax, ay), (u0, v0), sc_)
     # --- khói (trên quân)
     st = smoke_tex()
     for (te, x, y, sz) in SMOKE:
@@ -718,17 +780,16 @@ def render(fi):
         if not (-60 < uu[0] < W + 60 and -60 < vv[0] < H + 60): continue
         grow = 0.55 + 0.45 * (1 - math.exp(-age * 2.2))
         op = min(1, age / 0.12) * (1 - ease((age - 1.2) / 2.0))
-        px = max(2, int(sz * s[0] * grow * 2.3))
-        p = st.resize((px, px), Image.BILINEAR)
-        p.putalpha(p.split()[3].point(lambda v: int(v * op * 0.9)))
-        img.alpha_composite(p, (int(uu[0] - px / 2), int(vv[0] - px / 2 - px * 0.15)))
+        px = sz * s[0] * grow * 2.3
+        blit(img, st, (st.width / 2, st.height * 0.65), (float(uu[0]), float(vv[0])), px / st.width, alpha=op * 0.9)
     # --- nhãn địa danh
     for (key, txt, off) in LABELS:
         vx, vy = GEO["villages"][key]
-        uu, vv, s = cam.proj([(vx + off[0], vy + off[1])]); uu, vv = uu.tolist(), vv.tolist()
+        uu, vv, s = cam.proj([(vx + off[0], vy + off[1])])
         if not (-200 < uu[0] < W + 200 and -40 < vv[0] < H + 40): continue
-        fs = float(max(14, 30 * s[0])); f = F(CORM, fs)
-        text_shadow(img, (uu[0], vv[0]), txt, f, (246, 242, 228, 255), blur=max(2, fs / 9), op=230, off=(1, 2))
+        fs = max(14.0, 30 * float(s[0]))
+        lt = label_tex(txt)
+        blit(img, lt, (lt.width / 2, 60), (float(uu[0]), float(vv[0])), fs / 64)
     # --- grade: vignette + ấm + hạt
     a = np.asarray(img).astype(np.float32)[..., :3]
     a *= (1.0 - 0.10 * CL)
