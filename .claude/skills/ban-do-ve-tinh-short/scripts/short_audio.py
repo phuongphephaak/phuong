@@ -4,7 +4,10 @@ from scipy.io import wavfile
 HERE = os.path.abspath(os.environ.get("WORK", os.getcwd()))
 SKILL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 SR = 48000; DUR = 26.3; N = int(SR * DUR); t = np.arange(N) / SR; r = np.random.default_rng(2)
-VO = [("l1", 0.15), ("l2", 3.30), ("l3", 5.15), ("l4", 8.40), ("l5", 10.15), ("l6", 12.20), ("l7", 15.20), ("l8", 21.00)]
+VO_VI = [("l1", 0.15), ("l2", 3.30), ("l3", 5.15), ("l4", 8.40), ("l5", 10.15), ("l6", 12.20), ("l7", 15.20), ("l8", 21.00)]
+# bản tiếng Anh (wav đã tăng tốc 1.08 khi cắt lặng)
+VO_EN = [("l1", 0.10), ("l2", 3.35), ("l3", 5.15), ("l4", 8.55), ("l5", 10.50), ("l6", 12.55), ("l7", 15.30), ("l8", 21.10)]
+VO = VO_EN if os.environ.get("VLANG", "vi") == "en" else VO_VI
 def lp(x, f): return signal.sosfilt(signal.butter(4, f, "low", fs=SR, output="sos"), x)
 def bp(x, a, b): return signal.sosfilt(signal.butter(2, [a, b], "band", fs=SR, output="sos"), x)
 def place(buf, s, at, g=1.0):

@@ -21,6 +21,16 @@ Bản mẫu đã làm xong: **Sông Bến Hải – vết cắt chia đôi đấ
 
 Mọi script đọc và ghi trong thư mục `WORK`, mặc định là thư mục hiện tại; dữ liệu đặt ở `WORK/data/`.
 
+## Bản tiếng Anh (`VLANG=en`)
+
+Cùng bộ hình, chỉ đổi lời đọc và chữ trên màn hình. Đặt `VLANG=en` khi chạy `tts.py`, `short_audio.py` và `short_anim.py`. Nên dùng một thư mục `WORK` riêng, liên kết sẵn `geo.pkl`, `mosaic_*`, `sea_*` từ bản tiếng Việt.
+
+- **Chữ trên màn hình** nằm trong bảng `TXT["vi"]` / `TXT["en"]` ở đầu `short_anim.py`. Tên địa danh Việt giữ dấu (Bến Hải River, Hiền Lương Bridge).
+- **Chủ quyền:** viết "Paracel Is. (Vietnam)", "Spratly Is. (Vietnam)" và "East Sea".
+- **Lời dẫn** nằm trong `LE` của `tts.py`. Tên riêng viết không dấu ("Ben Hai", "Quang Tri") để giọng Anh đọc đúng. Giọng mặc định là `onwK4e9ZLuTAKqWW03F9` ("Daniel", giọng Anh trầm); đổi bằng `VOICE=<id>`.
+- Khi cắt khoảng lặng, thêm `atempo=1.08` để câu tiếng Anh vừa nhịp. Mốc lời thoại tiếng Anh nằm trong `VO_EN` của `short_audio.py`.
+- Nhãn chữ tự được giữ trong khung hình vì chữ tiếng Anh thường dài hơn.
+
 ## Nguồn dữ liệu (được dùng thương mại)
 
 - **Ảnh vệ tinh:** EOX lớp **`s2cloudless_3857` (Sentinel-2 năm 2016, CC BY 4.0)**, URL `https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless_3857/default/g/{z}/{y}/{x}.jpg`.

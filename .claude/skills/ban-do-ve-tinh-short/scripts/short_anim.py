@@ -18,6 +18,20 @@ G = pickle.load(open(os.path.join(HERE, "geo.pkl"), "rb"))
 META = json.load(open(os.path.join(HERE, "mosaic_meta.json")))
 FB = "/usr/share/fonts/opentype/inter/Inter-BlackItalic.otf"
 FX = "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf"
+
+# ---- chữ trên màn hình theo ngôn ngữ: VLANG=vi (mặc định) | en ----
+VLANG = os.environ.get("VLANG", "vi")
+TXT = {
+    "vi": {"north": "Miền Bắc", "south": "Miền Nam", "river": "Sông Bến Hải", "vinhlinh": "Vĩnh Linh", "giolinh": "Gio Linh",
+           "vn": "Việt Nam", "hoangsa": "QĐ. Hoàng Sa", "truongsa": "QĐ. Trường Sa", "sea": "Biển Đông", "cuatung": "Cửa Tùng",
+           "vt17": "Vĩ tuyến 17", "dmz": "Khu phi quân sự", "bridge": "Cầu Hiền Lương", "banner": "Vết cắt chia đôi đất nước",
+           "credit": "Ảnh vệ tinh: Sentinel-2 cloudless 2016, EOX (CC BY 4.0)"},
+    "en": {"north": "North", "south": "South", "river": "Bến Hải River", "vinhlinh": "Vĩnh Linh", "giolinh": "Gio Linh",
+           "vn": "Vietnam", "hoangsa": "Paracel Is. (Vietnam)", "truongsa": "Spratly Is. (Vietnam)", "sea": "East Sea", "cuatung": "Cửa Tùng",
+           "vt17": "17th Parallel", "dmz": "Demilitarized Zone", "bridge": "Hiền Lương Bridge", "banner": "The River That Split a Nation",
+           "credit": "Satellite imagery: Sentinel-2 cloudless 2016 by EOX (CC BY 4.0)"},
+}
+T = TXT[VLANG]
 _fc = {}
 
 
@@ -309,7 +323,11 @@ def geo_label(img, cam, pt, text, t0, t1, t, size, col=(255, 255, 255), dx=0, dy
     sc, al = pop(t, t0, t1)
     if al <= 0: return
     px, py = cam.P(*pt)
-    blit(img, smallcaps(text, size, col, stroke=stroke, upper_only=upper_only, font=font), px + dx, py + dy, sc, al)
+    spr = smallcaps(text, size, col, stroke=stroke, upper_only=upper_only, font=font)
+    hw = spr.width / 2 + 24                  # giữ nhãn trong khung (chữ tiếng Anh thường dài hơn)
+    cx = px + dx
+    if px > -200 and px < W + 200: cx = min(max(cx, hw), W - hw)
+    blit(img, spr, cx, py + dy, sc, al)
 
 
 def fade(t, t0, t1, fi=0.35, fo=0.3):
@@ -451,32 +469,32 @@ def render(fi):
         img.alpha_composite(gl); img.alpha_composite(lay)
     # ---- nhãn ----
     P = G["pts"]
-    geo_label(img, cam, P["mbac"], "Miền Bắc", 1.95, 3.1, t, 78, (255, 255, 255), dy=0, stroke=((40, 40, 40), 0.04))
-    geo_label(img, cam, P["mnam"], "Miền Nam", 2.45, 3.1, t, 78, (255, 255, 255), stroke=((40, 40, 40), 0.04))
-    arrow_label(img, cam, P["hienluong"], "Sông Bến Hải", 3.45, 5.1, t, 34, -40, -150)
-    geo_label(img, cam, P["vinhlinh"], "Vĩnh Linh", 5.3, 6.35, t, 30, dy=-55 * zk ** 0.2)
-    geo_label(img, cam, P["giolinh"], "Gio Linh", 5.4, 6.35, t, 30, dy=40 * zk ** 0.2)
-    geo_label(img, cam, P["vn"], "Việt Nam", 6.75, 8.15, t, 70, stroke=((40, 40, 40), 0.04))
-    geo_label(img, cam, P["hoangsa"], "QĐ. Hoàng Sa", 7.0, 11.75, t, 30, dx=-40, dy=-40)
-    geo_label(img, cam, P["truongsa"], "QĐ. Trường Sa", 7.15, 11.75, t, 30, dx=-60, dy=-46)
-    geo_label(img, cam, P["mbac"], "Miền Bắc", 8.55, 11.75, t, 120, stroke=((40, 40, 40), 0.04))
-    geo_label(img, cam, P["mnam"], "Miền Nam", 10.35, 11.75, t, 120, stroke=((40, 40, 40), 0.04))
-    arrow_label(img, cam, P["hienluong"], "Sông Bến Hải", 11.85, 99, t, 46 if t < 21 else 52, -60, -230 if t < 21 else -260)
+    geo_label(img, cam, P["mbac"], T["north"], 1.95, 3.1, t, 78, (255, 255, 255), dy=0, stroke=((40, 40, 40), 0.04))
+    geo_label(img, cam, P["mnam"], T["south"], 2.45, 3.1, t, 78, (255, 255, 255), stroke=((40, 40, 40), 0.04))
+    arrow_label(img, cam, P["hienluong"], T["river"], 3.45, 5.1, t, 34, -40, -150)
+    geo_label(img, cam, P["vinhlinh"], T["vinhlinh"], 5.3, 6.35, t, 30, dy=-55 * zk ** 0.2)
+    geo_label(img, cam, P["giolinh"], T["giolinh"], 5.4, 6.35, t, 30, dy=40 * zk ** 0.2)
+    geo_label(img, cam, P["vn"], T["vn"], 6.75, 8.15, t, 70, stroke=((40, 40, 40), 0.04))
+    geo_label(img, cam, P["hoangsa"], T["hoangsa"], 7.0, 11.75, t, 30, dx=-40, dy=-40)
+    geo_label(img, cam, P["truongsa"], T["truongsa"], 7.15, 11.75, t, 30, dx=-60, dy=-46)
+    geo_label(img, cam, P["mbac"], T["north"], 8.55, 11.75, t, 120, stroke=((40, 40, 40), 0.04))
+    geo_label(img, cam, P["mnam"], T["south"], 10.35, 11.75, t, 120, stroke=((40, 40, 40), 0.04))
+    arrow_label(img, cam, P["hienluong"], T["river"], 11.85, 99, t, 46 if t < 21 else 52, -60, -230 if t < 21 else -260)
     if t < 21.05:
         sc, al = pop(t, 12.65)
-        blit(img, smallcaps("Biển Đông", 72, YEL, stroke=((0, 0, 0), 0.05)), W * 0.70, H * 0.27, sc, al)
+        blit(img, smallcaps(T["sea"], 72, YEL, stroke=((0, 0, 0), 0.05)), W * 0.70, H * 0.27, sc, al)
     else:
         k = ease((t - 21.05) / 1.5); u, v = cam.P(*merc(107.155, 17.13))
-        blit(img, smallcaps("Biển Đông", 92, YEL, stroke=((0, 0, 0), 0.05)), W * 0.70 + (u - W * 0.70) * k, H * 0.27 + (v - H * 0.27) * k, 0.78 + 0.22 * k, 1.0)
-    arrow_label(img, cam, P["cuatung"], "Cửa Tùng", 13.6, 20.9, t, 28, 110, -90, YEL)
-    geo_label(img, cam, P["vt17"], "Vĩ tuyến 17", 15.6, 20.9, t, 34, YEL, dy=-46, stroke=((0, 0, 0), 0.05))
-    geo_label(img, cam, P["dmz"], "Khu phi quân sự", 17.1, 20.9, t, 24, dy=70)
-    geo_label(img, cam, P["hienluong"], "Cầu Hiền Lương", 22.7, 99, t, 30, dy=62)
+        blit(img, smallcaps(T["sea"], 92, YEL, stroke=((0, 0, 0), 0.05)), W * 0.70 + (u - W * 0.70) * k, H * 0.27 + (v - H * 0.27) * k, 0.78 + 0.22 * k, 1.0)
+    arrow_label(img, cam, P["cuatung"], T["cuatung"], 13.6, 20.9, t, 28, 110, -90, YEL)
+    geo_label(img, cam, P["vt17"], T["vt17"], 15.6, 20.9, t, 34, YEL, dy=-46, stroke=((0, 0, 0), 0.05))
+    geo_label(img, cam, P["dmz"], T["dmz"], 17.1, 20.9, t, 24, dy=70)
+    geo_label(img, cam, P["hienluong"], T["bridge"], 22.7, 99, t, 30, dy=62)
     draw_vehicles(img, cam, t, ("plane",))
     # ---- băng tiêu đề ----
     if t >= 23.35:
         k = ease((t - 23.35) / 0.35)
-        f = F(FX, 52); txt = "Vết cắt chia đôi đất nước"; tw = f.getlength(txt)
+        f = F(FX, 52); txt = T["banner"]; tw = f.getlength(txt)
         bw, bh_ = tw + 50, 84; x0 = W / 2 - bw / 2 + (1 - k) * -W * 0.6; y0 = 330
         lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
         d.rectangle((x0, y0, x0 + bw, y0 + bh_), fill=(255, 255, 255, 255))
@@ -484,7 +502,7 @@ def render(fi):
         img.alpha_composite(lay.filter(ImageFilter.GaussianBlur(5)).point(lambda v: v) if False else lay)
     # ---- nguồn ảnh ----
     d = ImageDraw.Draw(img)
-    d.text((W - 20, H - 18), "Ảnh vệ tinh: Sentinel-2 cloudless 2016, EOX (CC BY 4.0)", font=F(FX, 17), fill=(255, 255, 255, 120), anchor="rs")
+    d.text((W - 20, H - 18), T["credit"], font=F(FX, 17), fill=(255, 255, 255, 120), anchor="rs")
     # ---- chuyển cảnh nhanh (cut): chớp sáng nhẹ ----
     for tc in (3.15, 11.85):
         if 0 <= t - tc < 0.12:
