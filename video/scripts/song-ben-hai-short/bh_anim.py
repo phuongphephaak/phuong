@@ -316,6 +316,69 @@ def fade(t, t0, t1, fi=0.35, fo=0.3):
     return ease((t - t0) / fi) * (1 - ease((t - t1) / fo))
 
 
+
+# ============================ xe tăng, máy bay, tàu (sprite 3D từ Blender) ============================
+_vs = {}
+
+
+def veh_sprite(name, ang_deg):
+    k = int(round(ang_deg / 15.0)) % 24; res = ang_deg - k * 15
+    key = (name, k)
+    if key not in _vs: _vs[key] = Image.open(os.path.join(HERE, "sprites", f"{name}_{k * 15:03d}.png")).convert("RGBA")
+    im = _vs[key]
+    return im.rotate(res, Image.BICUBIC) if abs(res) > 0.3 else im
+
+
+SPAN = {"tank": 8.0, "plane": 15.0, "ship": 25.0}
+LEN = {"tank": 7.4, "plane": 11.5, "ship": 23.0}
+VEH = [  # loại, [(t, lon, lat)], cỡ px (dài) tại zoom 11, độ cao bóng (px)
+    ("ship", [(12.4, 107.40, 17.30), (21.0, 107.24, 17.06), (DUR, 107.215, 17.03)], 140, 5),
+    ("ship", [(12.4, 107.42, 17.17), (21.0, 107.18, 17.24), (DUR, 107.15, 17.25)], 120, 5),
+    ("ship", [(14.0, 107.00, 17.27), (DUR, 107.20, 17.12)], 110, 5),
+    ("plane", [(15.6, 106.45, 17.10), (20.8, 107.45, 16.94)], 150, 70),
+    ("plane", [(16.4, 106.40, 17.20), (21.0, 107.40, 17.06)], 120, 90),
+    ("tank", [(21.0, 106.93, 17.075), (25.0, 107.015, 17.045), (DUR, 107.02, 17.043)], 85, 4),
+    ("tank", [(21.0, 106.905, 17.085), (25.2, 106.99, 17.055), (DUR, 106.995, 17.053)], 85, 4),
+    ("tank", [(21.0, 106.88, 17.095), (25.4, 106.965, 17.065), (DUR, 106.97, 17.063)], 85, 4),
+]
+
+
+def veh_pos(keys, t):
+    if t < keys[0][0] or t > keys[-1][0] + 1e-6: return None
+    for a, b in zip(keys[:-1], keys[1:]):
+        if a[0] <= t <= b[0]:
+            u = (t - a[0]) / (b[0] - a[0]); ax, ay = merc(a[1], a[2]); bx, by = merc(b[1], b[2])
+            return ax + (bx - ax) * u, ay + (by - ay) * u, math.atan2(-(by - ay), bx - ax)
+    return None
+
+
+def draw_vehicles(img, cam, t, kinds):
+    for name, keys, size, sh in VEH:
+        if name not in kinds: continue
+        st = veh_pos(keys, t)
+        if st is None: continue
+        x, y, hd = st; u, v = cam.P(x, y)
+        if not (-200 < u < W + 200 and -200 < v < H + 200): continue
+        al = min(1, (t - keys[0][0]) / 0.4, (keys[-1][0] - t) / 0.4 + (1 if keys[-1][0] >= DUR else 0))
+        px = size * 2 ** ((cam.z - 11) * 0.3)
+        spr = veh_sprite(name, math.degrees(hd))
+        sc = px / (LEN[name] / SPAN[name] * spr.width)
+        if name == "ship":         # vệt sóng sau tàu
+            trail = [veh_pos(keys, t - d) for d in np.linspace(0, 2.2, 14)]
+            P_ = [cam.P(q[0], q[1]) for q in trail if q is not None]
+            if len(P_) > 2:
+                lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
+                for i in range(len(P_) - 1):
+                    a_ = int(170 * (1 - i / len(P_)) * al)
+                    d.line([P_[i], P_[i + 1]], fill=(235, 245, 255, a_), width=max(2, int(px * 0.12 * (1 + i / len(P_)))))
+                img.alpha_composite(lay.filter(ImageFilter.GaussianBlur(2)))
+        a = spr.split()[3]
+        shd = Image.new("RGBA", spr.size, (0, 0, 0, 0)); shd.putalpha(a.point(lambda q: int(q * 0.55)))
+        shd = shd.filter(ImageFilter.GaussianBlur(4 if sh < 20 else 10))
+        off = sh * (1 if name != "plane" else 2 ** ((cam.z - 11) * 0.3))
+        blit(img, shd, u + off, v + off, sc, al)
+        blit(img, spr, u, v, sc, al)
+
 # ============================ khung hình ============================
 YEL = (255, 228, 30)
 
@@ -375,6 +438,7 @@ def render(fi):
         if a_z > 0:
             dashed(img, line_pts(G["dmzN"], cam, ease((t - 16.9) / 1.2)), (255, 245, 200), 2.6, 12, 10, -ph, a_z * 0.95, glow=3)
             dashed(img, line_pts(G["dmzS"], cam, ease((t - 16.9) / 1.2)), (255, 245, 200), 2.6, 12, 10, -ph, a_z * 0.95, glow=3)
+    draw_vehicles(img, cam, t, ("ship", "tank"))
     # ---- vòng tròn đỏ cầu Hiền Lương ----
     if t >= 22.45:
         k = ease((t - 22.45) / 0.35); u, v = cam.P(*G["pts"]["hienluong"])
@@ -407,6 +471,7 @@ def render(fi):
     geo_label(img, cam, P["vt17"], "Vĩ tuyến 17", 15.6, 20.9, t, 34, YEL, dy=-46, stroke=((0, 0, 0), 0.05))
     geo_label(img, cam, P["dmz"], "Khu phi quân sự", 17.1, 20.9, t, 24, dy=70)
     geo_label(img, cam, P["hienluong"], "Cầu Hiền Lương", 22.7, 99, t, 30, dy=62)
+    draw_vehicles(img, cam, t, ("plane",))
     # ---- băng tiêu đề ----
     if t >= 23.35:
         k = ease((t - 23.35) / 0.35)
